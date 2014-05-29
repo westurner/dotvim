@@ -1,0 +1,131 @@
+diff --git a/nerdtree_plugin/nerdtree_open.vim b/nerdtree_plugin/nerdtree_open.vim
+index d93fdf4..bc21b21 100644
+--- a/nerdtree_plugin/nerdtree_open.vim
++++ b/nerdtree_plugin/nerdtree_open.vim
+@@ -1,3 +1,8 @@
++" Execute g:nerdtree_open_cmd for the selected path
++"
++" see:
++" https://github.com/t9md/vim-nerdtree_plugin_collections/blob/master/nerdtree_plugin/nerdtree_open.vim
++
+ if exists("g:loaded_nerdtree_plugin_open")
+     finish
+ endif
+diff --git a/nerdtree_plugin/nerdtree_terminal.vim b/nerdtree_plugin/nerdtree_terminal.vim
+index ad24521..82ecfe7 100644
+--- a/nerdtree_plugin/nerdtree_terminal.vim
++++ b/nerdtree_plugin/nerdtree_terminal.vim
+@@ -1,5 +1,6 @@
+ " NERD Tree Plugin to open terminal app to the specified working dir
+ "
++" See:
+ " https://github.com/t9md/vim-nerdtree_plugin_collections/blob/master/nerdtree_plugin/nerdtree_ctags.vim
+ 
+ if exists("g:loaded_nerdtree_plugin_terminal")
+diff --git a/plugin/NERD_tree.vim b/plugin/NERD_tree.vim
+index 6411b1d..dc4b91b 100644
+--- a/plugin/NERD_tree.vim
++++ b/plugin/NERD_tree.vim
+@@ -144,11 +144,11 @@ if s:running_windows
+ else
+     let s:escape_chars =  " \\`\|\"#%&,?()\*^<>"
+ endif
+-let s:NERDTreeBufName = 'NERD_tree_'
++let s:NERDTreeBufName = '.'
+ 
+ let s:tree_wid = 2
+ let s:tree_markup_reg = '^[ `|]*[\-+~]'
+-let s:tree_up_dir_line = '.. (up a dir)'
++let s:tree_up_dir_line = '..'
+ 
+ "the number to add to the nerd tree buffer name to make the buf name unique
+ let s:next_buffer_number = 1
+@@ -407,6 +407,12 @@ function! s:Bookmark.Sort()
+     let CompareFunc = function("s:compareBookmarks")
+     call sort(s:Bookmark.Bookmarks(), CompareFunc)
+ endfunction
++
++let s:homestr = $HOME . '/'
++let s:sourcestr = s:homestr . 'src/'
++let s:workspacestr = $HOME . '/workspace/'
++let s:virtualenvs = $WORKON_HOME . '/'
++
+ " Function: Bookmark.str()   {{{3
+ " Get the string that should be rendered in the view for this bookmark
+ function! s:Bookmark.str()
+@@ -416,8 +422,13 @@ function! s:Bookmark.str()
+     endif
+ 
+     let pathStr = self.path.str({'format': 'UI'})
++    let pathStr = substitute(pathStr, s:virtualenvs , 'e://', "")
++    let pathStr = substitute(pathStr, s:workspacestr, 'w://', "")
++    let pathStr = substitute(pathStr, s:sourcestr,    's://', "")
++    let pathStr = substitute(pathStr, s:homestr,         '', "")
++
+     if len(pathStr) > pathStrMaxLen
+-        let pathStr = '<' . strpart(pathStr, len(pathStr) - pathStrMaxLen)
++        let pathStr = '_' . strpart(pathStr, len(pathStr) - pathStrMaxLen)
+     endif
+     return '>' . self.name . ' ' . pathStr
+ endfunction
+@@ -2980,7 +2991,8 @@ function! s:dumpHelp()
+         let @h=@h."\" :ClearBookmarks [<names>]\n"
+         let @h=@h."\" :ClearAllBookmarks\n"
+     else
+-        let @h="\" Press ". g:NERDTreeMapHelp ." for help\n"
++        let @h=""
++        "\" Press ". g:NERDTreeMapHelp ." for help\n"
+     endif
+ 
+     silent! put h
+@@ -3201,7 +3213,7 @@ function! s:putCursorOnBookmarkTable()
+     let rootNodeLine = s:TreeFileNode.GetRootLineNum()
+ 
+     let line = 1
+-    while getline(line) !~ '^>-\+Bookmarks-\+$'
++    while getline(line) !~ '^= bookmarks $'
+         let line = line + 1
+         if line >= rootNodeLine
+             throw "NERDTree.BookmarkTableNotFoundError: didnt find the bookmarks table"
+@@ -3223,16 +3235,16 @@ endfunction
+ "FUNCTION: s:renderBookmarks {{{2
+ function! s:renderBookmarks()
+ 
+-    call setline(line(".")+1, ">----------Bookmarks----------")
+-    call cursor(line(".")+1, col("."))
++    call setline(line("."), "= bookmarks ")
++    call cursor(line("."), col("."))
+ 
+     for i in s:Bookmark.Bookmarks()
+         call setline(line(".")+1, i.str())
+         call cursor(line(".")+1, col("."))
+     endfor
+ 
+-    call setline(line(".")+1, '')
+-    call cursor(line(".")+1, col("."))
++    call setline(line("."), '')
++    call cursor(line("."), col("."))
+ endfunction
+ "FUNCTION: s:renderView {{{2
+ "The entry function for rendering the tree
+@@ -3251,16 +3263,16 @@ function! s:renderView()
+     call s:dumpHelp()
+ 
+     "delete the blank line before the help and add one after it
+-    call setline(line(".")+1, "")
+-    call cursor(line(".")+1, col("."))
++    call setline(line("."), "")
++    call cursor(line("."), col("."))
+ 
+     if b:NERDTreeShowBookmarks
+         call s:renderBookmarks()
+     endif
+ 
+     "add the 'up a dir' line
+-    call setline(line(".")+1, s:tree_up_dir_line)
+-    call cursor(line(".")+1, col("."))
++    call setline(line("."), s:tree_up_dir_line)
++    call cursor(line("."), col("."))
+ 
+     "draw the header line
+     let header = b:NERDTreeRoot.path.str({'format': 'UI', 'truncateTo': winwidth(0)})

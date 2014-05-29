@@ -1,0 +1,19 @@
+powerline-fonts/
+
+syntax:glob
+.git
+.hg
+.netrwhist
+*.swp
+sessions/*
+
+*.un~
+
+# all source py for now
+*.pyc
+*.pyo
+
+# no need to cache this
+vimpyre.json
+
+bundle/

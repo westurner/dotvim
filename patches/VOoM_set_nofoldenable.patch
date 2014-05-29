@@ -1,0 +1,13 @@
+diff --git a/plugin/voom.vim b/plugin/voom.vim
+index c236b91..77d3600 100644
+--- a/plugin/voom.vim
++++ b/plugin/voom.vim
+@@ -802,7 +802,7 @@ endfunc
+ 
+ func! Voom_TreeConfigWin() "{{{2
+ " Tree window-local options.
+-    setl foldenable
++    setl nofoldenable
+     setl foldtext=getline(v:foldstart).'\ \ \ /'.(v:foldend-v:foldstart)
+     setl foldmethod=expr
+     setl foldexpr=Voom_TreeFoldexpr(v:lnum)
