@@ -1,7 +1,7 @@
 
 # Vim scripts Makefile
 VIMRC:=vimrc
-VIMRC_BUNDLES:=vimrc.bundles
+VIMRC_BUNDLES:=vimrc.full.bundles.vimrc
 VIM_FILES:=$(VIMRC) $(VIMRC_BUNDLES)
 
 HOME_VIMRC=$(HOME)/.vimrc
@@ -35,6 +35,7 @@ test:
 	# Test this Makefile
 	$(MAKE) test_start_vim
 	$(MAKE) test_start_gvim
+	$(MAKE) test_start_tinyvim
 	##$(MAKE) edit
 	$(MAKE) list_vimrc_comments
 	$(MAKE) list_vimrc_shortcuts
@@ -42,6 +43,10 @@ test:
 test_start_vim:
 	# Start vim and exit
 	vim -c 'exit'
+
+test_start_tinyvim:
+	# Start (tiny) vim and exit
+	vim --cmd 'let g:tinyvim = 1' -c 'exit'
 
 test_start_gvim:
 	# Start vim and exit
@@ -60,7 +65,8 @@ install:
 	$(MAKE) test_start_vim
 	$(MAKE) list_bundles
 	$(MAKE) install_bundles
-	$(MAKE) install_tinyvim
+	$(MAKE) test_start_vim
+	$(MAKE) test_start_tinyvim
 	#
 	# TODO: These must be done manually:
 	#$(MAKE) install_powerline_fonts
@@ -73,11 +79,10 @@ install_home:
 	test ! -d $(HOME)/.vim/
 	ln -s $(PWD)/vimrc $(HOME)/.vimrc
 
-install_tinyvim:
-	sh mktinyvim.sh
-
 install_scripts:
-	test -d $(HOME)/bin && cp bashmarks_to_nerdtree.sh $(HOME)/bin
+	test -d $(HOME)/bin && \
+		test -L $(HOME)/bin/bashmarks_to_nerdtree.sh || \
+		ln -s scripts/bashmarks_to_nerdtree.sh $(HOME)/bin
 
 install_vim_apt:
 	sudo apt-get install vim-nox vim-gnome
@@ -92,15 +97,18 @@ install_vundle:
 	# Install or update vundle
 	mkdir -p bundle/
 	test ! -d bundle/Vundle.vim \
-		&& git clone https://github.com/gmarik/Vundle.vim \
+		&& git clone https://github.com/gmarik/Vundle.vim bundle/Vundle.vim \
 		|| $(MAKE) update_vundle
 	# ->	|| $(MAKE) update_vundle
 
 update_vundle:
 	# git pull Vundle from upstream
 	test -d bundle/Vundle.vim
+	test -d bundle/Vundle.vim/.git || ( \
+		rm -rf bundle/Vundle.vim && \
+		git clone https://github.com/gmarik/Vundle.vim bundle/Vundle.vim )
 	cd bundle/Vundle.vim \
-		&& git pull https://github.com/gmarik/Vundle.vim
+		&& git pull https://github.com/gmarik/Vundle.vim master
 
 list_bundles:
 	# List vimrc Bundles
