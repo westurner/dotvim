@@ -64,14 +64,14 @@
 "
 "  :[l][vim]grep <pattern> <file>
 "
-"  :cl,  :ll        --  list list
-"  :copen,lopen [h] --  open list
-"  :cw,  :lw        --  toggle show list
-"  :ccl[ose], lcl   --  close list
-"  :cn,  :ln        --  next <Enter>
-"  :cp,  :lp        --  prev <Enter>
-"  :cc!, :lc [nr]   --  jump to [nr]
-"  :cfir,:cla       --  first, last
+"  :cl   :ll        --  list list
+"  :copen :lopen    --  open list
+"  :cw   :lw        --  toggle show list
+"  :ccl[ose] :lcl   --  close list
+"  :cn   :ln        --  next <Enter>
+"  :cp   :lp        --  prev <Enter>
+"  :cc!  :lc [nr]   --  jump to [nr]
+"  :cfir :cla       --  first, last
 "
 " Yanking and Pasting
 "  y[a-z]           --  yank to buffer [a-z]
@@ -459,9 +459,9 @@ vnoremap <S-Tab>    <gv
 imap <c-f>          <Esc>:lgrep %:p
 vnoremap <c-f>      :lgrep
 
-"  ctrl-A       --  copy all
-imap <c-a>          <C-O>gg<C-O>gH<C-O>G<Esc>
-vmap <c-a>          <ESC>gggH<C-O>G<Esc>i
+"  ctrl-alt-A   --  copy all
+imap <C-A-a>          <C-O>gg<C-O>gH<C-O>G<Esc>
+vmap <C-A-a>          <ESC>gggH<C-O>G<Esc>i
 
 "<ctrl-V> -- paste
 "map <C-v> "+gP
@@ -516,6 +516,12 @@ function! Minmzl()
     set lines=40 columns=80
 endfunction
 command! -nargs=0 Min call Minmzl()
+
+" Buffer Nav
+"  ctrl-a       --  move to beginning of line (^)
+map <C-a>           ^
+"  ctrl-e       --  move to end of line ($)
+map <C-e>           $
 
 " Window Nav        (window-move-cursor)
 "  ctrl-j       --  cursor window down
