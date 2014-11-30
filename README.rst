@@ -25,10 +25,11 @@ https://github.com/westurner/dotfiles install::
 
 Usage
 ------
-Two files::
+Three files::
 
    vimrc          # ViM configuration (symlink to ~/.vimrc)
-   vimrc.bundles  # Vundle configuration
+   vimrc.full.bundles.vimrc     # vundle plugin install and configuration
+   vimrc.tinyvim.bundles.vimrc  # vundle plugin subset for e.g. vimpager
 
 ``Makefile``::
 
