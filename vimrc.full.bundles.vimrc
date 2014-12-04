@@ -38,6 +38,9 @@ Bundle 'https://github.com/gmarik/Vundle.vim'
 " * grep '^Bundle \'' vimrc.bundles
 " * sed -i 's\https://github.com/\ssh://git@github.com/\g'
 
+" venv.vim          -- venv cdalias commands like :Cdwrk, :Cdsrc, and :Cdwrd
+Bundle 'https://github.com/westurner/venv.vim'
+
 
 " Info.vim          -- vim infopages in vim [help info]
 Bundle 'https://github.com/vim-scripts/info.vim'
@@ -277,11 +280,13 @@ Bundle 'https://github.com/vim-scripts/VOoM'
 "  :Voom [<format>] -- open Voom outline tab
 "  :Voom rest       -- open ReStructuredText outline
 "  ggg?G
+"  <leader> V   -- toggle Voom outline sidebar
+nnoremap <Leader>V :VoomToggle<cr>
 
 
 " TagBar        -- source tag browser [help tagbar]
 Bundle 'https://github.com/majutsushi/tagbar'
-"  <leader> t   -- toggle TagBar"
+"  <leader> t   -- toggle TagBar outline sidebar"
 nnoremap <Leader>t :TagbarToggle<cr>
 
 
@@ -368,6 +373,7 @@ Bundle 'https://github.com/vim-scripts/sparql.vim'
 
 "" /begin Python
 
+if has("python")
 " Python-mode       -- Python [help pymode]
 Bundle 'https://github.com/klen/python-mode'
 "  :help pymode
@@ -380,6 +386,13 @@ Bundle 'https://github.com/klen/python-mode'
 "  iC    --  Select inner class. Ex: viC, diC, yiC, ciC
 "  aM    --  Select a function or method. Ex: vaM, daM, yaM, caM
 "  iM    --  Select inner function or method. Ex: viM, diM, yiM, ciM
+"  g:pymode_python = { 'python', 'python3', 'disable' }
+"
+"  set g:pymode_python 'disable' (start time, occasional completion stall)
+"let g:pymode_python = 'python'
+"let g:pymode_python = 'python3'
+let g:pymode_python = 'disable'
+
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 "  :PymodeLintToggle    -- toggle lint checking
@@ -408,6 +421,12 @@ let g:pymode_lint_on_fly = 0
 "   II = INFO
 "   FF = PYFLAKES
 
+" :PyModeLint       -- lint current buffer (once)
+" :PyModeLintToggle -- toggle lint
+"
+" :PyModeLintAuto   -- auto-lint the current buffer (once)
+"                       (commit before and after)
+"
 ""let g:pymode_lint_todo_symbol = 'WW'
 let g:pymode_lint_todo_symbol = 'XX'
 let g:pymode_lint_comment_symbol = 'CC'
@@ -496,8 +515,16 @@ Bundle 'https://github.com/vim-scripts/pyrex.vim'
 " Jinja         -- Jinja Templates syntax
 Bundle 'https://github.com/mitsuhiko/vim-jinja'
 
-
+endif
 "" /end Python
+
+
+" os.vim   -- Operating System [help os]
+Bundle 'https://github.com/Rykka/os.vim'
+
+" clickbable.vim -- click-able links
+Bundle 'https://github.com/Rykka/clickable.vim'
+let g:clickable_browser = "x-www-browser"
 
 " Riv.vim   -- ReStructuredText [help riv]
 Bundle 'https://github.com/Rykka/riv.vim'
@@ -507,7 +534,8 @@ Bundle 'https://github.com/Rykka/riv.vim'
 "  :RivSpecification
 "  :RivCheatSheet
 let g:riv_web_browser = 'x-www-browser'
-let g:riv_fold_level = -1
+" let g:riv_fold_level = -1
+let g:riv_python_rst_hl = 0
 
 
 " Salt      -- Salt syntax
