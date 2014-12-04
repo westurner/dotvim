@@ -1,15 +1,10 @@
 " .vimrc
+" ==========
+" ::
+"   git clone https://github.com/westurner/dotvim
+"   git clone ssh://git@github.com/westurner/dotvim
+"   make help
 "
-""respect to
-""- https://dev.launchpad.net/UltimateVimPythonSetup
-""- https://github.com/kennethreitz/dotfiles/blob/master/.vimrc
-""- https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc#cl-716
-""- http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-""- http://stackoverflow.com/questions/1551231
-""- http://superuser.com/questions/117969/is-there-a-way-to-move-a-split-page-to-a-new-tab-in-vim
-""- http://sontek.net/turning-vim-into-a-modern-python-ide
-""- http://vim.wikia.com/wiki/VimTip320
-
 " Vim Reference
 " ---------------
 "  %          --  current filename
@@ -93,7 +88,11 @@
 "  zC               --  fold close recursive
 "  zx               --  undo manual fold actions
 "  zX               --  undo manual fold actions and recompute
-"  zR               --  open all folds
+"  zM               --  fold close all but current (focus)
+"  zR               --  fold open all (review)
+"
+"  :Voom [format]   --  open VOom outline sidebar
+"  <leader> t       --  :TagBarToggle " outline sidebar
 "
 " Etiquette
 "  <leader> i       --  toggle unprintables
@@ -104,12 +103,35 @@
 " set window title to vim title (display full path)
 set title
 
-"  :ListMappings    --  list .vimrc mapping comments
+" print the document path
+"
+
+"  :ListMappings    --  list .vimrc mapping comments (n(next) and p(rev))
 function! ListMappings()
-    lvimgrep '\s*"\s\{2,}' ~/.vimrc ~/.dotfiles/etc/vim/vimrc.bundles
-    lopen
+    vimgrep '\s*"\s\{2,}' ~/.vimrc ~/.vim/vimrc.*.bundles.vimrc
+    copen
 endfunction
 command! -nargs=0 ListMappings call ListMappings()
+
+function! Path()
+    echo expand("%") expand("%:h")
+    echo bufnr('%')
+endfunction
+command! -nargs=* Path call Path()
+
+function! DotvimHelp()
+    :ListMappings
+endfunction
+command! -nargs=0 DotvimHelp call DotvimHelp()
+command! -nargs=0 Help call DotvimHelp()
+
+function! DotvimReload()
+    echo expand("%") expand("%:h")
+    execute "source" "~/.vimrc"
+    call PatchColors()
+endfunction
+command! -nargs=0 DotvimReload call DotvimReload()
+command! -nargs=0 Reload call DotvimReload()
 
 "  <space> -- <leader>
 map <space> <leader>
@@ -120,6 +142,9 @@ map ,       <leader>
 "  ;;   --  <esc> == double semicolon
 imap ;;     <esc>
 vmap ;;     <esc>
+"  jk   --  <esc>
+imap jk     <esc>
+vmap jk     <esc>
 "  98   --  <esc> == 98
 imap 98     <esc>
 vmap 98     <esc>
@@ -548,6 +573,7 @@ map <C-h>           <C-w>h
 "  [n]ctrl-w <  --  contract width
 "  [n]ctrl-w +  --  increase height
 "  [n]ctrl-w -  --  reduce height
+"  ctrl-w o     --  minimze all other windows
 
 " Window Movement (window-move)
 " Window Up
@@ -596,7 +622,7 @@ source $VIMRUNTIME/ftplugin/man.vim
 
 
 "  <leader> o      --  Open uri under cursor
-nnoremap <leader>o      :silent !xdg-open <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
+nnoremap <leader>o      :silent !x-www-browser <C-R>=escape("<C-R><C-F>", "#?&;\|%")<CR><CR>
 
 
 if executable("ack")
@@ -732,7 +758,9 @@ function! PatchColors()
     match ExtraWhitespace /\s\+$/
 endfunction
 command! -nargs=* PatchColors call PatchColors()
-""call PatchColors()
+
+" call PatchColors()    -- call PatchColors when sourced
+call PatchColors()
 
 set background=dark
 "colorscheme darkblue
@@ -832,6 +860,14 @@ function! Twotabs()
 endfunction
 command! -nargs=* Twotabs call Twotabs()
 
+"  :Onetab      -- set to one soft tab
+function! Onetabs()
+    set tabstop=1
+    set softtabstop=1
+    set shiftwidth=1
+endfunction
+command! -nargs=* Onetab call Onetab()
+
 "  :CurrentBuffer -- display number of current buffer
 function! CurrentBuffer()
     :echo bufnr('%')
@@ -900,3 +936,15 @@ inoremap <F3> <C-R>=strftime("\n%Y-%m-%d (%A)\n-----------------------\n")<CR>
 " Trac
 let g:tracServerList = {}
 let g:tracBrowser = 'x-www-browser'
+
+" References
+"
+"   - https://dev.launchpad.net/UltimateVimPythonSetup
+"   - https://github.com/kennethreitz/dotfiles/blob/master/.vimrc
+"   - https://bitbucket.org/sjl/dotfiles/src/tip/vim/.vimrc#cl-716
+"   - http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+"   - http://stackoverflow.com/questions/1551231
+"   - http://superuser.com/questions/117969/is-there-a-way-to-move-a-split-page-to-a-new-tab-in-vim
+"   - http://sontek.net/turning-vim-into-a-modern-python-ide
+"   - http://vim.wikia.com/wiki/VimTip320
+
