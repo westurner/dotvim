@@ -38,8 +38,41 @@ Bundle 'https://github.com/gmarik/Vundle.vim'
 " * grep '^Bundle \'' vimrc.bundles
 " * sed -i 's\https://github.com/\ssh://git@github.com/\g'
 
-" venv.vim          -- venv cdalias commands like :Cdwrk, :Cdsrc, and :Cdwrd
+" venv.vim          -- venv CdAlias commands
 Bundle 'https://github.com/westurner/venv.vim'
+"  :Cdhome -- Cd_HOME()
+"  :Cdh -- Cd_HOME()
+"  :Cdwrk -- Cd___WRK()
+"  :Cddotfiles -- Cd___DOTFILES()
+"  :Cdd -- Cd___DOTFILES()
+"  :Cdprojecthome -- Cd_PROJECT_HOME()
+"  :Cdp -- Cd_PROJECT_HOME()
+"  :Cdph -- Cd_PROJECT_HOME()
+"  :Cdworkonhome -- Cd_WORKON_HOME()
+"  :Cdwh -- Cd_WORKON_HOME()
+"  :Cdve -- Cd_WORKON_HOME()
+"  :Cdcondahome -- Cd_CONDA_HOME()
+"  :Cda -- Cd_CONDA_HOME()
+"  :Cdce -- Cd_CONDA_HOME()
+"  :Cdvirtualenv -- Cd_VIRTUAL_ENV()
+"  :Cdv -- Cd_VIRTUAL_ENV()
+"  :Cdsrc -- Cd__SRC()
+"  :Cds -- Cd__SRC()
+"  :Cdwrd -- Cd__WRD()
+"  :Cdw -- Cd__WRD()
+"  :Cdbin -- Cd__BIN()
+"  :Cdb -- Cd__BIN()
+"  :Cdetc -- Cd__ETC()
+"  :Cde -- Cd__ETC()
+"  :Cdlib -- Cd__LIB()
+"  :Cdl -- Cd__LIB()
+"  :Cdlog -- Cd__LOG()
+"  :Cdpylib -- Cd__PYLIB()
+"  :Cdpysite -- Cd__PYSITE()
+"  :Cdsitepackages -- Cd__PYSITE()
+"  :Cdvar -- Cd__VAR()
+"  :Cdwww -- Cd__WWW()
+"  :Cdww -- Cd__WWW()
 
 
 " Info.vim          -- vim infopages in vim [help info]
@@ -336,11 +369,16 @@ Bundle 'https://github.com/mileszs/ack.vim'
 " :AckWindow [options] PATTERN          -- search all visible buffers"
 
 
-" vim-surround  -- paired tag wrappings [help surround]
+" vim-surround  -- add quotes/parenthesis/tags [help surround]
 Bundle 'https://github.com/tpope/vim-surround'
-"  ds   -- delete surroundings
-"  cs   -- change surroundings
-"
+"  cs       -- change surrounding
+"  ys       -- yank and surround (motion, text object)
+"  yss      -- yank and surround current line
+"  ds"      -- remove double-quotes
+"  cs'"     -- replace single-quotes with double quotes
+"  cd"<q>   -- surround with <q>...<q/>
+"  dst      -- remove surrounding tag
+
 
 
 " csapprox      -- adapt gvim colorschemes for terminal vim [help csapprox]
@@ -391,7 +429,9 @@ Bundle 'https://github.com/klen/python-mode'
 "  set g:pymode_python 'disable' (start time, occasional completion stall)
 "let g:pymode_python = 'python'
 "let g:pymode_python = 'python3'
-let g:pymode_python = 'disable'
+let g:pymode_python = 'python'
+
+let g:pymode_doc_bind = '<c-k>'
 
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
@@ -557,6 +597,69 @@ Bundle 'https://github.com/mattn/gist-vim'
 " github-issues.vim     -- autocomplete, CRUD GitHub issues [help Gissues]
 Bundle 'https://github.com/jaxbot/github-issues.vim'
 
+" html5.vim             -- HTML5, RDFa, microdata, WAI-ARIA
+Bundle 'https://github.com/othree/html5.vim'
+
+" vim-javascript        -- improved Javascript support
+Bundle 'https://github.com/pangloss/vim-javascript'
+
+" vim-indent-guides     -- show indentation levels [help indent_guides]
+Bundle 'https://github.com/nathanaelkane/vim-indent-guides'
+
+" rainbow-parentheses   -- make nested parenthesis different colors
+Bundle 'https://github.com/kien/rainbow_parentheses.vim'
+"  :RainbowParenthesesActivate
+"  :RainbowParenthesesToggle
+"  :RainbowParenthesesLoadRound
+"  :RainbowParenthesesLoadSquare
+"  :RainbowParenthesesLoadBraces
+"  :RainbowParenthesesLoadChevrons
+"  :RainbowParenthesesToggleAll
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+if has("autocmd")
+    " :RainbowParenthesesActivate
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax * RainbowParenthesesLoadRound
+    au Syntax * RainbowParenthesesLoadSquare
+    au Syntax * RainbowParenthesesLoadBraces
+endif
+
+
+" l9                    -- utility library (for FuzzyFinder)
+Bundle 'https://github.com/vim-scripts/L9'
+
+" FuzzyFinder           -- find files, buffers, tags, changes [help fuf]
+Bundle 'https://github.com/vim-scripts/FuzzyFinder'
+"  :FufBuffer
+"  :FufFile
+"  :FufDir
+"  :FufMruFile
+"  :FufMruCmd
+"  :FufTag
+"  :FufJumpList
+"  :FufChangeList
+"  :FufQuickfix
+"  :FufHelp
+
+" abolish.vim           -- abbreviations, case-aware replcmnts [help abolish]
+Bundle 'https://github.com/tpope/vim-abolish'
 
 " All of your Bundles must be added before the following line
 call vundle#end()            " required
