@@ -98,13 +98,13 @@ Bundle 'https://github.com/vim-scripts/info.vim'
 " Signify   -- show git/hg file changes in gutter [help signify]
 Bundle 'https://github.com/mhinz/vim-signify'
 "  <leader>gt       -- SignifyToggle
-nnoremap <leader>gt SignifyToggle
+nnoremap <leader>gt <Esc>:SignifyToggle<CR>
 "  <leader>gh       -- SignifyToggleHighlight
-nnoremap <leader>gh SignifyToggleHighlight
+nnoremap <leader>gh <Esc>:SignifyToggleHighlight<CR>
 "  <leader>gr       -- SignifyRefresh
-nnoremap <leader>gr SignifyRefresh
+nnoremap <leader>gr <Esc>:SignifyRefresh<CR>
 "  <leader>gd       -- SignifyDebug
-nnoremap <leader>gd SignifyDebug
+nnoremap <leader>gd <Esc>:SignifyDebug<CR>
 
 " hunk jumping
 "  <leader>gh       -- signify-next-hunk
