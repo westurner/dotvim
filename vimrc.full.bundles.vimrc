@@ -583,7 +583,7 @@ endif
 " os.vim   -- Operating System [help os]
 Bundle 'https://github.com/Rykka/os.vim'
 
-" clickbable.vim -- click-able links
+" clickable.vim -- click-able links
 Bundle 'https://github.com/Rykka/clickable.vim'
 let g:clickable_browser = "x-www-browser"
 
