@@ -863,7 +863,7 @@ endfunction
 command! -nargs=* Twotabs call Twotabs()
 
 "  :Onetab      -- set to one soft tab
-function! Onetabs()
+function! Onetab()
     set tabstop=1
     set softtabstop=1
     set shiftwidth=1
