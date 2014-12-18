@@ -97,7 +97,28 @@ Bundle 'https://github.com/vim-scripts/info.vim'
 
 " Signify   -- show git/hg file changes in gutter [help signify]
 Bundle 'https://github.com/mhinz/vim-signify'
+"  <leader>gt       -- SignifyToggle
+nnoremap <leader>gt SignifyToggle
+"  <leader>gh       -- SignifyToggleHighlight
+nnoremap <leader>gh SignifyToggleHighlight
+"  <leader>gr       -- SignifyRefresh
+nnoremap <leader>gr SignifyRefresh
+"  <leader>gd       -- SignifyDebug
+nnoremap <leader>gd SignifyDebug
 
+" hunk jumping
+"  <leader>gh       -- signify-next-hunk
+nmap <leader>gj <plug>(signify-next-hunk)
+"  <leader>gk       -- signify-prev-hunk
+nmap <leader>gk <plug>(signify-prev-hunk)
+
+" hunk text object
+"  ic               -- signify inner textobj
+omap ic <plug>(signify-motion-inner-pending)
+xmap ic <plug>(signify-motion-inner-visual)
+"  ac               -- signify outer textobj
+omap ac <plug>(signify-motion-outer-pending)
+xmap ac <plug>(signify-motion-outer-visual)
 
 " Fugitive      -- Git commands and statusline display [help fugitive]
 Bundle 'https://github.com/tpope/vim-fugitive'
@@ -429,7 +450,7 @@ Bundle 'https://github.com/klen/python-mode'
 "  set g:pymode_python 'disable' (start time, occasional completion stall)
 "let g:pymode_python = 'python'
 "let g:pymode_python = 'python3'
-let g:pymode_python = 'python'
+let g:pymode_python = 'disable'
 
 let g:pymode_doc_bind = '<c-k>'
 
