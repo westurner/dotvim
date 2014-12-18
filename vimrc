@@ -125,13 +125,15 @@ endfunction
 command! -nargs=0 DotvimHelp call DotvimHelp()
 command! -nargs=0 Help call DotvimHelp()
 
-function! DotvimReload()
-    echo expand("%") expand("%:h")
-    execute "source" "~/.vimrc"
-    call PatchColors()
-endfunction
-command! -nargs=0 DotvimReload call DotvimReload()
-command! -nargs=0 Reload call DotvimReload()
+if !exists("*DotvimReload")
+  function! DotvimReload()
+      echo expand("%") expand("%:h")
+      execute "source" "~/.vimrc"
+      call PatchColors()
+  endfunction
+  command! -nargs=0 DotvimReload call DotvimReload()
+  command! -nargs=0 Reload call DotvimReload()
+endif
 
 "  <space> -- <leader>
 map <space> <leader>
