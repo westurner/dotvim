@@ -129,7 +129,7 @@ if !exists("*DotvimReload")
   function! DotvimReload()
       echo expand("%") expand("%:h")
       execute "source" "~/.vimrc"
-      call PatchColors()
+      "call PatchColors()
   endfunction
   command! -nargs=0 DotvimReload call DotvimReload()
   command! -nargs=0 Reload call DotvimReload()
