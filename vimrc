@@ -838,6 +838,7 @@ endif "has("py")
 
 "  :Fourtabs    -- set to four (4) soft tabs (Default)
 function! Fourtabs()
+	set expandtab
     set tabstop=4           " 4-space hard tabs
     set softtabstop=4       " 4-space soft tabs
     set shiftwidth=4        " 4-space indent
@@ -848,6 +849,7 @@ Fourtabs
 
 "  :Threetabs   -- set to three (3) soft tabs (e.g. RST)
 function! Threetabs()
+	set expandtab
     set tabstop=3
     set softtabstop=3
     set shiftwidth=3
@@ -856,6 +858,7 @@ command! -nargs=* Threetabs call Threetabs()
 
 "  :Twotabs     -- set to two (2) soft tabs
 function! Twotabs()
+	set expandtab
     set tabstop=2
     set softtabstop=2
     set shiftwidth=2
@@ -864,11 +867,21 @@ command! -nargs=* Twotabs call Twotabs()
 
 "  :Onetab      -- set to one soft tab
 function! Onetab()
+	set expandtab
     set tabstop=1
     set softtabstop=1
     set shiftwidth=1
 endfunction
 command! -nargs=* Onetab call Onetab()
+
+"  :Hardtabs
+function! Hardtabs()
+    set noexpandtab
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+endfunction
+command! -nargs=* Hardtabs call Hardtabs()
 
 "  :CurrentBuffer -- display number of current buffer
 function! CurrentBuffer()
