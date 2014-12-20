@@ -584,7 +584,7 @@ endif
 Bundle 'https://github.com/Rykka/os.vim'
 
 " clickable.vim -- click-able links
-Bundle 'https://github.com/Rykka/clickable.vim'
+" Bundle 'https://github.com/Rykka/clickable.vim' XXX TODO linux
 let g:clickable_browser = "x-www-browser"
 
 " Riv.vim   -- ReStructuredText [help riv]
