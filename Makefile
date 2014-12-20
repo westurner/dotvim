@@ -86,7 +86,7 @@ install_vim_src:
 	$(SHELL) setup_vim_deb.sh
 
 install_powerline_fonts:
-	$(SHELL) setup_powerline_fonts.sh
+	$(SHELL) ./scripts/setup_powerline_fonts.sh
 
 install_vundle:
 	# Install or update vundle
