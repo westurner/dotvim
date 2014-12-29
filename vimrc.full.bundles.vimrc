@@ -448,11 +448,12 @@ Bundle 'https://github.com/klen/python-mode'
 "  g:pymode_python = { 'python', 'python3', 'disable' }
 "
 "  set g:pymode_python 'disable' (start time, occasional completion stall)
-"let g:pymode_python = 'python'
+let g:pymode_python = 'python'
 "let g:pymode_python = 'python3'
-let g:pymode_python = 'disable'
+"let g:pymode_python = 'disable'
 
-let g:pymode_doc_bind = '<c-k>'
+"  <leader> d    -- open pydoc
+let g:pymode_doc_bind = '<leader>d'
 
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
@@ -461,6 +462,7 @@ let g:pymode_syntax_all = 1
 "let g:pymode_lint = 1
 "let g:pymode_lint_checker = "pyflakes"
 "let g:pymode_lint_checkers = pyflakes pep8 mccabe pep257 pylint
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 " - auto-show an error window
 let g:pymode_lint_cwindow = 1
 " - show lint signs
@@ -505,7 +507,7 @@ let g:pymode_breakpoint_cmd = ''
 "  Searches upward for a .ropeproject file (that should be .vcs-ignored)
 "  :PymodeRopeNewProject    -- Create a new .ropeproject in CWD
 "  :PymodeRopeRegenerate    -- Regenerate rope project cache
-let g:pymode_rope_lookup_project = 1
+let g:pymode_rope_lookup_project = 0
 
 "  <C-c>d       -- show docs for current function w/ pymode
 let g:pymode_rope_show_doc_bind = '<C-c>d'
@@ -579,6 +581,8 @@ Bundle 'https://github.com/mitsuhiko/vim-jinja'
 endif
 "" /end Python
 
+" vim-coffee-script -- CoffeeScript syntax, indent
+Bundle 'https://kchmck/vim-coffee-script'
 
 " os.vim   -- Operating System [help os]
 Bundle 'https://github.com/Rykka/os.vim'
