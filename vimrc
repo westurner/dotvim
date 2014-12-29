@@ -794,20 +794,20 @@ py << EOF
 import os.path
 import sys
 import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-for p in sys.path:
-    if os.path.isdir(p):
-        vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+def extend_vim_path_from_VIRTUAL_ENV(env=os.environ):
+    if 'VIRTUAL_ENV' in env:
+        project_base_dir = env['VIRTUAL_ENV']
+        sys.path.insert(0, project_base_dir)
+        activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+        execfile(activate_this, dict(__file__=activate_this))
+    for p in sys.path:
+        if os.path.isdir(p):
+            vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+            # TODO: merge paths
 EOF
 
 function! RegexLines(...)
-py << EOF
-" TODO: python regex current buffer
-" :help if_pyth
+    " TODO: python regex current buffer
 python << EOF
 from __future__ import print_function
 import re
@@ -847,7 +847,7 @@ command! -nargs=* Fourtabs call Fourtabs()
 " Default to fourtabs
 Fourtabs
 
-"  :Threetabs   -- set to three (3) soft tabs (e.g. RST)
+"  :Threetabs   -- set to three (3) soft tabs
 function! Threetabs()
 	set expandtab
     set tabstop=3
@@ -865,7 +865,7 @@ function! Twotabs()
 endfunction
 command! -nargs=* Twotabs call Twotabs()
 
-"  :Onetab      -- set to one soft tab
+"  :Onetab      -- set to one (1) soft tab
 function! Onetab()
 	set expandtab
     set tabstop=1
@@ -874,7 +874,7 @@ function! Onetab()
 endfunction
 command! -nargs=* Onetab call Onetab()
 
-"  :Hardtabs
+"  :Hardtabs    -- set to hard \t tabs (e.g. for Makefiles)
 function! Hardtabs()
     set noexpandtab
     set tabstop=4
@@ -889,19 +889,22 @@ function! CurrentBuffer()
 endfunction
 command! -nargs=* CurrentBuffer call CurrentBuffer()
 
-"  <leader> 2   -- diffget from bufnr 2
+"  diff           -- vimdiff, Hgvdiff, Gdiff
+"    :diffget   -- get from diff (overwrite or append)
+"    do         -- :diffget other block
+"    :diffput   -- put from diff (overwrite or append)
+"    dp         -- :diffput block 
+"
+"    <C-W><C-w> -- cycle between buffers
+"
+"  diffget maps   -- 3-way merge buffers
+"    <leader> 2   -- diffget from bufnr 2
 map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
-"  <leader> 3   -- diffget from bufnr 3
+"    <leader> 3   -- diffget from bufnr 3
 map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
-"  <leader> 4   -- diffget from bufnr 4
+"    <leader> 4   -- diffget from bufnr 4
 map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
 
-"  <leader> 2   -- diffget from bufnr 2
-map <silent> <leader>2 :diffget 2<CR> :diffupdate<CR>
-"  <leader> 3   -- diffget from bufnr 3
-map <silent> <leader>3 :diffget 3<CR> :diffupdate<CR>
-"  <leader> 4   -- diffget from bufnr 4
-map <silent> <leader>4 :diffget 4<CR> :diffupdate<CR>
 
 "  :Striptrailingwhitespace -- strip spaces at the end of lines
 function! Striptrailingwhitespace()
