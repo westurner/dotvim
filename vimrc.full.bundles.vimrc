@@ -582,7 +582,23 @@ endif
 "" /end Python
 
 " vim-coffee-script -- CoffeeScript syntax, indent
-Bundle 'https://kchmck/vim-coffee-script'
+Bundle 'https://github.com/kchmck/vim-coffee-script'
+
+" vim-haml          -- HAML, SASS, SCSS
+Bundle 'https://github.com/tpope/vim-haml'
+
+" vim-css3-syntax   -- CSS3
+Bundle 'https://github.com/hail2u/vim-css3-syntax'
+
+" vim-css-color     -- show CSS color codes
+Bundle 'https://github.com/skammer/vim-css-color'
+
+" vim-less          -- LESS CSS
+Bundle 'https://github.com/groenewege/vim-less'
+
+" vim-jade          -- Jade templates
+Bundle 'https://github.com/digitaltoad/vim-jade'
+
 
 " os.vim   -- Operating System [help os]
 Bundle 'https://github.com/Rykka/os.vim'
