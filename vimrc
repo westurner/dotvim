@@ -258,6 +258,8 @@ if has("autocmd")
     augroup filetypedetect
         au BufNewFile,BufRead *.n3  setfiletype n3
         au BufNewFile,BufRead *.ttl  setfiletype n3
+        au BufNewFile,BufRead *.rst set filetype=rst
+        au BufNewFile,BufRead *.rest set filetype=rst
         au BufNewFile,BufRead *.jinja2 set filetype=jinja
         au BufNewFile,BufRead *.jinja set filetype=jinja
         au BufNewFile,BufRead *.html set filetype=htmldjango
