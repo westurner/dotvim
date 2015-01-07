@@ -60,10 +60,10 @@ Dotvim Makefile_::
    # Test
    make test
 
-   # Print comments with numbered lines (plugins, shortcuts, "``" ``")
+   # Print comments with numbered lines (^"\s)
    make list_vimrc_comments
 
-   # Print keyboard mapping comments ("``"  ``")
+   # Print keyboard mapping comments (^"\s\s)
    make list_vimrc_shortcuts
 
 
