@@ -1,37 +1,54 @@
-dotvim
-=========
-My personal vim_ text editor configuration dotfiles_.
+westurner/dotvim
+=================
+| Desc: dotvim_ ``~/.vimrc`` text editor configuration dotfiles_.
+| Src: git https://github.com/westurner/dotvim
+| Docs: https://westurner.github.io/dotfiles/usage#vim
+| Topic: https://en.wikipedia.org/wiki/Vim_(text_editor)
 
-* GitHub: https://github.com/westurner/dotvim
-* BitBucket: https://bitbucket.org/westurner/dotvim
+.. | Src: hg https://bitbucket.org/westurner/dotvim # dulwich / git push --mirror
 
 .. _vim: https://en.wikipedia.org/wiki/Vim_(text_editor)
 .. _dotfiles: https://github.com/westurner/dotfiles
+.. _dotvim: https://github.com/westurner/dotvim
 
 
 Install
 --------
-https://github.com/westurner/dotfiles install::
+Clone the dotvim_ repository::
 
-   ## Standalone install::
-   REPO_DEST=${VIRTUAL_ENV:+"$VIRTUAL_ENV/src/"}dotvim
-
-   ## dotfiles install
-   # REPO_DEST=${__DOTFILES}/etc/vim
+   REPO_DEST=${VIRTUAL_ENV:+"${VIRTUAL_ENV}/src/"}dotvim
+   #REPO_DEST=${__DOTFILES}/etc/vim   # dotfiles install
 
    ## Clone
-   git clone ssh://git@github.com/westurner/dotvim $REPO_DEST
+   git clone https://github.com/westurner/dotvim $REPO_DEST
+   #git clone ssh://git@github.com/westurner/dotvim $REPO_DEST
+
+   ## symlink
+   ln -s ${__DOTFILES}/etc/vim/vimrc ~/.vimrc
+   ln -s ${__DOTFILES}/etc/vim ~/.vim
+
+   ## vim
+   source ~/.vimrc
 
 
 Usage
 ------
-Three files::
+Three files:
 
-   vimrc          # ViM configuration (symlink to ~/.vimrc)
-   vimrc.full.bundles.vimrc     # vundle plugin install and configuration
-   vimrc.tinyvim.bundles.vimrc  # vundle plugin subset for e.g. vimpager
+   * `vimrc`_ -- ViM configuration (symlink to ``~/.vimrc``)
+   * `vimrc.full.bundles.vimrc`_ -- plugins config (
+     ``:VundleInstall``, ``:VundleUpdate``)
+   * `vimrc.tinyvim.bundles.vimrc`_ -- tinyvim vimpager config (
+     ``:VundleInstall``, ``:VundleUpdate``)
 
-``Makefile``::
+
+.. _vimrc: https://github.com/westurner/dotvim/blob/master/vimrc
+.. _vimrc.full.bundles.vimrc: https://github.com/westurner/dotvim/blob/master/vimrc.full.bundles.vimrc
+.. _vimrc.tinyvim.bundles.vimrc: https://github.com/westurner/dotvim/blob/master/vimrc.tinyvim.bundles.vimrc
+.. _Makefile: https://github.com/westurner/dotvim/blob/master/Makefile 
+
+
+Dotvim Makefile_::
 
    # Show comments with numbered lines
    make help
@@ -48,4 +65,22 @@ Three files::
    # Install dotfiles and plugins for the current user
    make install
 
+Usage
+---------------
+| Docs: https://westurner.github.io/dotfiles/usage#vim
+
+``make help`` prints ``vimrc*`` comments.
+
+``:ListMappings`` ``vimgrep``s ``vimrc*`` comments::
+
+   [...]
+
+   "  :DotvimReload    --  source ~/.vimrc
+   "  :DotvimHelp      --  vimgrep vimrc* comments
+   "  :ListMappings    --  vimgrep vimrc* comments
+   "  :map             --  list actual mappings
+   "  :scriptnames     --  list scripts and plugins
+   "  :set             --  list all nondefault options
+
+   [...]
 
