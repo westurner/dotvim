@@ -3,7 +3,8 @@ westurner/dotvim
 | Desc: dotvim_ ``~/.vimrc`` text editor configuration dotfiles_.
 | Src: git https://github.com/westurner/dotvim
 | Docs: https://westurner.github.io/dotfiles/usage#vim
-| Topic: https://en.wikipedia.org/wiki/Vim_(text_editor)
+| Topic: `<https://en.wikipedia.org/wiki/Vim_(text_editor)>`__
+
 
 .. | Src: hg https://bitbucket.org/westurner/dotvim # dulwich / git push --mirror
 
@@ -86,4 +87,45 @@ Usage
    "  :set             --  list all nondefault options
 
    [...]
+
+
+Vim
+====
+| Wikipedia: `<https://en.wikipedia.org/wiki/Vim_(text_editor)>`__
+| Homepage: http://www.vim.org/
+| Docs: http://www.vim.org/docs.php
+| Source: hg https://vim.googlecode.com/hg/
+
+* https://github.com/scrooloose/nerdtree
+* https://github.com/westurner/dotvim
+
+
+Vimium
+-------
+| Wikipedia: https://en.wikipedia.org/wiki/Vimium
+| Homepage: https://vimium.github.io/
+| Source: git https://github.com/philc/vimium
+
+* https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en
+
+
+Vimperator
+-----------
+| Wikipedia: https://en.wikipedia.org/wiki/Vimperator
+| Homepage: http://www.vimperator.org/
+| Source: https://github.com/vimperator/vimperator-labs
+
+* https://addons.mozilla.org/en-US/firefox/addon/vimperator/
+
+
+Wasavi
+-------
+| Homepage: http://appsweets.net/wasavi/
+| Docs: http://appsweets.net/wasavi/
+| Source: https://github.com/akahuku/wasavi
+
+* https://chrome.google.com/webstore/detail/wasavi/dgogifpkoilgiofhhhodbodcfgomelhe
+* https://addons.opera.com/en/extensions/details/wasavi/
+* https://addons.mozilla.org/en-US/firefox/addon/wasavi/
+
 
