@@ -40,7 +40,7 @@ Three files:
    * `vimrc.full.bundles.vimrc`_ -- plugins config (
      ``:VundleInstall``, ``:VundleUpdate``)
    * `vimrc.tinyvim.bundles.vimrc`_ -- tinyvim vimpager config (
-     ``:VundleInstall``, ``:VundleUpdate``)
+     ``scripts/mktinyvim.sh``)
 
 
 .. _vimrc: https://github.com/westurner/dotvim/blob/master/vimrc
@@ -67,15 +67,13 @@ Dotvim Makefile_::
    make list_vimrc_shortcuts
 
 
-
-
 Usage
 ---------------
 | Docs: https://westurner.github.io/dotfiles/usage#vim
 
 ``make help`` prints ``vimrc*`` comments.
 
-``:ListMappings`` ``vimgrep``s ``vimrc*`` comments::
+``:ListMappings`` ``vimgreps`` ``vimrc*`` comments::
 
    [...]
 
