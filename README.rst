@@ -53,17 +53,20 @@ Dotvim Makefile_::
    # Show comments with numbered lines
    make help
 
+   # Install dotfiles and plugins for the current user
+   make install
+
    # Test
    make test
 
-   # Show comments with numbered lines (plugins, shortcuts)
+   # Print comments with numbered lines (plugins, shortcuts, "``" ``")
    make list_vimrc_comments
 
-   # List keyboard mapping comments (shortcuts)
+   # Print keyboard mapping comments ("``"  ``")
    make list_vimrc_shortcuts
 
-   # Install dotfiles and plugins for the current user
-   make install
+
+
 
 Usage
 ---------------
