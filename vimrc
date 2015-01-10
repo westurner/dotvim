@@ -216,7 +216,7 @@ set smartcase		    " Do smart case matching
 "set ignorecase		    " Do case insensitive matching
 "set incsearch		    " Incremental search
 
-set scrolloff=4         " Show cursor+/- n lines
+set scrolloff=0         " Show cursor+/- n lines (default: 0)
 
 set shiftround          " round </> shifts
 set expandtab           " soft tabs
@@ -256,13 +256,14 @@ if has("autocmd")
 
     " filetype extensions
     augroup filetypedetect
-        au BufNewFile,BufRead *.n3  setfiletype n3
-        au BufNewFile,BufRead *.ttl  setfiletype n3
-        au BufNewFile,BufRead *.rst set filetype=rst
-        au BufNewFile,BufRead *.rest set filetype=rst
+        au BufNewFile,BufRead *.n3     set filetype=n3
+        au BufNewFile,BufRead *.ttl    set filetype=n3
+        au BufNewFile,BufRead *.rst    set filetype=rst
+        au BufNewFile,BufRead *.rest   set filetype=rst
         au BufNewFile,BufRead *.jinja2 set filetype=jinja
-        au BufNewFile,BufRead *.jinja set filetype=jinja
-        au BufNewFile,BufRead *.html set filetype=htmldjango
+        au BufNewFile,BufRead *.jinja  set filetype=jinja
+        au BufNewFile,BufRead *.html   set filetype=htmldjango
+        au BufNewFile,BufRead *.jsonld set filetype=js
         au BufNewFile,BufRead Vagrantfile set filetype=ruby
     augroup END
 
