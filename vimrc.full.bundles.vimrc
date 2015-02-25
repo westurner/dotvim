@@ -702,6 +702,11 @@ Bundle 'https://github.com/vim-scripts/FuzzyFinder'
 " abolish.vim           -- abbreviations, case-aware replcmnts [help abolish]
 Bundle 'https://github.com/tpope/vim-abolish'
 
+
+" fountain.vim          -- fountain.io syntax
+Bundle 'https://github.com/vim-scripts/fountain.vim'
+Bundle 'https://github.com/vim-scripts/fountainwiki.vim'
+
 " All of your Bundles must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
