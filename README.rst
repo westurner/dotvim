@@ -2,7 +2,7 @@ westurner/dotvim
 =================
 | Desc: dotvim_ ``~/.vimrc`` text editor configuration dotfiles_.
 | Src: git https://github.com/westurner/dotvim
-| Docs: https://westurner.github.io/dotfiles/usage#vim
+| Docs: https://westurner.org/dotfiles/usage#vim
 | Topic: `<https://en.wikipedia.org/wiki/Vim_(text_editor)>`__
 
 
@@ -69,7 +69,7 @@ Dotvim Makefile_::
 
 Usage
 ---------------
-| Docs: https://westurner.github.io/dotfiles/usage#vim
+| Docs: https://westurner.org/dotfiles/usage#vim
 
 ``make help`` prints ``vimrc*`` comments.
 
