@@ -8,23 +8,54 @@ ${1:progname}
 
 
 def $1($2):
-    """
-    ${3:mainfunc}
+    """${3:mainfunc}
+    
+    Arguments:
+        $2 (str): ...
+    
+    Keyword Arguments:
+        $2 (str): ...
+    
+    Returns:
+        str: ...
+
+    Yields:
+        str: ...
+
+    Raises:
+        Exception: ...
     """
     ${5:pass}
 
 
 import unittest
+
+
 class Test_$1(unittest.TestCase):
+
+    def setUp(self):
+        pass
+
     def test_$1(self):
         ${4:pass}
 
+    def tearDown(self):
+        pass
 
-def main():
-    import optparse
+
+def main(argv=None):
+    """
+    Main function 
+    
+    Keyword Arguments:
+        argv (list): commandline arguments (e.g. sys.argv[1:])
+    Returns:
+        int: 
+    """
     import logging
+    import optparse
 
-    prs = optparse.OptionParser(usage="./%prog : ${6:args}")
+    prs = optparse.OptionParser(usage="%prog : ${6:args}")
 
     prs.add_option('-v', '--verbose',
                     dest='verbose',
@@ -36,24 +67,33 @@ def main():
                     dest='run_tests',
                     action='store_true',)
 
-    (opts, args) = prs.parse_args()
 
-    if not opts.quiet:
-        logging.basicConfig()
-
-        if opts.verbose:
-            logging.getLogger().setLevel(logging.DEBUG)
+    loglevel = logging.INFO
+    if opts.verbose:
+        loglevel = logging.DEBUG
+    elif opts.quiet:
+        loglevel = logging.ERROR
+    logging.basicConfig(level=loglevel)
+    argv = list(argv) if argv else []
+    log.debug('argv: %r', argv)
+    (opts, args) = prs.parse_args(args=argv)
+    log.debug('opts: %r', opts)
+    log.debug('args: %r', args)
 
     if opts.run_tests:
         import sys
         sys.argv = [sys.argv[0]] + args
         import unittest
-        exit(unittest.main())
+        return unittest.main()
 
-    $1($2)
+    EX_OK = 0
+    output = $1($2)
+    return EX_OK
+
 
 if __name__ == "__main__":
-    main()
+    import sys
+    sys.exit(main(argv=sys.argv[1:]))
 endsnippet
 
 snippet setup.py
