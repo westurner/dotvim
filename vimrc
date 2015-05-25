@@ -454,6 +454,8 @@ nnoremap N Nzzzv
 "" Cursorline and cursorcolumn
 "  <leader> [    --  toggle cursorline and cursorcolumn
 nnoremap <leader>[          :set cursorline! cursorcolumn!<CR>
+set cursorline cursorcolumn
+
 "  <leader> hm   --  set horizontal line mark
 nnoremap <silent><leader>hm ml:execute 'match HorizMark /\%'.line('.').'l/' <CR>
 "  <leader> hv   --  set vertical column mark
