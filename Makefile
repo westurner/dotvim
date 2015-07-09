@@ -72,10 +72,10 @@ install:
 	#$(MAKE) install_home
 
 install_home:
-	test -f $(HOME)/.vimrc && \
+	test -f $(HOME)/.vimrc && (\
 		cp $(HOME)/.vimrc $(HOME)/.vimrc.backup && \
-		rm $(HOME)/.vimrc
-	test ! -d $(HOME)/.vim/
+		rm $(HOME)/.vimrc) || true
+	#test ! -d $(HOME)/.vim/
 	ln -s $(PWD)/vimrc $(HOME)/.vimrc
 
 
