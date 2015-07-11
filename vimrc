@@ -311,15 +311,21 @@ endif
 "   <drop>          --  open file or paste path at cursor
 
 " Fonts
-"  :PatchFont      -- set the font
+"  :PatchFont      -- set the font (s:fontsize, s:fonts, guifont (set gfn=))
+"                     tries each font in s:fonts until one is found
 function! PatchFont()
-    let s:fontsize="11"
+    ""TODO: read local settings / accept fontsize as param 1
+    let s:fontsize="9"
     let s:fonts = [
-                \   "DejaVu Sans Mono for Powerline",
-                \   "Monaco",
-                \   "DejaVu Sans Mono",
-                \   "Monospace",
-                \   ]
+    \   "Source Code Pro for Powerline",
+    \   "Roboto Mono",
+    \   "Monaco",
+    \   "Fira Mono for Powerline",
+    \   "DejaVu Sans Mono for Powerline",
+    \   "Source Code Pro",
+    \   "DejaVu Sans Mono",
+    \   "Monospace",
+    \   ]
     let s:fontspace = ' '
     if !has('X11')
         "macvim
@@ -940,11 +946,14 @@ function! LargerFont()
   call AdjustFontSize(1)
 endfunction
 command! LargerFont call LargerFont()
+command! BiggerFont call LargerFont()
+command! FontsizeIncrease call LargerFont()
 
 function! SmallerFont()
   call AdjustFontSize(-1)
 endfunction
 command! SmallerFont call SmallerFont()
+command! FontsizeDecrese call SmallerFont()
 
 "  <C-Up>   -- increase font size
 nnoremap <C-Up> :LargerFont<CR>
