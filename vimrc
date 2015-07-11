@@ -106,15 +106,18 @@ set title
 " print the document path
 "
 
-"  :ListMappings    --  list .vimrc mapping comments (n(next) and p(rev))
 function! ListMappings()
+    "  :ListMappings    --  list .vimrc mapping comments (n(next) and p(rev))
+    cd ~/.vim
     vimgrep '\s*"\s\{2,}' ~/.vimrc ~/.vim/vimrc.*.bundles.vimrc
     copen
+    cd -
 endfunction
 command! -nargs=0 ListMappings call ListMappings()
 
 function! Path()
-    echo expand("%") expand("%:h")
+    #  Path() -- %s %:h %:p:h                       [help expand]
+    echo expand("%") expand("%:h") expand("%:p:h")
     echo bufnr('%')
 endfunction
 command! -nargs=* Path call Path()
