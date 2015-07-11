@@ -127,3 +127,8 @@ Wasavi
 * https://addons.mozilla.org/en-US/firefox/addon/wasavi/
 
 
+Fonts
+=======
+
+* `<https://www.google.com/fonts#ChoosePlace:select/Collection:Source+Sans+Pro|Ubuntu+Mono|Droid+Sans|Fira+Mono|Ubuntu|Droid+Sans+Mono|Libre+Baskerville|Source+Code+Pro|Ubuntu+Condensed|Droid+Serif|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Source+Serif+Pro>`__
+* `fonts.zip <https://www.google.com/fonts/download?kit=_Adf4-WhHej-sE7xvVehE2gYFTLuiQ0Xrr1ICtn4sgfpf0t9BZUIiDiKzT6nkta6EZPD1TvUcgbxXABVfCcZ6mHt8ctaCMCd_Wc5C_wjhJSS0ZBmQ8ycamsHRYHa0yYF6MfgUfXzxEj15i2wt6XfcxSvSI2ISvD3pWMhB-7yGqXOyHsJ9NW1GACvLv3i_puNCyWHyPaNoFkGoYwlHtB7aKx5h4EEYHECCsdvWx7M6oOYrBY59zzB2GpTcLtKNx_T5M6cYHKpCBlID5SqTqdPgqS3XrpYp_h7CyvsfAHiPPfClUJGDCrlHSoZ-MS0ftePQ2WBUu9AUgaaogWfKxMmxYC8lgsqHzuIVjdcuK4afsI0YILriZEbMEb6wm2W9l5Z9SVFytLCEavy544OK64yVltkqrIMaAZWyLYEoB48lSQ>`__
