@@ -67,9 +67,9 @@ install:
 	$(MAKE) test_start_vim
 	$(MAKE) test_start_tinyvim
 	#
-	# TODO: These must be done manually:
-	#$(MAKE) install_powerline_fonts
-	#$(MAKE) install_home
+	### These must be done manually:
+	#make install_home     			# add symlink to ~/.vimrc
+	#make install_powerline_fonts   # install patched powerline fonts
 
 install_home:
 	test -f $(HOME)/.vimrc && (\
