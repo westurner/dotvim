@@ -82,6 +82,12 @@ install_home:
 install_vim_apt:
 	sudo apt-get install vim-nox vim-gnome
 
+install_vim_yum:
+	sudo yum install vim-enhanced vim-X11
+
+install_vim_dnf:
+	sudo dnf install vim-enhanced vim-X11
+
 install_vim_src:
 	$(SHELL) setup_vim_deb.sh
 
