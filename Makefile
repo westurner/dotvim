@@ -115,6 +115,10 @@ list_bundles:
 	# List vimrc Bundles
 	egrep "^Bundle '" $(VIMRC_BUNDLES) | sed "s/Bundle '\(.*\)'/\1/g"
 
+pyrpo:
+	# List repositories with pyrpo (pip install pyrpo)
+	pyrpo -s . -r sh | tee pyrpo.log.sh
+
 install_bundles:
 	# Listall bundles with Vundle
 	vim +PluginInstall +qall
