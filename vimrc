@@ -116,7 +116,7 @@ endfunction
 command! -nargs=0 ListMappings call ListMappings()
 
 function! Path()
-    #  Path() -- %s %:h %:p:h                       [help expand]
+    "  Path() -- %s %:h %:p:h                       [help expand]
     echo expand("%") expand("%:h") expand("%:p:h")
     echo bufnr('%')
 endfunction
