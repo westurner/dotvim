@@ -74,6 +74,8 @@ Bundle 'https://github.com/westurner/venv.vim'
 "  :Cdwww           -- Cd__WWW()
 "  :Cdww            -- Cd__WWW()
 
+" file_line.vim     -- open files named 'file(line[:col])', 'file:line[:col]'
+Bundle 'https://github.com/bogado/file-line'
 
 " Info.vim          -- vim infopages in vim [help info]
 Bundle 'https://github.com/vim-scripts/info.vim'
