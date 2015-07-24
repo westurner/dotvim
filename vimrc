@@ -956,7 +956,7 @@ function! SmallerFont()
   call AdjustFontSize(-1)
 endfunction
 command! SmallerFont call SmallerFont()
-command! FontsizeDecrese call SmallerFont()
+command! FontsizeDecrease call SmallerFont()
 
 "  <C-Up>   -- increase font size
 nnoremap <C-Up> :LargerFont<CR>
