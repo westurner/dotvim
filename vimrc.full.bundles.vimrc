@@ -107,7 +107,7 @@ nnoremap <leader>gr <Esc>:SignifyRefresh<CR>
 nnoremap <leader>gd <Esc>:SignifyDebug<CR>
 
 " hunk jumping
-"  <leader>gh       -- signify-next-hunk
+"  <leader>gj       -- signify-next-hunk
 nmap <leader>gj <plug>(signify-next-hunk)
 "  <leader>gk       -- signify-prev-hunk
 nmap <leader>gk <plug>(signify-prev-hunk)
