@@ -504,18 +504,20 @@ vnoremap <c-f>      :lgrep
 imap <C-A-a>          <C-O>gg<C-O>gH<C-O>G<Esc>
 vmap <C-A-a>          <ESC>gggH<C-O>G<Esc>i
 
-"<ctrl-V> -- paste
-"map <C-v> "+gP
-"imap <C-v> <Esc>"+gP
-"vmap <C-v> <Esc>"+gP
+"  ctrl-v       -- paste (*)
+map <C-v> <space>"+gP
+imap <C-v> <space><Esc>"+gP
+vmap <C-v> <Esc>"+gP
+
+"  alt-v        -- paste (*)
 nm \\paste\\        "=@*.'xy'<CR>gPFx"_2x:echo<CR>
 imap <a-v>          x<Esc>\\paste\\"_s
 vmap <a-v>          "-cx<Esc>\\paste\\"_x
 
 " Paste
 "  shift-insert --  paste
-map <S-Insert>      <Esc>"+gp
-imap <S-Insert>     <Esc>"+gp
+map <S-Insert>      <space><Esc>"+gp
+imap <S-Insert>     <space><Esc>"+gp
 vmap <S-Insert>     <Esc>"+gp
 
 "  ctrl-S       --  Save
