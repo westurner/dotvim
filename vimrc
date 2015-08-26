@@ -109,7 +109,7 @@ set title
 function! ListMappings()
     "  :ListMappings    --  list .vimrc mapping comments (n(next) and p(rev))
     cd ~/.vim
-    vimgrep '\s*"\s\{2,}' ~/.vimrc ~/.vim/vimrc.*.bundles.vimrc
+    vimgrep '\s*"\s\{1,}' ~/.vimrc ~/.vim/vimrc.*.bundles.vimrc
     copen
     cd -
 endfunction
