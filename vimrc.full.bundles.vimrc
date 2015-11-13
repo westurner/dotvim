@@ -620,6 +620,8 @@ let g:riv_web_browser = 'x-www-browser'
 " let g:riv_fold_level = -1
 let g:riv_python_rst_hl = 0
 
+let g:riv_disable_folding = 1
+
 
 " Salt      -- Salt syntax
 Bundle 'https://github.com/saltstack/salt-vim'
