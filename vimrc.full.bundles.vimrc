@@ -645,6 +645,7 @@ Bundle 'https://github.com/Rykka/riv.vim'
 "       - [ ] Ready
 "       - [o] Open
 "       - [X] Closed
+let g:riv_web_browser = 'web'
 let g:riv_python_rst_hl = 0
 
 let g:riv_disable_folding = 1
