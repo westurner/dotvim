@@ -611,16 +611,45 @@ let g:clickable_browser = "x-www-browser"
 
 " Riv.vim   -- ReStructuredText [help riv]
 Bundle 'https://github.com/Rykka/riv.vim'
+"  [help riv]
+"      https://github.com/Rykka/riv.vim/tree/master/doc
 "  :RivIntro
+"      https://github.com/Rykka/riv.vim/blob/master/doc/riv_intro.rst
 "  :RivQuickStart
-"  :RivPrimer
-"  :RivSpecification
-"  :RivCheatSheet
-let g:riv_web_browser = 'x-www-browser'
-" let g:riv_fold_level = -1
+"      https://github.com/Rykka/riv.vim/blob/master/doc/riv_quickstart.rst
+"  :RivInstruction
+"      https://github.com/Rykka/riv.vim/blob/master/doc/riv_instruction.rst
+"  :RivCheatSheet     -- riv_cheatsheet.rst
+"      https://github.com/Rykka/riv.vim/blob/master/doc/riv_cheatsheet.rst
+"  :RivPrimer         -- riv_primer.rst
+"      https://github.com/Rykka/riv.vim/blob/master/doc/riv_primer.rst
+"      http://docutils.sourceforge.net/docs/user/rst/quickstart.html
+"  # Docutils "Quick reStructuredText" [quickref.rst / quickref.html]
+"      http://docutils.sourceforge.net/docs/user/rst/quickref.html
+"  :RivSpecification  -- Docutils "reStructuredText Markup Specification"
+"      http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
+"       https://github.com/Rykka/riv.vim/blob/master/doc/riv_specification.rst
+"  :RivDirectives -- Docutils "Directives"
+"      https://github.com/Rykka/riv.vim/blob/master/doc/riv_directives.rst
+"       http://docutils.sourceforge.net/docs/ref/rst/directives.html
+"  # Docutils "Roles"
+"       http://docutils.sourceforge.net/docs/ref/rst/roles.html
+"  # Docutils "Substutution definitions"
+"       http://docutils.sourceforge.net/docs/ref/rst/definitions.html
+"  # Docutils "Doctree"
+"       http://docutils.sourceforge.net/docs/ref/doctree.html
+"  # Riv.vim Changelogs
+"       https://github.com/Rykka/riv.vim/blob/master/doc/riv_log.rst
+"  # Riv.vim Todo
+"       https://github.com/Rykka/riv.vim/blob/master/doc/riv_todo.rst
+"       - [ ] Ready
+"       - [o] Open
+"       - [X] Closed
 let g:riv_python_rst_hl = 0
 
 let g:riv_disable_folding = 1
+"let g:riv_fold_level = 0
+"let g:riv_fold_level = -1
 
 
 " Salt      -- Salt syntax
