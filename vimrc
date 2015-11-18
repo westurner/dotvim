@@ -7,21 +7,43 @@
 "
 " Vim Reference
 " ---------------
-"  %          --  current filename
-"  %:p        --  current filepath
-"  $VIMRUNTIME      --  /{colors,syntax,macros}
+"  :help            --  open vim help               [help]
+"  :help <tag>      --  open vim help for           [<tag>]
+"                       tag: (<cmd>, plugin/doc/<tag>.txt)
+"  :help vimtutor   --  open vim help for vimtutor tutorial
+"  :help quickref   --  open vim quick reference    [quickref, Q_bu]
+"  :<up arrow>      --  search backward through vim history
+"  [[               --  up a section                [ [[ ]
+"  C-o              --  goto previous position      [CTRL-O, jumplist]
+
+"  C-]              --  follow a tag (help quickref, select Q_bu, C-])
+"  %          --  variable: current filename
+"  %:p        --  variable: current filepath
+"  %          --  motion: find the next instance of selected word [%]
+"  :buffers         --  list vim buffers            [Q_bu]
+"  $VIMRUNTIME      --  /{colors,syntax,macros}     [$VIMRUNTIME]
+"  :set [all]       --  list all nondefault options [set, redir, SaveSession]
+"  :map             --  list actual mappings        [Q_km]
 "  ListMappings     --  list commented mappings
-"  :map             --  list actual mappings
+"  Dotvimhelp       --  list commented mappings
+"  DotvimReload     --  reload vim configuration (on top of existing config)
 "  :scriptnames     --  list scripts and plugins
-"  :set             --  list all nondefault options
-"  e <path>         --  open file
-"  e <pa...><tab>   --  open file with wildmenu completion
-"  \e [...] <enter> --  open file
-"  :tabnew <path>   --  open file
-"  :read filename|  --  insert filename at cursor
-"  :read !cmd       --  insert cmd output at cursor
+"  e[dit]           --  reload the current file
+"  e <path>         --  open file                   [edit, Q_ed]
+"  e <pa...><tab>   --  open file with tab-completion [wildmenu, wildmode]
+"  :tabnew <path>   --  open file in a new tab
+"  :read filename|  --  insert filename after cursor
+"  :read !cmd       --  insert 'cmd' output after cursor
 "  :%! [cmd]        --  buffer > stdin > [cmd] > stdout => buffer.replace
+"  :put %           --  put % (current filename) after the cursor [help put]
 "
+"  h, j, k, l       --  left, down, up, right       [Q_lr, Q_ud] 
+"  C-E              --  move N lines downwards (1)
+"  C-D              --  move N lines Downwards (1/2 move)
+"  C-F              --  move N pages Forwards (downwards)
+"  C-Y              --  move N lines upwards (default: 1)
+"  C-U              --  move N lines Upwards (default: 1/2 move)
+"  C-B              --  move N pages Backwards (upwards)
 "  [n]G             --  goto line #
 "  g <C-g>          --  whereami
 "  u                --  undo
@@ -136,35 +158,41 @@ if !exists("*DotvimReload")
   endfunction
   command! -nargs=0 DotvimReload call DotvimReload()
   command! -nargs=0 Reload call DotvimReload()
+  command! -nargs=0 Dr call DotvimReload()
 endif
 
+"  \       -- <leader>
 "  <space> -- <leader>
 map <space> <leader>
 "  ,    --  <leader> == <comma>
 map ,       <leader>
 
-
-"  ;;   --  <esc> == double semicolon
-imap ;;     <esc>
-vmap ;;     <esc>
-"  jk   --  <esc>
-imap jk     <esc>
-vmap jk     <esc>
-"  98   --  <esc> == 98
-imap 98     <esc>
-vmap 98     <esc>
-"  :;   --  <esc> == colon semicolon
+"  :;   --  colon semicolon -> <esc>:
 imap :;     <esc>:
-"  :;   --  <esc> == colon semicolon
+"  :;   --  colon semicolon -> <esc>:
 vmap :;     <esc>:
 
-" Quickfix
-"  <leader> q               --  toggle quicklist
+"Other <esc> sequences
+"jk   --  <esc>
+"imap jk     <esc>
+"vmap jk     <esc>
+"98   --  <esc> == 98
+"imap 98     <esc>
+"vmap 98     <esc>
+";;   --  <esc> == double semicolon
+"imap ;;     <esc>
+"vmap ;;     <esc>
+
+"  Quicklist
+"  <leader> q               --  toggle quicklist [:cw/:cwindow]
 noremap <silent> <leader>q      <Esc>:cw<CR>
-"  <leader> n               --  next quicklist item
+"  <leader> n               --  next quicklist item [:cn/:cnext]
 noremap <silent> <leader>n      <Esc>:cn<CR>
-"  <leader> l               --  toggle location list
+"  Location List
+"  <leader> l               --  toggle location list [:lw/:lwindow]
 noremap <silent> <leader>l      <Esc>:lw<CR>
+"  <leader> <shift> N       --  next location list item [:ln/:lnext]
+noremap <silent> <leader>n      <Esc>:ln<CR>
 
 set nocompatible
 set nomodeline
@@ -505,21 +533,24 @@ imap <C-A-a>          <C-O>gg<C-O>gH<C-O>G<Esc>
 vmap <C-A-a>          <ESC>gggH<C-O>G<Esc>i
 
 "  ctrl-v       -- paste (*)
-map <C-v> <space>"+gP
-imap <C-v> <space><Esc>"+gP
-vmap <C-v> <Esc>"+gP
+"                  conflict: vim blockwise visual selection [CTRL-v]
+" map <C-v> <space>"+gP
+" imap <C-v> <space><Esc>"+gP
+" vmap <C-v> <Esc>"+gP
 
 "  alt-v        -- paste (*)
-nm \\paste\\        "=@*.'xy'<CR>gPFx"_2x:echo<CR>
-imap <a-v>          x<Esc>\\paste\\"_s
-vmap <a-v>          "-cx<Esc>\\paste\\"_x
+" nm \\paste\\        "=@*.'xy'<CR>gPFx"_2x:echo<CR>
+" imap <a-v>          x<Esc>\\paste\\"_s
+" vmap <a-v>          "-cx<Esc>\\paste\\"_x
 
 " Paste
-"  shift-insert --  paste
+"  shift-insert --  paste (*)
+"                   conflict: mac keyboards do not have <Insert>
 map <S-Insert>      <space><Esc>"+gp
 imap <S-Insert>     <space><Esc>"+gp
 vmap <S-Insert>     <Esc>"+gp
 
+" Save / Close
 "  ctrl-S       --  Save
 nnoremap <C-s>      <Esc>:w!<CR>
 "imap <C-s>         <C-o><C-s><Cr>
@@ -528,21 +559,26 @@ nnoremap <C-s>      <Esc>:w!<CR>
 nnoremap <C-A-w>    <Esc>:q<CR>
 
 "  ctrl-Home    --  Goto line one
+"                   conflict: mac keyboards do not have <Home>
 nnoremap <C-Home>   gg1
 nnoremap <s-Home>   gg1
 
-"  ctrl-End     --  Goto line :-1
+"  ctrl-End     --  Goto last line (lines[:-1])
+"                   conflict: mac keyboards do not have <Home>
 nnoremap <C-End>    G
 nnoremap <s-End>    G
 
 
-" PgUp/PgDn
-"  K    --  PageUp
-nnoremap K  <PageUp>
-"  J    --  PageDown
-nnoremap J  <PageDown>
+" Page Up / Page Down
+"  shift-Down    --  PageDown (<C-d>)
+"  shift-Up      --  PageUp (<C-u>)
+" K    --  PageUp
+" nnoremap K  <PageUp>
+" J    --  PageDown
+" nnoremap J  <PageDown>
 
-" Pgup/Down are actually 2*<c-U>
+" Keyboard PageUp/PageDown are actually 2*<c-U>
+"                   conflict: mac keyboards do not have <PageUp, PageDown>
 nnoremap <silent> <PageUp> <C-U><C-U>
 vnoremap <silent> <PageUp> <C-U><C-U>
 inoremap <silent> <PageUp> <C-\><C-O><C-U><C-\><C-O><C-U>
@@ -573,8 +609,8 @@ map <C-j>           <C-w>j
 map <C-u>           <C-w>j
 "  ctrl-k       --  cursor window up
 map <C-k>           <C-w>k
-"  ctrl-i       --  cursor window up
-map <C-i>           <C-w>k
+"ctrl-i       --  cursor window up (*) conflict: jumplist forward [jumplist]
+"map <C-i>           <C-w>k
 
 "  ctrl-l       --  cursor window right
 map <C-l>           <C-w>l
