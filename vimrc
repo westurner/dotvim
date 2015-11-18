@@ -829,6 +829,15 @@ set background=dark
 "colorscheme desert
 colorscheme jellybeans
 
+function! Vim2VimWrite()
+    "  Vim2VimWrite()   -- write highlight codes to ./vim_highlight_output.txt
+    "    pip install vim2vim   -- https://pypi.python.org/pypi/vim2vim
+    redir! > vim_highlight_output.txt
+    highlight
+    redir END
+    echomsg "Vim2VimWrite > vim_highlight_output.txt"
+endfunction
+command! -nargs=0 Vim2VimWrite call Vim2VimWrite()
 
 " List highlight colors
 function! HiTest()
