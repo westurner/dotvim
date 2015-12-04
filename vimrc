@@ -161,6 +161,12 @@ if !exists("*DotvimReload")
   command! -nargs=0 Dr call DotvimReload()
 endif
 
+function! Cdhere()
+"  :Cdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
+    cd %:p:h
+endfunction
+command! -nargs=0 Cdhere call Cdhere()
+
 "  \       -- <leader>
 "  <space> -- <leader>
 map <space> <leader>
