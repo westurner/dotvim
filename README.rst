@@ -115,7 +115,7 @@ Vim Plugins
 python-mode
 ~~~~~~~~~~~~~~
 | Src: https://github.com/klen/python-mode
-| Docs https://github.com/klen/python-mode#source-links
+| Docs: https://github.com/klen/python-mode#source-links
 
 
 Vim Browser Extensions
