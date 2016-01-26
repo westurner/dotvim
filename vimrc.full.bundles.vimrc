@@ -38,6 +38,9 @@ Bundle 'https://github.com/gmarik/Vundle.vim'
 " * grep '^Bundle \'' vimrc.bundles
 " * sed -i 's\https://github.com/\ssh://git@github.com/\g'
 
+"mrswin.vim        -- normal Ctrl-C, Ctrl-A, Ctrl-X, Ctrl-V
+"Bundle 'https://github.com/vim-scripts/mrswin.vim'
+
 " venv.vim          -- venv CdAlias commands
 Bundle 'https://github.com/westurner/venv.vim'
 "  :Cdhome          -- Cd_HOME()
