@@ -5,6 +5,7 @@ westurner/dotvim
 | Docs: https://westurner.org/dotfiles/usage#vim
 | Topic: `<https://en.wikipedia.org/wiki/Vim_(text_editor)>`__
 
+.. contents::
 
 .. | Src: hg https://bitbucket.org/westurner/dotvim # dulwich / git push --mirror
 
@@ -97,9 +98,20 @@ Vim
 * https://github.com/scrooloose/nerdtree
 * https://github.com/westurner/dotvim
 
+Vim Plugins
+-------------
+
+python-mode
+++++++++++++++
+| Src: https://github.com/klen/python-mode
+| Docs https://github.com/klen/python-mode#source-links
+
+
+Vim Browser Extensions
+------------------------
 
 Vimium
--------
+++++++++
 | Wikipedia: https://en.wikipedia.org/wiki/Vimium
 | Homepage: https://vimium.github.io/
 | Source: git https://github.com/philc/vimium
@@ -108,7 +120,7 @@ Vimium
 
 
 Vimperator
------------
++++++++++++++
 | Wikipedia: https://en.wikipedia.org/wiki/Vimperator
 | Homepage: http://www.vimperator.org/
 | Source: https://github.com/vimperator/vimperator-labs
@@ -117,7 +129,7 @@ Vimperator
 
 
 Wasavi
--------
+++++++++
 | Homepage: http://appsweets.net/wasavi/
 | Docs: http://appsweets.net/wasavi/
 | Source: https://github.com/akahuku/wasavi
@@ -132,3 +144,6 @@ Fonts
 
 * `<https://www.google.com/fonts#ChoosePlace:select/Collection:Source+Sans+Pro|Ubuntu+Mono|Droid+Sans|Fira+Mono|Ubuntu|Droid+Sans+Mono|Libre+Baskerville|Source+Code+Pro|Ubuntu+Condensed|Droid+Serif|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Source+Serif+Pro>`__
 * `fonts.zip <https://www.google.com/fonts/download?kit=_Adf4-WhHej-sE7xvVehE2gYFTLuiQ0Xrr1ICtn4sgfpf0t9BZUIiDiKzT6nkta6EZPD1TvUcgbxXABVfCcZ6mHt8ctaCMCd_Wc5C_wjhJSS0ZBmQ8ycamsHRYHa0yYF6MfgUfXzxEj15i2wt6XfcxSvSI2ISvD3pWMhB-7yGqXOyHsJ9NW1GACvLv3i_puNCyWHyPaNoFkGoYwlHtB7aKx5h4EEYHECCsdvWx7M6oOYrBY59zzB2GpTcLtKNx_T5M6cYHKpCBlID5SqTqdPgqS3XrpYp_h7CyvsfAHiPPfClUJGDCrlHSoZ-MS0ftePQ2WBUu9AUgaaogWfKxMmxYC8lgsqHzuIVjdcuK4afsI0YILriZEbMEb6wm2W9l5Z9SVFytLCEavy544OK64yVltkqrIMaAZWyLYEoB48lSQ>`__
+
+
+
