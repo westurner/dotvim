@@ -15,6 +15,7 @@ default: test
 help:
 	$(MAKE) list_vimrc_comments
 	#$(MAKE) list_vimrc_shortcuts
+	#$(MAKE) list_vim_mappings
 
 edit:
 	# Open editor with primary project files
@@ -24,12 +25,20 @@ edit:
 
 list_vimrc_comments:
 	# List vimrc special comments
-	egrep -h '^\s*"\s' $(VIM_FILES)
+	egrep -h '^\s*"\s' $(VIM_FILES) | sed 's/"//'
 
 list_vimrc_shortcuts:
 	# List vimrc keyboard shortcut comments (starting with '"  '')
-	egrep -h '^\s*"  ' $(VIM_FILES)
+	egrep -h '^\s*"  ' $(VIM_FILES) | sed 's/"//'
 
+VIM_MAPPINGS:=./tmp.output
+list_vim_mappings:
+	vim \
+	 -c ':redir! > ${VIM_MAPPINGS}' \
+	 -c ':map' \
+	 -c ':redir END' \
+	 -c ':exit'
+	cat '${VIM_MAPPINGS}'
 
 test:
 	# Test this Makefile
