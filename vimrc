@@ -125,11 +125,8 @@
 " set window title to vim title (display full path)
 set title
 
-" print the document path
-"
-
 function! ListMappings()
-    "  :ListMappings    --  list .vimrc mapping comments (n(next) and p(rev))
+"  :ListMappings     -- list .vimrc(.*) comments (n(next) and p(rev))
     cd ~/.vim
     vimgrep '\s*"\s\{1,}' ~/.vimrc ~/.vim/vimrc.*.bundles.vimrc
     copen
@@ -137,20 +134,18 @@ function! ListMappings()
 endfunction
 command! -nargs=0 ListMappings call ListMappings()
 
-function! Path()
-    "  Path() -- %s %:h %:p:h                       [help expand]
-    echo expand("%") expand("%:h") expand("%:p:h")
-    echo bufnr('%')
-endfunction
-command! -nargs=* Path call Path()
-
 function! DotvimHelp()
+"  :DotvimHelp       -- "
+"  :Help             -- "
     :ListMappings
 endfunction
 command! -nargs=0 DotvimHelp call DotvimHelp()
 command! -nargs=0 Help call DotvimHelp()
 
 if !exists("*DotvimReload")
+"  :DotvimReload   -- reload ~/.vimrc
+"  :Reload         -- reload ~/.vimrc
+"  :Dr             -- reload ~/.vimrc
   function! DotvimReload()
       echo expand("%") expand("%:h")
       execute "source" "~/.vimrc"
@@ -160,6 +155,15 @@ if !exists("*DotvimReload")
   command! -nargs=0 Reload call DotvimReload()
   command! -nargs=0 Dr call DotvimReload()
 endif
+"
+"    seeAlso: :SaveSession, :RestoreSession (*)     [help SaveSession]
+
+function! Path()
+"  :Path()   -- echo path information %s %:h %:p:h       [help expand]
+    echo expand("%") expand("%:h") expand("%:p:h")
+    echo bufnr('%')
+endfunction
+command! -nargs=* Path call Path()
 
 function! Cdhere()
 "  :Cdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
@@ -170,7 +174,7 @@ command! -nargs=0 Cdhere call Cdhere()
 "  \       -- <leader>
 "  <space> -- <leader>
 map <space> <leader>
-"  ,    --  <leader> == <comma>
+"  ,       --  <leader> == <comma>
 map ,       <leader>
 
 "  :;   --  colon semicolon -> <esc>:
@@ -417,9 +421,10 @@ if has("gui_running")
 
     set mousemodel=popup
 
-    "  ctrl-z   --  undo
+    "  ctrl-z   --  undo [u]
     imap <C-z>      <Esc>:undo<CR>
     nnoremap <C-z>  :undo<CR>
+
     "  alt-z    --  undo
     imap <a-z>      <Esc>:undo<CR>
     nnoremap <a-z>  :undo<CR>
