@@ -1,0 +1,5 @@
+
+## dotvim .gitignore
+bundle/
+sessions/
+powerline-fonts/
