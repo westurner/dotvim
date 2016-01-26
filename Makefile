@@ -138,6 +138,12 @@ hg_changelog:
 hg_push:
 	hg push default
 
+pull:
+	git pull
+
+push:
+	git push
+
 .PHONY: all
 all: test build
 
