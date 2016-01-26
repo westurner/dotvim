@@ -1,7 +1,9 @@
+
+
 westurner/dotvim
 =================
 | Desc: dotvim_ ``~/.vimrc`` text editor configuration dotfiles_.
-| Src: git https://github.com/westurner/dotvim
+| Src: https://github.com/westurner/dotvim
 | Docs: https://westurner.org/dotfiles/usage#vim
 | Topic: `<https://en.wikipedia.org/wiki/Vim_(text_editor)>`__
 
@@ -35,6 +37,8 @@ Clone the dotvim_ repository::
 
 Usage
 ------
+| Docs: https://westurner.org/dotfiles/usage#vim
+
 Three files:
 
    * `vimrc`_ -- ViM configuration (symlink to ``~/.vimrc``)
@@ -52,7 +56,7 @@ Three files:
 
 Dotvim Makefile_::
 
-   # Show comments with numbered lines
+   # Show ``vimrc*`` comments
    make help
 
    # Install dotfiles and plugins for the current user
@@ -67,24 +71,31 @@ Dotvim Makefile_::
    # Print keyboard mapping comments (^"\s\s)
    make list_vimrc_shortcuts
 
+   # Print vim mappings (opens an interactive vimpager)
+   make list_vim_mappings
 
-Usage
----------------
-| Docs: https://westurner.org/dotfiles/usage#vim
 
-``make help`` prints ``vimrc*`` comments.
+DotvimHelp
+~~~~~~~~~~~~
 
-``:ListMappings`` ``vimgreps`` ``vimrc*`` comments::
+``:DotvimHelp`` ``vimgreps`` comment lines from ``vimrc``
+configuration files and then opens the quickfix list
+(``:copen``, ``:cclose``, ``help quickfix``).
+
+``:DotvimHelp`` == ``:Help`` == ``:ListMappings``
+
+.. code::
+
+   :tabnew
+   :Help
 
    [...]
-
    "  :DotvimReload    --  source ~/.vimrc
    "  :DotvimHelp      --  vimgrep vimrc* comments
    "  :ListMappings    --  vimgrep vimrc* comments
    "  :map             --  list actual mappings
    "  :scriptnames     --  list scripts and plugins
    "  :set             --  list all nondefault options
-
    [...]
 
 
@@ -102,7 +113,7 @@ Vim Plugins
 -------------
 
 python-mode
-++++++++++++++
+~~~~~~~~~~~~~~
 | Src: https://github.com/klen/python-mode
 | Docs https://github.com/klen/python-mode#source-links
 
@@ -111,7 +122,7 @@ Vim Browser Extensions
 ------------------------
 
 Vimium
-++++++++
+~~~~~~~~
 | Wikipedia: https://en.wikipedia.org/wiki/Vimium
 | Homepage: https://vimium.github.io/
 | Source: git https://github.com/philc/vimium
@@ -120,7 +131,7 @@ Vimium
 
 
 Vimperator
-+++++++++++++
+~~~~~~~~~~~~~
 | Wikipedia: https://en.wikipedia.org/wiki/Vimperator
 | Homepage: http://www.vimperator.org/
 | Source: https://github.com/vimperator/vimperator-labs
@@ -129,7 +140,7 @@ Vimperator
 
 
 Wasavi
-++++++++
+~~~~~~~~
 | Homepage: http://appsweets.net/wasavi/
 | Docs: http://appsweets.net/wasavi/
 | Source: https://github.com/akahuku/wasavi
