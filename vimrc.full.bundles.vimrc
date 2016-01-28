@@ -222,20 +222,17 @@ let g:NERDCustomDelimiters = {
 Bundle 'https://github.com/SirVer/ultisnips'
 Bundle 'https://github.com/honza/vim-snippets'
 "  snippetname<C-CR>    --  insert snippet
-"  <tab>            --  next placeholder
-"  <tab>            --  prev placeholder
-"  ~/.vim/snippets-ulti/python:
-"   climain         --  new cli script
-"   setuppy         --  new setup.py script
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"  <c-j>            --  next placeholder
+"  <c-k>            --  prev placeholder
+"  ~/.vim/snippets-ulti/python.snippets:
+"    climain         --  new cli script
+"    setuppy         --  new setup.py script
 let g:UltiSnipsExpandTrigger       = '<C-CR>'
-let g:UltiSnipsJumpForwardTrigger  = '<A-d>'
-let g:UltiSnipsJumpBackwardTrigger = '<A-a>'
-
-let g:UltiSnipsSnippetsDir        = '~/.vim/snippets-ulti/'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippets-ulti']
+let g:UltiSnipsListSnippets        = '<C-tab>'
+let g:UltiSnipsJumpForwardTrigger  = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsSnippetsDir         = '~/.vim/snippets-ulti/'
+let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'snippets-ulti']
 
 
 " NeoComplCache -- code completion [help neocomplcache]
