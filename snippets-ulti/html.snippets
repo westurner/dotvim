@@ -1,0 +1,16 @@
+snippet schemaorgclass "schema.org RDFa class" b
+<div typeof="rdfs:Class" resource="http://schema.org/${1:ClassName}">
+    <span class="h" property="rdfs:label">$1</span>
+    <span property="rdfs:comment">${2:comment}</span>
+    <span>Subclass of: <a property="rdfs:subClassOf" href="http://schema.org/${3:Text}">$3</a></span>
+</div>
+endsnippet
+
+snippet schemaorgproperty "schema.org RDFa property" b
+<div typeof="rdf:Property" resource="http://schema.org/${1:propname}">
+  <span class="h" property="rdfs:label">${1:propname}</span>
+  <span property="rdfs:comment">${2:comment}</span>
+  <span>Domain: <a property="http://schema.org/domainIncludes" href="http://schema.org/${3:domain}">$3</a></span>
+  <span>Range: <a property="http://schema.org/rangeIncludes" href="http://schema.org/${4:range}">$4</a></span>
+</div>
+endsnippet
