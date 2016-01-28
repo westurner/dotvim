@@ -227,6 +227,9 @@ Bundle 'https://github.com/honza/vim-snippets'
 "  ~/.vim/snippets-ulti/python.snippets:
 "    climain         --  new cli script
 "    setuppy         --  new setup.py script
+"  ~/.vim/snippets-ulti/html.snippets:
+"    schemaorgclass  --  new schema.org RDFa class
+"    schemaorgprop   --  new schema.org RDFa property
 let g:UltiSnipsExpandTrigger       = '<C-CR>'
 let g:UltiSnipsListSnippets        = '<C-tab>'
 let g:UltiSnipsJumpForwardTrigger  = '<C-j>'
