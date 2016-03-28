@@ -202,6 +202,37 @@ if exists("g:loaded_syntastic_plugin")
     let g:syntastic_quiet_warnings=0
     let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
     "let g:syntastic_disabled_filetypes = ['ruby', 'php']
+    "
+    " ###
+    " | Src: https://raw.githubusercontent.com/ccwang002/dotvim/master/vimrc
+    " + https://github.com/ccwang002/dotvim/issues/1
+    " Setting for rst Linter
+    let s:rst_accepted_dir_type =
+                \ '\(' .
+                \ 'seealso\|todo\|toctree\|index\|' .
+                \ 'literalinclude\|' .
+                \ 'auto.*' .
+                \ '\)'
+    let s:rst_accepted_text_role =
+                \ '\(ref\|command\|file\|py:[a-z]*\|meth\|class\|func\)'
+    let s:rst_def_substitution = '\(version\|today\)'
+    let g:syntastic_rst_rst2pseudoxml_quiet_messages = {
+                \ "regex":
+                \ '\(' .
+                \ 'Unknown directive type "' . s:rst_accepted_dir_type . '"\|' .
+                \ 'Unknown interpreted text role "' . s:rst_accepted_text_role . '"\|' .
+                \ 'Undefined substitution referenced: "' . s:rst_def_substitution . '"' .
+                \ '\)',
+                \ }
+    " ###
+    " OR
+    " ###
+    " " | Src: https://github.com/myint/rstcheck
+    " " | PyPI: https://pypi.python.org/pypi/rstcheck
+    " " $ pip install --user -U rstcheck
+    " let g:syntastic_rst_checkers = ['rstcheck']
+    " ###
+    ""
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
