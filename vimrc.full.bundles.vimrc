@@ -640,8 +640,11 @@ Bundle 'https://github.com/digitaltoad/vim-jade'
 Bundle 'https://github.com/Rykka/os.vim'
 
 " clickable.vim -- click-able links
+
 Bundle 'https://github.com/Rykka/clickable.vim'
-let g:clickable_browser = "x-www-browser"
+" let g:clickable_browser = "xdg-open"
+" let g:clickable_browser = "x-www-browser"
+let g:clickable_browser = "web"
 
 " Riv.vim   -- ReStructuredText [help riv]
 Bundle 'https://github.com/Rykka/riv.vim'
