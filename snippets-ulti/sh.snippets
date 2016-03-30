@@ -1,0 +1,88 @@
+snippet bashscript "bash name[(), _main()], test_" b
+#!/usr/bin/env bash
+### ${1:progname}  ## ${2:description}
+
+function $1_help {
+	## $1_help()  ## print help for $1
+}
+
+function $1 {
+	## $1()	     ## ${3:<arg1>} function_description
+	local args=${@}
+	(set -x; args=$args)
+	if [ -n "${args[@]}" ]; then
+		$1_help
+	fi
+	return
+}
+
+function $1_main {
+	## $1_main()  ## $1_main()
+	#  \$1 (type)  ## description
+	local args=${@}
+	(set -x; args=$args)
+	$1
+	return
+}
+
+function $1_main__test {
+	## $1_main__test()	## test $1_main()
+	function $1_main__test_ {
+		main
+		main -h
+		main --help
+		main -v
+		main --verbose
+		main --test
+	}
+	(set -e; $1_main__test_ ${@})
+	return
+}
+
+if [ -n "${BASH_SOURCE}" ] && [ "${BASH_SOURCE}" == "" ]; then
+	$1_main ${@}
+	exit
+fi
+endsnippet
+
+
+snippet bashscript "bash name[(), _main()], test_" b
+
+function $1_help {
+	## $1_help()  ## print help for $1
+}
+
+function $1 {
+	## $1()	     ## ${3:<arg1>} function_description
+	local args=${@}
+	(set -x; args=$args)
+	if [ -n "${args[@]}" ]; then
+		$1_help
+	fi
+	return
+}
+
+function $1_main {
+	## $1_main()  ## $1_main()
+	#  \$1 (type)  ## description
+	local args=${@}
+	(set -x; args=$args)
+	$1
+	return
+}
+
+function $1__test {
+	## $1_main__test()	## test $1_main()
+	function $1_main__test_ {
+		main
+		main -h
+		main --help
+		main -v
+		main --verbose
+		main --test
+	}
+	(set -e; $1_main__test_ ${@})
+	return
+}
+
+endsnippet
