@@ -99,6 +99,10 @@ Bundle 'https://github.com/vim-scripts/info.vim'
 "  q                --  Quit browser.
 "
 
+" Netrw     -- new netrw [pi_netrw]
+Bundle 'https://github.com/eiginn/netrw'
+"Netrw     -- old netrw [pi_netrw]
+"Bundle 'https://github.com/vim-scripts/netrw.vim/'
 
 " Signify   -- show git/hg file changes in gutter [help signify]
 Bundle 'https://github.com/mhinz/vim-signify'
@@ -692,7 +696,7 @@ let g:riv_disable_folding = 1
 
 " Tabular       -- text filtering and alignment [tabular]
 Bundle 'https://github.com/godlygeek/tabular'
-" vim-markdown  -- markdown syntax [vim-markdown]
+" vim-markdown  -- markdown syntax (-> tabular, netrw) [vim-markdown]
 Bundle 'https://github.com/plasticboy/vim-markdown'
 
 
