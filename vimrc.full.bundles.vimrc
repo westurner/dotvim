@@ -690,6 +690,12 @@ let g:riv_disable_folding = 1
 "let g:riv_fold_level = -1
 
 
+" Tabular       -- text filtering and alignment [tabular]
+Bundle 'https://github.com/godlygeek/tabular'
+" vim-markdown  -- markdown syntax [vim-markdown]
+Bundle 'https://github.com/plasticboy/vim-markdown'
+
+
 " Salt      -- Salt syntax
 Bundle 'https://github.com/saltstack/salt-vim'
 
