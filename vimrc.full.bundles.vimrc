@@ -646,7 +646,7 @@ Bundle 'https://github.com/Rykka/clickable.vim'
 " let g:clickable_browser = "x-www-browser"
 let g:clickable_browser = "web"
 
-" Riv.vim   -- ReStructuredText [help riv]
+" Riv.vim       -- ReStructuredText [help riv]
 Bundle 'https://github.com/Rykka/riv.vim'
 "  [help riv]
 "      https://github.com/Rykka/riv.vim/tree/master/doc
