@@ -181,6 +181,19 @@ nnoremap <Leader>E <Esc>:NERDTreeFind "%:p:h"<CR>
 ""Bundle 'https://github.com/jistr/vim-nerdtree-tabs'
 Bundle 'https://github.com/EvanDotPro/nerdtree-symlink'
 
+" nerdtree-git-plugin  -- show git status in nerdtree
+Bundle 'https://github.com/Xuyuanp/nerdtree-git-plugin'
+" let g:NERDTreeIndicatorMapCustom = {
+"    \ "Modified"  : "✹",
+"    \ "Staged"    : "✚",
+"    \ "Untracked" : "✭",
+"    \ "Renamed"   : "➜",
+"    \ "Unmerged"  : "═",
+"    \ "Deleted"   : "✖",
+"    \ "Dirty"     : "✗",
+"    \ "Clean"     : "✔︎",
+"    \ "Unknown"   : "?"
+"    \ }
 
 "" BufExlorer       -- buffer management window  [help bufexplorer]
 Bundle 'https://github.com/jlanzarotta/bufexplorer'
