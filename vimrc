@@ -274,6 +274,17 @@ set indentkeys-=:,0#
 " Code Indenting
 set autoindent
 
+" Indent wrapped lines a bit   [breakindent showbreak]
+if has("linebreak")
+    set breakindent
+    " set showbreak=..
+    set showbreak=\ "
+    "set showbreak=\ \ "
+endif
+" Wrap in the middle of lines
+set nolinebreak
+
+
 " Searching
 set hlsearch
 set smartcase		    " Do smart case matching
