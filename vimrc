@@ -122,6 +122,29 @@
 "  <leader> sc      --  clear highlighting
 "
 
+" ##
+" ## g:__sfile__dirname     -- directory containing this vimrc script
+"                              after symlinks
+"                              ~dirname(abspath(realpath(__file__)))
+let g:__sfile__dirname=fnamemodify(resolve(expand("<sfile>:p")), ":h")
+" ##
+
+"  Source_dotvim(filename)  -- source dirname(this_vimrc)/filename
+function! Source_dotvim(filename)
+    let l:vimrcfilename=g:__sfile__dirname . "/" . a:filename
+    if filereadable(l:vimrcfilename) && !empty(l:vimrcfilename)
+        "source s:_vimrcfilename "this doesn't work, so exec:
+        exec "source " . fnameescape(l:vimrcfilename)
+    "else
+    "    echo l:vimrcfilename . " empty or not found."
+    endif
+endfunction 
+
+" ##
+" ## source vimrc.local.01-env.vimrc
+call Source_dotvim("vimrc.local.01-env.vimrc")
+" ##
+
 " set window title to vim title (display full path)
 set title
 
@@ -1029,6 +1052,12 @@ inoremap <F3> <C-R>=strftime("\n%Y-%m-%d (%A)\n-----------------------\n")<CR>
 " Trac
 let g:tracServerList = {}
 let g:tracBrowser = 'x-www-browser'
+
+
+" ##
+" ## source vimrc.local.99-after.vimrc
+call Source_dotvim("vimrc.local.99-after.vimrc")
+" ##
 
 " References
 "
