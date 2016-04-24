@@ -338,6 +338,7 @@ if has("autocmd")
         au BufNewFile,BufRead *.jinja2 set filetype=jinja
         au BufNewFile,BufRead *.jinja  set filetype=jinja
         au BufNewFile,BufRead *.html   set filetype=htmldjango
+        au BufNewFile,BufRead *.rdfa   set filetype=html
         au BufNewFile,BufRead *.jsonld set filetype=js
         au BufNewFile,BufRead Vagrantfile set filetype=ruby
     augroup END
