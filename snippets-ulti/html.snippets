@@ -10,7 +10,15 @@ snippet schemaorgproperty "schema.org RDFa property" b
 <div typeof="rdf:Property" resource="http://schema.org/${1:propname}">
   <span class="h" property="rdfs:label">$1</span>
   <span property="rdfs:comment">${2:comment}</span>
-  <span>Domain: <a property="http://schema.org/domainIncludes" href="http://schema.org/${3:domain}">$3</a></span>
-  <span>Range: <a property="http://schema.org/rangeIncludes" href="http://schema.org/${4:range}">$4</a></span>
+  <span>Domain: <a property="http://schema.org/domainIncludes" href="http://schema.org/${3:Domain}">$3</a></span>
+  <span>Range: <a property="http://schema.org/rangeIncludes" href="http://schema.org/${4:Range}">$4</a></span>
 </div>
+endsnippet
+
+snippet schemaorgdomain "schema.org RDFa domain" b
+<span>Domain: <a property="http://schema.org/domainIncludes" href="http://schema.org/${1:Domain}">$1</a></span>
+endsnippet
+
+snippet schemaorgrange "schema.org RDFa range" b
+<span>Range: <a property="http://schema.org/rangeIncludes" href="http://schema.org/${1:Range}">$1</a></span>
 endsnippet
