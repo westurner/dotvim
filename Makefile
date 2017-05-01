@@ -132,6 +132,10 @@ install_bundles:
 	# Listall bundles with Vundle
 	vim +PluginInstall +qall
 
+update_bundles:
+	# Listall bundles with Vundle
+	vim +PluginUpdate +qall
+
 hg_changelog:
 	hg log --style=changelog
 
