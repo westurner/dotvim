@@ -844,6 +844,15 @@ if has("autocmd")
     au Syntax * RainbowParenthesesLoadBraces
 endif
 
+" vimwiki               -- vim wiki library (for taskwiki) [help vimwiki]
+"Bundle 'https://github.com/vimwiki/vimwiki'
+" taskwiki              -- TaskWarrior task management [help taskwiki]
+"Bundle 'https://github.com/tbabej/taskwiki'
+" vim-taskwarrior       -- TaskWarrior interface (for taskwiki) [help vim-tw]
+"Bundle 'https://github.com/blindFS/vim-taskwarrior'
+" vim-plugin-AnsiEsc    -- ANSI colors for taskwiki charts [
+"Bundle 'https://github.com/powerman/vim-plugin-AnsiEsc'
+
 
 " l9                    -- utility library (for FuzzyFinder)
 Bundle 'https://github.com/vim-scripts/L9'
