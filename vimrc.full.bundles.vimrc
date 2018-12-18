@@ -174,17 +174,18 @@ nnoremap <silent> <Leader>e <Esc>:NERDTreeToggle<CR>
 
 let g:nerdtree_plugin_open_cmd = "xdg-open"
 
-
-" FindInNERDTree    -- NERDTRee show current file [help NERDTreeFind]
+" FindInNERDTree    -- NERDTree show current file [help NERDTreeFind]
 Bundle 'https://github.com/dmcinnes/FindInNERDTree'
 nnoremap <Leader>E <Esc>:NERDTreeFind "%:p:h"<CR>
 
 
 "Bundle 'https://github.com/itspriddle/vim-nerdtree-helpers'
 ""Bundle 'https://github.com/jistr/vim-nerdtree-tabs'
+
+" nerdtree-symlink     -- create symlinks w/ NERDTree
 Bundle 'https://github.com/EvanDotPro/nerdtree-symlink'
 
-" nerdtree-git-plugin  -- show git status in nerdtree
+" nerdtree-git-plugin  -- show git status in NERDTree
 Bundle 'https://github.com/Xuyuanp/nerdtree-git-plugin'
 " let g:NERDTreeIndicatorMapCustom = {
 "    \ "Modified"  : "✹",
