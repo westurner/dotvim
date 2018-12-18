@@ -777,6 +777,10 @@ Bundle 'https://github.com/godlygeek/tabular'
 Bundle 'https://github.com/plasticboy/vim-markdown'
 
 
+" Ansible   -- Ansible syntax
+Bundle 'https://github.com/pearofducks/ansible-vim'
+
+
 " Salt      -- Salt syntax
 Bundle 'https://github.com/saltstack/salt-vim'
 
