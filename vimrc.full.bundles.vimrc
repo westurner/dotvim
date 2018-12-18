@@ -548,7 +548,7 @@ Bundle 'https://github.com/vim-scripts/sparql.vim'
 
 if has("python")
 " Python-mode       -- Python [help pymode]
-Bundle 'https://github.com/klen/python-mode'
+Bundle 'https://github.com/python-mode/python-mode'
 "  :help pymode
 
 "  [[    --  Jump to previous class or function
