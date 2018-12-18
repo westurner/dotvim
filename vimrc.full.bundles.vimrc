@@ -215,6 +215,57 @@ Bundle 'https://github.com/kien/ctrlp.vim'
 nnoremap <Leader>p <Esc>:CtrlP<CR>
 
 
+
+" Unite.vim -- show results from files, buffes, mru, registers
+Bundle 'https://github.com/Shougo/unite.vim'
+let g:unite_source_menu_menus = get(g:,'unit_source_menu_menus',{})
+let g:unite_source_menu_menus.git = {
+    \ 'description' : '            gestionar repositorios git
+        \                            ⌘ [espacio]g',
+    \}
+let g:unite_source_menu_menus.git.command_candidates = [
+    \['▷ tig                                                        ⌘ ,gt',
+        \'normal ,gt'],
+    \['▷ git status       (Fugitive)                                ⌘ ,gs',
+        \'Gstatus'],
+    \['▷ git diff         (Fugitive)                                ⌘ ,gd',
+        \'Gdiff'],
+    \['▷ git commit       (Fugitive)                                ⌘ ,gc',
+        \'Gcommit'],
+    \['▷ git log          (Fugitive)                                ⌘ ,gl',
+        \'exe "silent Glog | Unite quickfix"'],
+    \['▷ git blame        (Fugitive)                                ⌘ ,gb',
+        \'Gblame'],
+    \['▷ git stage        (Fugitive)                                ⌘ ,gw',
+        \'Gwrite'],
+    \['▷ git checkout     (Fugitive)                                ⌘ ,go',
+        \'Gread'],
+    \['▷ git rm           (Fugitive)                                ⌘ ,gr',
+        \'Gremove'],
+    \['▷ git mv           (Fugitive)                                ⌘ ,gm',
+        \'exe "Gmove " input("destino: ")'],
+    \['▷ git push         (Fugitive, salida por buffer)             ⌘ ,gp',
+        \'Git! push'],
+    \['▷ git pull         (Fugitive, salida por buffer)             ⌘ ,gP',
+        \'Git! pull'],
+    \['▷ git prompt       (Fugitive, salida por buffer)             ⌘ ,gi',
+        \'exe "Git! " input("comando git: ")'],
+    \['▷ git cd           (Fugitive)',
+        \'Gcd'],
+    \]
+nnoremap <silent><leader>u :Unite -silent -start-insert<CR>
+nnoremap <silent><leader>n :Unite -silent -start-insert<CR>
+nnoremap <silent><leader>ub :Unite -silent -start-insert buffer file_mru<CR>
+nnoremap <silent><leader>uf :Unite -silent -start-insert file_rec<CR>
+nnoremap <silent><leader>ug :Unite -ent -start-insert menu:git<CR>
+
+" neomru            -- show MRU (most-recently-used) files in Unite [neomru]
+Bundle 'https://github.com/Shougo/neomru.vim'
+
+" unite-grep-vcs    -- git grep && hg grep
+Bundle 'https://github.com/lambdalisue/unite-grep-vcs'
+
+
 " Syntastic         -- syntax highlighting [help syntastic]
 Bundle 'https://github.com/scrooloose/syntastic'
 if exists("g:loaded_syntastic_plugin")
