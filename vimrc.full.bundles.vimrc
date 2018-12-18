@@ -255,7 +255,7 @@ let g:unite_source_menu_menus.git.command_candidates = [
         \'Gcd'],
     \]
 nnoremap <silent><leader>u :Unite -silent -start-insert<CR>
-nnoremap <silent><leader>n :Unite -silent -start-insert<CR>
+"nnoremap <silent><leader>n :Unite -silent -start-insert<CR>
 nnoremap <silent><leader>ub :Unite -silent -start-insert buffer file_mru<CR>
 nnoremap <silent><leader>uf :Unite -silent -start-insert file_rec<CR>
 nnoremap <silent><leader>ug :Unite -ent -start-insert menu:git<CR>
