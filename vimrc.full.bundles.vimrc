@@ -160,6 +160,8 @@ Bundle 'https://github.com/scrooloose/nerdtree'
 "  x                 --  close node
 "  X                 --  close all nodes recursive
 "  ?                 --  toggle help
+let g:NERDTreeDirArrows=0   "compat with old NERDTree installed
+
 "let g:NERDTreeBookmarksFile = "~/workspace/.bookmarks"
 
 "Single click
