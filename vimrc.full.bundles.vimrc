@@ -370,7 +370,8 @@ Bundle 'https://github.com/mattboehm/vim-unstack'
 
 
 " ViM Airline   -- helpful statusbar information w/ vimscript [help airline]
-Bundle 'https://github.com/bling/vim-airline'
+Bundle 'https://github.com/vim-airline/vim-airline'
+Bundle 'https://github.com/vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -386,6 +387,11 @@ else
     " base16, wombat, luna
     "let g:airline_theme="wombat"
 endif
+"   :AirlineTheme [dark,luna,base16_grayscale,serene]
+" let g:airline_theme='dark'  " vim-airline
+" let g:airline_theme='luna'              " vim-airline-themes
+" let g:airline_theme='base16_grayscale'  " vim-airline-themes
+let g:airline_theme='serene'              " vim-airline-themes
 
 
 " EasyMotion    -- easy visual motions [help easymotion]
