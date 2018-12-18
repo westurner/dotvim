@@ -391,8 +391,8 @@ endif
 "   :AirlineTheme [dark,luna,base16_grayscale,serene]
 " let g:airline_theme='dark'  " vim-airline
 " let g:airline_theme='luna'              " vim-airline-themes
-" let g:airline_theme='base16_grayscale'  " vim-airline-themes
-let g:airline_theme='serene'              " vim-airline-themes
+let g:airline_theme='base16_grayscale'  " vim-airline-themes
+" let g:airline_theme='serene'              " vim-airline-themes
 
 
 " EasyMotion    -- easy visual motions [help easymotion]
