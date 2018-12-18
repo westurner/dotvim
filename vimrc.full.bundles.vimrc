@@ -175,7 +175,8 @@ nnoremap <silent> <Leader>e <Esc>:NERDTreeToggle<CR>
 let g:nerdtree_plugin_open_cmd = "xdg-open"
 
 " FindInNERDTree    -- NERDTree show current file [help NERDTreeFind]
-Bundle 'https://github.com/dmcinnes/FindInNERDTree'
+" (NERDTree now includes :NERDTreeFind)
+" Bundle 'https://github.com/dmcinnes/FindInNERDTree'
 nnoremap <Leader>E <Esc>:NERDTreeFind "%:p:h"<CR>
 
 
@@ -523,7 +524,7 @@ Bundle 'https://github.com/godlygeek/csapprox'
 
 " UndoTree      -- visualize vim undotree
 Bundle 'https://github.com/mbbill/undotree'
-"  <F5>     -- Toggle UndoTree (? for help)
+"  <F5>     -- :UndoTreeToggle (? for help)
 nnoremap <F5> :UndotreeToggle<cr>
 if has("persistent_undo")
     ""set undodir = '~/.undodir/'
