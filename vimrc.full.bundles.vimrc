@@ -612,6 +612,9 @@ let g:pymode_lint_error_symbol = 'EE'
 let g:pymode_lint_info_symbol = 'II'
 let g:pymode_lint_pyflakes_symbol = 'FF'
 
+let g:pymode_lint_ignore = "E116,E124,E128,E221,E261,E265,E501"          " blacklist
+" let g:pymode_lint_select = "E501,W0011,W430"  " whitelist
+
 let g:pymode_breakpoint = 1
 "  <F7>     -- set debugger breakpoints
 let g:pymode_breakpoint_key = '<F7>'
