@@ -194,6 +194,13 @@ function! Cdhere()
 endfunction
 command! -nargs=0 Cdhere call Cdhere()
 
+function! Lcdhere()
+"  :Lcdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
+    lcd %:p:h
+endfunction
+command! -nargs=0 Lcdhere call Lcdhere()
+command! -nargs=0 LCdhere call Lcdhere()
+
 "  \       -- <leader>
 "  <space> -- <leader>
 map <space> <leader>
