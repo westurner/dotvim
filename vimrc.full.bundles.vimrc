@@ -80,6 +80,9 @@ Bundle 'https://github.com/westurner/venv.vim'
 " file_line.vim     -- open files named 'file(line[:col])', 'file:line[:col]'
 Bundle 'https://github.com/bogado/file-line'
 
+" vimpager          -- vimpager and vimcat [help vimpager]
+Bundle 'https://github.com/rkitover/vimpager'
+
 " Info.vim          -- vim infopages in vim [help info]
 Bundle 'https://github.com/vim-scripts/info.vim'
 "  :Info sed        --  view infopage for 'sed'
