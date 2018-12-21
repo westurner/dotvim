@@ -7,35 +7,95 @@
 "
 " Vim Reference
 " ---------------
+"
+"  ===============  ==  ==========================  ==========
+"  Command/Keyseq   --  description                 [helptag]
+"  ===============  ==  ==========================  =========
+"  C- == <CTRL>+    --  (so, 'C-o' means ``<CTRL>`` and the ``o`` key)
+"  :[cmd]           --  (type ':' (w/o the quotes),
+"                       type an [optional] command (w/o brackets),
+"                       and then press <enter>)
+"
+"  :Dotvimhelp      --  list commented mappings
+"  :ListMappings    --  list commented mappings
+"  :Dr :DotvimReload  --  reload vim configuration (on top of existing config)
+"                       (may require a maximize/unmaximize
+"                       to re-fill the window after reload)
+"  :PatchColors     --  patch e.g. :Gvdiff colors to a dark theme
+"
 "  :help            --  open vim help               [help]
-"  :help <tag>      --  open vim help for           [<tag>]
-"                       tag: (<cmd>, plugin/doc/<tag>.txt)
-"  :help vimtutor   --  open vim help for vimtutor tutorial
-"  :help quickref   --  open vim quick reference    [quickref, Q_bu]
-"  :<up arrow>      --  search backward through vim history
-"  [[               --  up a section                [ [[ ]
-"  C-o              --  goto previous position      [CTRL-O, jumplist]
+"  :help help       --  open vim help for vim help  [help]
+"  :help <tag>      --  open vim help for a tag     [<tag>]
+"                       tag: 'Q_bu', 'Q_wi'         [quickref, Q_bu, Q_wi]
+"                       tag: */plugin/doc/<tag>.txt
+"  :help vimtutor   --  open vim vimtutor tutorial            [ vimtutor ]
+"  :help quickref   --  open vim quick reference          [quickref, Q_bu]
 
-"  C-]              --  follow a tag (help quickref, select Q_bu, C-])
-"  %          --  variable: current filename
-"  %:p        --  variable: current filepath
-"  %          --  motion: find the next instance of selected word [%]
+"  :<up> :<down>    --  search backward / forward through vim command history
+"  /<up> /<down>    --  search backward / forward through vim search history
+"
+"  C-]              --  follow a tag (e.g. in a help document, )
+"  [[               --  go up a section                             [ [[ ]
+"                       :help quickref ; /Q_bu ; C-] ; [[
+"                       :help Q_bu ; 2j ; C-] ; [[
+"  C-o              --  goto jumplist previous position [ctrl-O, jumplist]
+"  C-i              --  goto jumplist next position     [ctrl-i, jumplist]
+"  ``               --  goto previous position      [``, restore-position]
+"
+"  C-s              --  save
+"
+"  C-q              --  quit but prompt to save first
+"  :q               --  quit but prompt to save first   [q]
+"  :q!              --  quit without saving             [q]
+"  :qa!             --  quit all without saving         [qa]
+"  :wq              --  write and quit now             [wq, :SaveSession]
+"  q:               --  show command line (C-c C-c)     [q:]
+"
+"  %                --  variable: current filename      [%]
+"  %:p              --  variable: current filepath ~="  abspath(expanduser())[%:p]
+"  %                --  motion: find the next instance of selected word [%]
+"
+"  :pwd             --  print the working directory path
+"                       for the window (if :lcd has been used)
+"                       OR for all windows
+"  :cd  <path>      --  change the working directory for all windows
+"  :lcd <path>      --  change the working directory for the current window
+"  :Cdhere          --  :cd %:p:h    ~= $ cd "$(dirname "$current_file")"
+"  :LCdhere         --  :lcd %:p:h   ~= $ lcd "$(dirname "$current_file")"
+"  echo "venv.vim"
+"    :Cdhelp                --  print configured vim Cdaliases
+"    :Cdwrd :Cdw            --  :cd $_WRD
+"    :Cdsrc :Cds            --  :cd $_SRC
+"    :Cdvirtualenv          --  :cd $VIRTUAL_ENV
+"    :Cdwrk                 --  :cd $__WRK
+"    :[L]Cdhome :[L]Cdh     --  :cd $HOME
+"    :Lcdwrd :LCdw          --  :lcd $_WRD
+"
 "  :buffers         --  list vim buffers            [Q_bu]
-"  $VIMRUNTIME      --  /{colors,syntax,macros}     [$VIMRUNTIME]
+"  :b3   :buffer 3  --  go to vim buffer 3          [:b :buffer]
+"
+"  echo $VIMRUNTIME --  /{colors,syntax,macros}     [$VIMRUNTIME]
 "  :set [all]       --  list all nondefault options [set, redir, SaveSession]
 "  :map             --  list actual mappings        [Q_km]
-"  ListMappings     --  list commented mappings
-"  Dotvimhelp       --  list commented mappings
-"  DotvimReload     --  reload vim configuration (on top of existing config)
-"  :scriptnames     --  list scripts and plugins
+"  :scriptnames     --  list scripts and plugins    [scriptnames]
+"
 "  e[dit]           --  reload the current file
-"  e <path>         --  open file                   [edit, Q_ed]
-"  e <pa...><tab>   --  open file with tab-completion [wildmenu, wildmode]
-"  :tabnew <path>   --  open file in a new tab
-"  :read filename|  --  insert filename after cursor
+"  e <path>         --  open path                   [edit, Q_ed]
+"  e <pa...><tab>   --  open path with tab-completion [wildmenu, wildmode]
+"  :tabnew <path>   --  open path in a new tab
+"  :tabprev         --  go to previous tab
+"  :tabnext         --  go to next tab
+"  C-PageUp         --  go to previous tab
+"  C-PageDown       --  go to next tab
+
+"  :read path       --  insert from path after cursor
 "  :read !cmd       --  insert 'cmd' output after cursor
 "  :%! [cmd]        --  buffer > stdin > [cmd] > stdout => buffer.replace
 "  :put %           --  put % (current filename) after the cursor [help put]
+"
+"  v    hjkl        -- visual selection mode (ldur)
+"  C-v  hjkl        -- visual selection whole lines 
+"  gv               -- re-select the previous visual seelction
 "
 "  h, j, k, l       --  left, down, up, right       [Q_lr, Q_ud] 
 "  C-E              --  move N lines downwards (1)
@@ -46,19 +106,26 @@
 "  C-B              --  move N pages Backwards (upwards)
 "  [n]G             --  goto line #
 "  g <C-g>          --  whereami
+"
 "  u                --  undo
 "  ^r               --  redo
-"  :%s:\(.*\):+\1:g --  Regex
 "
-" Modes
-"  i                --  insert
-"  I                --  insert at beginning of line
-"  a                --  append
-"  A                --  append at end of line
-"  v                --  visual
-"  c-v              --  visual block
-"  ;;               --  command
-"  <Esc>            --  command
+" Modes             --  type 'i' for insert [i I a A v c-v
+"  i                --  insert mode
+"  I                --  insert mode at beginning of line
+"  a                --  append mode
+"  A                --  append mode at end of line
+"  o                --  begin a new line below current and insert
+"  O                --  begin a new line above current and insert
+"  r                --  replace character mode (1 char; return to prev mode)
+"  R                --  replace within line mode
+"  v                --  visual mode
+"  c-v              --  visual block mode
+"  <Esc>            --  command mode (escape to command mode)
+"  ;;               --  command mode (escape to command mode)
+"  q:               --  command line window mode
+"    [cmd] <enter>  --  <enter> to execute command
+"    c-c <enter>    -- <Ctrl-c> <enter> to close command line window
 "
 " Vim Marks
 "  m[a-z]{1}        --  set mark
@@ -183,33 +250,61 @@ endif
 
 function! Path()
 "  :Path()   -- echo path information %s %:h %:p:h       [help expand]
-    echo expand("%") expand("%:h") expand("%:p:h")
+    echo expand("%")
+    echo expand("%:h")
+    echo expand("%:p:h")
     echo bufnr('%')
 endfunction
 command! -nargs=* Path call Path()
 
-function! Cdhere()
-"  :Cdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
-    cd %:p:h
+function! ListDirsOrFiles(path, ArgLead, ...)
+    let dirsonly = ((a:0 > 0) ? 1 : 0)
+    let _glob = '' . a:ArgLead . ((a:0 > 0) ? '*/' : '*')
+    execute 'lcd' a:path
+    if dirsonly ==? 1
+        let output = map(sort(globpath('.', _glob, 0, 1), 'i'), 'v:val[2:]')
+    elseif dirsonly ==? 0
+        let output = map(sort(globpath('.', _glob, 0, 1), 'i'), 'v:val[2:] . (isdirectory(v:val) ? "/" : "")')
+    endif
+    execute 'lcd -'
+    return output
 endfunction
-command! -nargs=0 Cdhere call Cdhere()
 
-function! Lcdhere()
-"  :Lcdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
-    lcd %:p:h
+function! Cdhere(...)
+"  :Cdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
+    let _path = expand('%:p:h') . (a:0 > 0 ? ('/' . a:1) : '')
+    execute 'cd' _path
+    pwd
 endfunction
-command! -nargs=0 Lcdhere call Lcdhere()
-command! -nargs=0 LCdhere call Lcdhere()
+function! Compl_Cdhere(ArgLead, ...)
+    return ListDirsOrFiles(expand('%:p:h'), a:ArgLead, 1)
+endfor
+endfunction
+command! -nargs=* -complete=customlist,Compl_Cdhere Cdhere call Cdhere(<f-args>)
+
+function! Lcdhere(...)
+"  :Lcdhere() -- cd to here (this dir, dirname(__file__))  [lcd %:p:h]
+    let _path = expand('%:p:h') . (a:0 > 0 ? ('/' . a:1) : '')
+    execute 'lcd' _path
+    pwd
+endfunction
+command! -nargs=* -complete=customlist,Compl_Cdhere Lcdhere call Lcdhere(<f-args>)
+command! -nargs=* -complete=customlist,Compl_Cdhere LCdhere call Lcdhere(<f-args>)
+
+
 
 "  \       -- <leader>
-"  <space> -- <leader>
-map <space> <leader>
+"" <space> -- <leader>
+"" map <space> <leader>
 "  ,       --  <leader> == <comma>
 map ,       <leader>
 
-"  :;   --  colon semicolon -> <esc>:
+"  ;;   --  <esc> == double semicolon
+imap ;;     <esc>
+vmap ;;     <esc>
+
+"  :;   --  <esc> == colon semicolon
 imap :;     <esc>:
-"  :;   --  colon semicolon -> <esc>:
 vmap :;     <esc>:
 
 "Other <esc> sequences
@@ -219,9 +314,20 @@ vmap :;     <esc>:
 "98   --  <esc> == 98
 "imap 98     <esc>
 "vmap 98     <esc>
-";;   --  <esc> == double semicolon
-"imap ;;     <esc>
-"vmap ;;     <esc>
+
+
+"  Compatibility
+"  These don't work sometimes due to shell and terminal shortcuts:
+"    Ctrl-c  -- kill process
+"    Ctrl-d  -- send EOL to process (vim: PageDown)
+"    Ctrl-z  -- send process to background
+"
+"  <C-a>    -- Select All (ggVG)
+nmap <C-a>  <Esc>ggVG
+vmap <C-a>  ggVG
+"  <C-c>    -- Copy to system clipboard ("+y) TODO
+vmap <C-c>  "+y
+
 
 "  Quicklist
 "  <leader> q               --  toggle quicklist [:cw/:cwindow]
@@ -295,7 +401,8 @@ set nolinebreak
 " Searching
 set hlsearch
 set smartcase		    " Do smart case matching
-"set ignorecase		    " Do case insensitive matching
+"set ignorecase   " ic    Do case insensitive matching
+"set noignorecase " noic  Do case sensitive matching
 "set incsearch		    " Incremental search
 
 set scrolloff=0         " Show cursor+/- n lines (default: 0)
@@ -338,15 +445,17 @@ if has("autocmd")
 
     " filetype extensions
     augroup filetypedetect
-        au BufNewFile,BufRead *.n3     set filetype=n3
-        au BufNewFile,BufRead *.ttl    set filetype=n3
-        au BufNewFile,BufRead *.rst    set filetype=rst
-        au BufNewFile,BufRead *.rest   set filetype=rst
-        au BufNewFile,BufRead *.jinja2 set filetype=jinja
-        au BufNewFile,BufRead *.jinja  set filetype=jinja
         au BufNewFile,BufRead *.html   set filetype=htmldjango
-        au BufNewFile,BufRead *.rdfa   set filetype=html
+        "au BufNewFile,BufRead *.html   set filetype=jinja
+        au BufNewFile,BufRead *.j2     set filetype=jinja
+        au BufNewFile,BufRead *.jinja  set filetype=jinja
+        au BufNewFile,BufRead *.jinja2 set filetype=jinja
         au BufNewFile,BufRead *.jsonld set filetype=js
+        au BufNewFile,BufRead *.n3     set filetype=n3
+        au BufNewFile,BufRead *.rdfa   set filetype=html
+        au BufNewFile,BufRead *.rest   set filetype=rst
+        au BufNewFile,BufRead *.rst    set filetype=rst
+        au BufNewFile,BufRead *.ttl    set filetype=n3
         au BufNewFile,BufRead Vagrantfile set filetype=ruby
     augroup END
 
@@ -359,14 +468,14 @@ if has("autocmd")
     "endfunc
 
     " Auto completion
-    au FileType python set omnifunc=pythoncomplete#Complete
+    au FileType c set omnifunc=ccomplete#Complete
+    au FileType css set omnifunc=csscomplete#CompleteCSS
+    au FileType html set omnifunc=htmlcomplete#CompleteTags
     au FileType htmldjango set omnifunc=htmlcomplete#CompleteTags
     au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-    au FileType html set omnifunc=htmlcomplete#CompleteTags
-    au FileType css set omnifunc=csscomplete#CompleteCSS
-    au FileType xml set omnifunc=xmlcomplete#CompleteTags
     au FileType php set omnifunc=phpcomplete#CompletePHP
-    au FileType c set omnifunc=ccomplete#Complete
+    au FileType python set omnifunc=pythoncomplete#Complete
+    au FileType xml set omnifunc=xmlcomplete#CompleteTags
 
     set completeopt=menuone,longest,preview
     "  CTRL-<space>     --  autocomplete menu
@@ -394,31 +503,97 @@ endif
 "   <drop>          --  open file or paste path at cursor
 
 " Fonts
+"  :Font           -- print the font and size (echo &guifont)
+
+"  g:fontsize=10   -- set the default font size
+let g:fontsize="9"
+let g:fontsize="10"
+
+let g:fonts = [
+\   "Source Code Pro for Powerline",
+\   "Roboto Mono",
+\   "Monaco",
+\   "Fira Mono for Powerline",
+\   "DejaVu Sans Mono for Powerline",
+\   "Source Code Pro",
+\   "DejaVu Sans Mono",
+\   "Monospace",
+\   ]
+
 "  :PatchFont      -- set the font (s:fontsize, s:fonts, guifont (set gfn=))
 "                     tries each font in s:fonts until one is found
-function! PatchFont()
+function! PatchFont(...)
     ""TODO: read local settings / accept fontsize as param 1
-    let s:fontsize="9"
-    let s:fonts = [
-    \   "Source Code Pro for Powerline",
-    \   "Roboto Mono",
-    \   "Monaco",
-    \   "Fira Mono for Powerline",
-    \   "DejaVu Sans Mono for Powerline",
-    \   "Source Code Pro",
-    \   "DejaVu Sans Mono",
-    \   "Monospace",
-    \   ]
+    let s:font = ""
+    if a:0 == 0
+        echom "&guifont = " . &guifont
+        return
+    elseif a:0 > 0
+        let s:_fontsize = get(a:, 1, g:fontsize)
+        if (s:_fontsize != "0")
+            let s:fontsize = s:_fontsize
+        endif
+        if a:0 == 2
+            let s:font = get(a:, 2, 0)
+        endif
+    endif
+    if (s:font ==# "")
+        let s:fonts = g:fonts
+        let s:font=s:fonts[0]
+    endif
     let s:fontspace = ' '
     if !has('X11')
         "macvim
         let s:fontspace = ':h'
         let s:fontsize = s:fontsize + 3
     endif
-    let &guifont=s:fonts[0] . s:fontspace . s:fontsize
+    let g:fontsize = s:fontsize
+    let &guifont=s:font . s:fontspace . s:fontsize
 endfunction
-command! -nargs=* PatchFont call PatchFont()
-call PatchFont()
+command! -nargs=* PatchFont call PatchFont(<f-args>)
+command! -nargs=* Font call PatchFont(<f-args>)
+call PatchFont(g:fontsize)
+
+
+" Adjust font-size
+let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
+let s:minfontsize = 6
+let s:maxfontsize = 16
+function! AdjustFontSize(amount)
+  "if has("gui_gtk2") && has("gui_running")
+  if has("gui_running")
+    let fontname = substitute(&guifont, s:pattern, '\1', '')
+    let cursize = substitute(&guifont, s:pattern, '\2', '')
+    let newsize = cursize + a:amount
+    if (newsize >= s:minfontsize) || (newsize <= s:maxfontsize)
+      let newfont = fontname . newsize
+      let &guifont = newfont
+      let g:fontsize = newsize
+    endif
+  else
+    echomsg 'err: has("gui_running") is not true.'
+  endif
+endfunction
+command! -nargs=1 AdjustFontSize call AdjustFontSize(<f-args>)
+
+function! LargerFont()
+  call AdjustFontSize(1)
+endfunction
+command! LargerFont call LargerFont()
+command! BiggerFont call LargerFont()
+command! FontsizeIncrease call LargerFont()
+
+function! SmallerFont()
+  call AdjustFontSize(-1)
+endfunction
+command! SmallerFont call SmallerFont()
+command! FontsizeDecrease call SmallerFont()
+
+"  <C-Up>   -- increase font size
+nnoremap <C-Up> :LargerFont<CR>
+
+"  <C-Down> -- decrease font size
+nnoremap <C-Down> :SmallerFont<CR>
 
 
 " GUI Menubar
@@ -603,6 +778,13 @@ map <S-Insert>      <space><Esc>"+gp
 imap <S-Insert>     <space><Esc>"+gp
 vmap <S-Insert>     <Esc>"+gp
 
+"" Paste
+""  shift-ctrl-I --  paste (*)
+""                   conflict: mac keyboards do not have <Insert>
+"map <S-C-i>      <space><Esc>"+gp
+"imap <S-C-i>     <space><Esc>"+gp
+"vmap <S-C-i>     <Esc>"+gp
+
 " Save / Close
 "  ctrl-S       --  Save
 nnoremap <C-s>      <Esc>:w!<CR>
@@ -670,7 +852,7 @@ map <C-l>           <C-w>l
 "  ctrl-h       --  cursor window left
 map <C-h>           <C-w>h
 
-" Window Resize     (window-resize)
+" Window Resize     [window-resize]
 "  ctrl-w _     --  maximize window height
 "  ctrw-w 1_    --  minimize window height
 "  ctrl-w |     --  maximize window width
@@ -682,7 +864,7 @@ map <C-h>           <C-w>h
 "  [n]ctrl-w -  --  reduce height
 "  ctrl-w o     --  minimze all other windows
 
-" Window Movement (window-move)
+" Window Movement [window-move]
 " Window Up
 "  <leader> wk  --  move window up
 map <leader>wk      <C-W>K
@@ -712,7 +894,7 @@ map <leader>wj      <C-W>H
 "  ctrl-w r     --  rotate window down
 
 
-" Tab Movement (tab-page-commands)
+" Tab Movement [tab-page-commands]
 "  ctrl-Alt-h   --  previous tab
 map <C-A-h>         :tabprevious<CR>
 "  Alt-u        --  previous tab
@@ -902,23 +1084,28 @@ endfunction
 set formatoptions=cq textwidth=72 foldignore= wildignore+=*.py[co]
 
 "  read virtualenv's site-packages to vim path
-if has('py')
-py << EOF
-# read virtualenv's site-packages to vim path
-import os.path
-import sys
-import vim
-def extend_vim_path_from_VIRTUAL_ENV(env=os.environ):
-    if 'VIRTUAL_ENV' in env:
-        project_base_dir = env['VIRTUAL_ENV']
-        sys.path.insert(0, project_base_dir)
-        activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-        execfile(activate_this, dict(__file__=activate_this))
-    for p in sys.path:
-        if os.path.isdir(p):
-            vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-            # TODO: merge paths
-EOF
+if has('python')
+"  Vim and Python
+"  !python -c "__import__('pprint').pprint(sorted(locals().items()))"
+"  :python    __import__('pprint').pprint(sorted(vim.__dict__.items()))
+"  :py        __import__('pprint').pprint(sorted(vim.__dict__.items()))
+"
+"py << EOF
+"# read virtualenv's site-packages to vim path
+"import os.path
+"import sys
+"import vim
+"def extend_vim_path_from_VIRTUAL_ENV(env=os.environ):
+"    if 'VIRTUAL_ENV' in env:
+"        project_base_dir = env['VIRTUAL_ENV']
+"        sys.path.insert(0, project_base_dir)
+"        activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"        execfile(activate_this, dict(__file__=activate_this))
+"    for p in sys.path:
+"        if os.path.isdir(p):
+"            vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+"            # TODO: merge paths
+"EOF
 
 function! RegexLines(...)
     " TODO: python regex current buffer
@@ -943,10 +1130,69 @@ regex_lines(regex=vim.eval("a:0"),
         file=sys.stdout)
 EOF
 endfunction
-command! -nargs=1 RegexLines call RegexLines()
+command! -nargs=1 -range=% RegexLines call RegexLines(<f-args>)
 
-endif "has("py")
+python << EOF
+#from __future__ import print_function
+from collections import OrderedDict
+import functools
+import sys
+import vim
+try:
+    from pyline.pyline import main as pyline_main
+except ImportError:
+    try:
+        from pyline import main as pyline_main
+    except ImportError:
+        #print("pyline not found", file=sys.stderr)
+        #print("pyline not found", file=sys.stdout)
+        pass
+try:
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO
+def PylineVim(*args):
+    cfg = OrderedDict()
+    cfg['args'] = args
+    output = cfg['output'] = StringIO()
+    ctx = OrderedDict()
+    ctx['cfg'] = cfg
+    buf = ctx['buffer'] = vim.current.buffer
+    if vim.current.range:
+        cr = ctx['cr'] = vim.current.range
+        cfg['iterator'] = list(buf[cr.start:cr.end+1])
+        print(ctx)
+        import inspect
+        print(inspect.getsource(pyline_main))
+        _, results = pyline_main(**cfg)
+        ctx['lines'] = output.readlines()
+        ctx['results'] = results
+        cfg['iterator'] = list(buf[cr.start:cr.end+1])
+        ctx['lines'] = output.readlines()
+        print(ctx)
+        buf[cr.start:cr.end] = ctx['lines']
+    else:
+        cfg['iterator'] = list(buf)
+        pyline_main(**cfg)
+        ctx['lines'] = output.readlines()
+        buf[:] = ctx['lines']
+    raise Exception([('ctx', ctx),])
+    print(('ctx', ctx))
+EOF
+" function! Pyline(...) range
+    "  :Pyline -- python regex current buffer
+" endfunction
+command! -nargs=* -range Pyline python PylineVim(<f-args>)
 
+
+endif " has("python")
+
+"  # Pyline, !pyline
+"    - these read from stdin if nothing is selected:
+"      Press Ctrl-D to send EOF (twice?)
+"  !python -c "from __future__ import print_function; import sys; [print((i,l)) for (i,l) in enumerate(sys.stdin.readlines())]"
+"  !pyline 'str((i, l))'
+"  Pyline str((i,l))
 
 " Tabsetting functions
 
@@ -1026,44 +1272,6 @@ function! Striptrailingwhitespace()
 endfunction
 command! -nargs=* Striptrailing call Striptrailingwhitespace()
 
-
-" Adjust font-size
-let s:pattern = '^\(.* \)\([1-9][0-9]*\)$'
-let s:minfontsize = 6
-let s:maxfontsize = 16
-function! AdjustFontSize(amount)
-  "if has("gui_gtk2") && has("gui_running")
-  if has("gui_running")
-    let fontname = substitute(&guifont, s:pattern, '\1', '')
-    let cursize = substitute(&guifont, s:pattern, '\2', '')
-    let newsize = cursize + a:amount
-    if (newsize >= s:minfontsize) || (newsize <= s:maxfontsize)
-      let newfont = fontname . newsize
-      let &guifont = newfont
-    endif
-  else
-    echoerr 'vim has("gui_running") is not true.'
-  endif
-endfunction
-
-function! LargerFont()
-  call AdjustFontSize(1)
-endfunction
-command! LargerFont call LargerFont()
-command! BiggerFont call LargerFont()
-command! FontsizeIncrease call LargerFont()
-
-function! SmallerFont()
-  call AdjustFontSize(-1)
-endfunction
-command! SmallerFont call SmallerFont()
-command! FontsizeDecrease call SmallerFont()
-
-"  <C-Up>   -- increase font size
-nnoremap <C-Up> :LargerFont<CR>
-
-"  <C-Down> -- decrease font size
-nnoremap <C-Down> :SmallerFont<CR>
 
 "  <F3>     -- insert ReST date heading
 nnoremap <F3> "=strftime("\n%Y-%m-%d (%A)\n-------------------------\n")<CR>P
