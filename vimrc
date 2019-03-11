@@ -494,6 +494,12 @@ if has("autocmd")
 
     " Open NERDTree automatically if no files were specified
     autocmd vimenter * if !argc() && exists("b:NERDTreeType") | NERDTree | endif
+
+    augroup overrideftplugins
+        au!
+        "au FileType * set cinkeys= indentkeys=
+        au FileType yaml.ansible set indentkeys-=*<Return>
+    augroup END
 endif
 
 " Drag and Drop
