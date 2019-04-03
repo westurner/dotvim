@@ -783,6 +783,7 @@ Bundle 'https://github.com/plasticboy/vim-markdown'
 
 " Ansible   -- Ansible syntax
 Bundle 'https://github.com/pearofducks/ansible-vim'
+let g:ansible_unindent_after_newline = 0
 
 
 " Salt      -- Salt syntax
