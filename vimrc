@@ -272,19 +272,19 @@ endfunction
 
 function! Cdhere(...)
 "  :Cdhere() -- cd to here (this dir, dirname(__file__))    [cd %:p:h]
-    let _path = expand('%:p:h') . (a:0 > 0 ? ('/' . a:1) : '')
+    let _path = expand('%:p:h') . ((a:0>0) ? ('/' . a:1) : '')
     execute 'cd' _path
     pwd
 endfunction
 function! Compl_Cdhere(ArgLead, ...)
-    return ListDirsOrFiles(expand('%:p:h'), a:ArgLead, 1)
+    return ListDirsOrFiles(expand('%:p:h'), a:ArgLead, g:venv_dirlist_show_files)
 endfor
 endfunction
 command! -nargs=* -complete=customlist,Compl_Cdhere Cdhere call Cdhere(<f-args>)
 
 function! Lcdhere(...)
 "  :Lcdhere() -- cd to here (this dir, dirname(__file__))  [lcd %:p:h]
-    let _path = expand('%:p:h') . (a:0 > 0 ? ('/' . a:1) : '')
+    let _path = expand('%:p:h') . ((a:0>0) ? ('/' . a:1) : '')
     execute 'lcd' _path
     pwd
 endfunction
