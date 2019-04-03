@@ -436,6 +436,7 @@ Bundle 'https://github.com/vim-scripts/HiColors'
 
 " Pasting       -- make paste work normally [help paste]
 Bundle 'https://github.com/sickill/vim-pasta'
+let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 
 " Vim Room      -- focus just the relevant text [help vimroom] 
