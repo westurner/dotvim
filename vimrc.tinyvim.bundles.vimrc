@@ -192,3 +192,5 @@ filetype plugin indent on    " required
 "
 ""see :h vundle for more details or wiki for FAQ
 ""Put your non-Bundle stuff after this line
+
+" call PatchColors()  " TODO: from ./vimrc.full.bundles.vimrc'
