@@ -843,7 +843,7 @@ let g:rbpt_colorpairs = [
     \ ]
 if has("autocmd")
     " :RainbowParenthesesActivate
-    au VimEnter * RainbowParenthesesToggle
+    "au VimEnter * RainbowParenthesesToggle
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
