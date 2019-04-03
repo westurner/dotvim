@@ -803,7 +803,7 @@ Bundle 'https://github.com/mattn/gist-vim'
 
 
 " github-issues.vim     -- autocomplete, CRUD GitHub issues [help Gissues]
-Bundle 'https://github.com/jaxbot/github-issues.vim'
+" Bundle 'https://github.com/jaxbot/github-issues.vim'
 
 " html5.vim             -- HTML5, RDFa, microdata, WAI-ARIA
 Bundle 'https://github.com/othree/html5.vim'
