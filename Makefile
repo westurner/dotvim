@@ -136,6 +136,9 @@ update_bundles:
 	# Listall bundles with Vundle
 	vim +PluginUpdate +qall
 
+ls_bundles:
+	ls -ald ./bundle/ > bundles.current
+
 hg_changelog:
 	hg log --style=changelog
 
