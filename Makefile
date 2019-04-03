@@ -151,4 +151,25 @@ push:
 .PHONY: all
 all: test build
 
+profileoptions:
+	vim --version | grep --color=auto -E '+startuptime|+profile'
 
+startuptime:
+	vim --startuptime startup.report
+
+profile_startup:
+	vim --cmd 'profile start profile.log' \
+		--cmd 'profile func *' \
+		--cmd 'profile file *' \
+		-c 'profdel func *' \
+		-c 'profdel file *' \
+		-c 'qa!'
+
+
+profile_startup_special:
+	vim --cmd 'profile start profile.log' \
+		--cmd 'profile func *' \
+		--cmd 'profile file *' \
+		-c 'profdel func *' \
+		-c 'profdel file *' \
+		./bundle/vimwiki/README.md
