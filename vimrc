@@ -1067,8 +1067,8 @@ set background=dark
 "colorscheme camo
 "colorscheme jellybeans
 "colorscheme darkspectrum
-"colorscheme desert
-colorscheme jellybeans
+silent! colorscheme desert
+silent! colorscheme jellybeans
 
 function! Vim2VimWrite()
     "  Vim2VimWrite()   -- write highlight codes to ./vim_highlight_output.txt
