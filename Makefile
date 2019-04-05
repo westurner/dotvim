@@ -151,7 +151,7 @@ update_bundles:
 	vim +PluginUpdate +qall
 
 ls_bundles:
-	ls -ald ./bundle/ > bundles.current
+	cd ./bundle && ls | tee bundles.current
 
 hg_changelog:
 	hg log --style=changelog
