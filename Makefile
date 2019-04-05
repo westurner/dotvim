@@ -65,7 +65,7 @@ test_start_gvim:
 build:
 
 
-install:
+install-manual:
 	# Install Vundle.vim, start vim, list bundles, install them,
 	# and install tinyvim
 	#
@@ -75,6 +75,20 @@ install:
 	$(MAKE) install_bundles
 	$(MAKE) test_start_vim
 	$(MAKE) test_start_tinyvim
+	#
+	### These must be done manually:
+	#make install_home     			# add symlink to ~/.vimrc
+	#make install_powerline_fonts   # install patched powerline fonts
+
+install:
+	# Install Vundle.vim, start vim, list bundles, install them,
+	# and install tinyvim
+	#
+	$(MAKE) install_vundle
+	$(MAKE) list_bundles
+	$(MAKE) install_bundles
+	#$(MAKE) test_start_vim
+	#$(MAKE) test_start_tinyvim
 	#
 	### These must be done manually:
 	#make install_home     			# add symlink to ~/.vimrc
