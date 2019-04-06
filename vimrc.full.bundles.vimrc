@@ -215,6 +215,8 @@ set switchbuf=usetab
 " CtrlP             -- file/buffer/mru finder [help ctrlp]
 Bundle 'https://github.com/kien/ctrlp.vim'
 "  <C-p>            -- CtrlP (fuzzy matching)
+"  <C-up>/<C-down>  -- CtrlP (cycle through file, buf, mru)
+"  <C-f>            -- CtrlP (cycle through file, buf, mru)
 nnoremap <Leader>p <Esc>:CtrlP<CR>
 
 
