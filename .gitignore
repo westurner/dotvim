@@ -1,6 +1,7 @@
 
 ## dotvim .gitignore
 bundle/
+bundle.off/
 sessions/
 powerline-fonts/
 vimrc.local.*
