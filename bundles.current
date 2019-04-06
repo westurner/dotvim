@@ -6,6 +6,7 @@ jellybeans.vim
 nerdcommenter
 nerdtree
 nerdtree-symlink
+tagbar
 venv.vim
 vim-airline
 vim-airline-themes
