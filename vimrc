@@ -1240,6 +1240,15 @@ function! Onetab()
 endfunction
 command! -nargs=* Onetab call Onetab()
 
+"  :new         -- create a new horizontal split
+"  :vnew        -- create a new vertical split
+"  :Tabnew      -- call :tabnew
+"  :New         -- call :tabnew
+"  :Tn          -- call :tabnew
+command! -nargs=* Tabnew :tabnew
+command! -nargs=* Tn :tabnew
+command! -nargs=* New :tabnew
+
 "  :Hardtabs    -- set to hard \t tabs (e.g. for Makefiles)
 function! Hardtabs()
     set noexpandtab
