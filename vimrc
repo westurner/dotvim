@@ -351,7 +351,16 @@ filetype off
 if exists("g:tinyvim") || !has('keymap')
     source ~/.vim/vimrc.tinyvim.bundles.vimrc
 else
-    source ~/.vim/vimrc.full.bundles.vimrc
+    let s:vundledir=expand("~/.vim/bundle/Vundle.vim")
+    if isdirectory(s:vundledir)
+        source ~/.vim/vimrc.full.bundles.vimrc
+    else
+        let output = '!echo -e "NOTE: Not loading dotvim plugins because
+        \ ~/.vim/bundle/Vundle.vim was not found.\n
+        \ To install Vundle.vim, run:\n
+        \ $ make -C ~/-dotfiles/etc/vim install_vundle\n"'
+        silent! execute output
+    endif
 endif
 
 
@@ -771,6 +780,7 @@ vmap <C-A-a>          <ESC>gggH<C-O>G<Esc>i
 " map <C-v> <space>"+gP
 " imap <C-v> <space><Esc>"+gP
 " vmap <C-v> <Esc>"+gP
+command! -nargs=0 Paste execute('"+gP')
 
 "  alt-v        -- paste (*)
 " nm \\paste\\        "=@*.'xy'<CR>gPFx"_2x:echo<CR>
