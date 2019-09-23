@@ -446,7 +446,7 @@ Bundle 'https://github.com/mikewest/vimroom'
 
 
 " VOoM Outline Viewer   -- view outlines of code and text [help voom]
-Bundle 'https://github.com/vim-scripts/VOoM'
+Bundle 'https://github.com/vim-voom/VOoM'
 "  VOoM modes:  html, markdown, python, rest,
 "               thevimoutliner, txt2tags,
 "               viki, vimwiki, wiki
