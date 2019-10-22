@@ -184,6 +184,30 @@ Bundle 'https://github.com/mitsuhiko/vim-jinja'
 Bundle 'https://github.com/saltstack/salt-vim'
 
 
+" ViM Airline   -- helpful statusbar information w/ vimscript [help airline]
+Bundle 'https://github.com/vim-airline/vim-airline'
+Bundle 'https://github.com/vim-airline/vim-airline-themes'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#branch#empty_message = ''
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tagline#enabled = 1
+let g:airline#extensions#tagline#buffer_nr_show = 1
+if has("gui_running")
+    let g:airline_powerline_fonts = 1
+    " base16, wombat, luna
+    "let g:airline_theme="base16"
+else
+    " base16, wombat, luna
+    "let g:airline_theme="wombat"
+endif
+"   :AirlineTheme [dark,luna,base16_grayscale,serene]
+" let g:airline_theme='dark'  " vim-airline
+" let g:airline_theme='luna'              " vim-airline-themes
+let g:airline_theme='base16_grayscale'  " vim-airline-themes
+" let g:airline_theme='serene'              " vim-airline-themes
+
 " All of your Bundles must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
