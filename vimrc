@@ -649,6 +649,8 @@ if has("gui_running")
     set guioptions-=T       " do not display the gvim toolbar
     set guioptions-=m       " do not display the gvim menubar
 
+    set guioptions+=d       " set GTK dark theme
+
     set guiheadroom=-50
 
     set mousemodel=popup
