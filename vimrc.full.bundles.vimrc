@@ -885,6 +885,13 @@ Bundle 'https://github.com/tpope/vim-abolish'
 Bundle 'https://github.com/vim-scripts/fountain.vim'
 Bundle 'https://github.com/vim-scripts/fountainwiki.vim'
 
+" todo.txt-vim          -- todo.txt syntax [help todo.txt]
+"  <leader> x           -- mark as done/not done
+"
+Bundle 'https://gitlab.com/dbeniamine/todo.txt-vim'
+autocmd BufNewFile,BufRead *.todo.txt set filetype=todo
+highlight  default  link  TodoProject    Constant
+
 " All of your Bundles must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
