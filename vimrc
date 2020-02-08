@@ -42,6 +42,9 @@
 "  C-i              --  goto jumplist next position     [ctrl-i, jumplist]
 "  ``               --  goto previous position      [``, restore-position]
 "
+"  fn-enter         --  insert on a mac keyboard
+"  fn-shift-enter   --  paste on a mac keyboard
+"
 "  C-s              --  save
 "
 "  C-q              --  quit but prompt to save first
@@ -326,7 +329,7 @@ vmap :;     <esc>:
 nmap <C-a>  <Esc>ggVG
 vmap <C-a>  ggVG
 "  <C-c>    -- Copy to system clipboard ("+y) TODO
-vmap <C-c>  "+y
+" vmap <C-c>  "+y
 
 
 "  Quicklist
@@ -678,8 +681,8 @@ if has("gui_running")
     vmap <a-x>      "*x<Esc>i
 
     "  ctrl-c   --  copy
-    imap <C-c>      <C-O>vgG
-    vmap <C-c>      "*y<Esc>i
+    "imap <C-c>      <C-O>vgG
+    "vmap <C-c>      "*y<Esc>i
     "  alt-c    --  copy
     imap <a-c>      <C-O>vgG
     vmap <a-c>      "*y<Esc>i
