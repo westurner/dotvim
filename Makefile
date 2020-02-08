@@ -150,10 +150,12 @@ DOTVIM_BUNDLE_NAME:=all
 install_bundles:
 	# Listall bundles with Vundle
 	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} vim +PluginInstall +qall
+	$(MAKE) install_bundle_fixes
 
 update_bundles:
 	# Listall bundles with Vundle
 	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} vim +PluginUpdate +qall
+	$(MAKE) install_bundle_fixes
 
 symlink_bundle_to_bundles_all:
 	$(shell if ! test -e bundle; then ln -s bundle bundles.all; fi)
@@ -161,7 +163,16 @@ symlink_bundle_to_bundles_all:
 ls_bundles:
 	(cd ./bundle && ls) | tee Bundlefile
 
+install_bundle_fixes:
+	$(MAKE) install_pymode_bundle
+	$(MAKE) install_black_bundle
 
+install_pymode_bundle:
+	git -C bundles.all/python-mode submodule update --init --remote --checkout --recursive
+
+install_black_virtualenv:
+	virtualenv ~/.vim/black
+	~/.vim/black/bin/pip install black
 
 hg_changelog:
 	hg log --style=changelog

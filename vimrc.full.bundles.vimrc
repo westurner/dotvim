@@ -556,9 +556,8 @@ Bundle 'https://github.com/vim-scripts/sparql.vim'
 
 "" /begin Python
 
-if has("python")
+if has("python") || has("python3")
 " Python-mode       -- Python [help pymode]
-Bundle 'https://github.com/python-mode/python-mode'
 "  :help pymode
 
 "  [[    --  Jump to previous class or function
@@ -572,8 +571,8 @@ Bundle 'https://github.com/python-mode/python-mode'
 "  g:pymode_python = { 'python', 'python3', 'disable' }
 "
 "  set g:pymode_python 'disable' (start time, occasional completion stall)
-let g:pymode_python = 'python'
-"let g:pymode_python = 'python3'
+"let g:pymode_python = 'python'
+let g:pymode_python = 'python3'
 "let g:pymode_python = 'disable'
 
 "  <leader> d    -- open pydoc
@@ -622,8 +621,11 @@ let g:pymode_lint_error_symbol = 'EE'
 let g:pymode_lint_info_symbol = 'II'
 let g:pymode_lint_pyflakes_symbol = 'FF'
 
-let g:pymode_lint_ignore = "E116,E124,E128,E221,E261,E265,E501"          " blacklist
-" let g:pymode_lint_select = "E501,W0011,W430"  " whitelist
+let g:pymode_lint_ignore = "E116,E124,E128,E221,E261,E265,E501"
+" let g:pymode_lint_select = "E501,W0011,W430"
+
+" g:pymode_rope = 1  -- enable pymode rope
+let g:pymode_rope = 1
 
 let g:pymode_breakpoint = 1
 "  <F7>     -- set debugger breakpoints
@@ -631,13 +633,15 @@ let g:pymode_breakpoint_key = '<F7>'
 "  auto lookup breakpoint cmd (pdb, ipdb, pudb)"
 let g:pymode_breakpoint_cmd = ''
 
+let g:pymode_run_bind = '<leader>rx'
+
 "  Searches upward for a .ropeproject file (that should be .vcs-ignored)
 "  :PymodeRopeNewProject    -- Create a new .ropeproject in CWD
 "  :PymodeRopeRegenerate    -- Regenerate rope project cache
 let g:pymode_rope_lookup_project = 0
 
 "  <C-c>d       -- show docs for current function w/ pymode
-let g:pymode_rope_show_doc_bind = '<C-c>d'
+let g:pymode_rope_show_doc_bind = '<leader>rd'
 
 "  rope for autocompletion
 let g:pymode_rope_completion = 1
@@ -650,16 +654,19 @@ let g:pymode_rope_autoimport = 1
 "  <leader> j       --  :RopeGotoDefinition
 map <leader>j           :RopeGotoDefinition<CR>
 
-"  <C-c> ro     -- organize Python imports; drop unused (:PymodeRopeAutoImport)
-let g:pymode_rope_organize_imports_bind = '<C-c>ro'
+"  <leader>ro     -- organize Python imports; drop unused (:PymodeRopeAutoImport)
+let g:pymode_rope_organize_imports_bind = '<leader>ro'
 
 
 "  :PymodeRopeUndo  -- Undo last project changes
 "  :PymodeRopeRedo  -- Redo last project changes
 
-"  <C-c> rr     -- rope rename
-let g:pymode_rope_rename_bind = '<C-c>rr'
+"  <leader>rr     -- rope rename
+let g:pymode_rope_rename_bind = '<leader>rr'
+"  <leader>r1r    -- rope rename module
+let g:pymode_rope_rename_module_bind = '<leader>r1r'
 
+Bundle 'https://github.com/python-mode/python-mode'
 
 " vim-virtualenv    -- Python virtualenv [help virtualenv]
 Bundle 'https://github.com/jmcantrell/vim-virtualenv'
@@ -696,6 +703,14 @@ nmap <silent><Leader>tn <Esc>:Pytest next<CR>
 nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
 "  <leader>te       --  pytest error
 nmap <silent><Leader>te <Esc>:Pytest error<CR>
+
+
+" Black         -- Black code formatter
+Bundle 'https://github.com/psf/black'
+
+" let g:black_linelength=79
+let g:black_linelength=79
+" let g:black_linelength=120
 
 
 " Pyrex         -- Pyrex syntax
