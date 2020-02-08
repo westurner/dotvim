@@ -1313,6 +1313,11 @@ inoremap <F3> <C-R>=strftime("\n%Y-%m-%d (%A)\n-----------------------\n")<CR>
 let g:tracServerList = {}
 let g:tracBrowser = 'x-www-browser'
 
+function! SphinxifyHeading()
+   s/\(.*\)/.. index:: \1.. _\L\1:\E\1/
+endfunction
+command! -nargs=* SphinxifyHeading call SphinxifyHeading()
+
 
 " ##
 " ## source vimrc.local.99-after.vimrc
