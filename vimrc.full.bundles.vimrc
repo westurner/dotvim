@@ -875,11 +875,25 @@ let g:rbpt_colorpairs = [
     \ ]
 if has("autocmd")
     " :RainbowParenthesesActivate
-    "au VimEnter * RainbowParenthesesToggle
+    au VimEnter * RainbowParenthesesActivate
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
+    au Syntax * RainbowParenthesesLoadChevrons
 endif
+
+function! RainbowParens()
+    RainbowParenthesesActivate
+    RainbowParenthesesLoadRound
+    RainbowParenthesesLoadSquare
+    RainbowParenthesesLoadBraces
+    RainbowParenthesesLoadChevrons
+endfunction
+"  :RainbowParens       -- RainbowParenthesesActivate
+command! -nargs=0 RainbowParens call RainbowParens()
+"  :RainbowParensToggle -- call rainbow_parentheses#toggleall()
+command! -nargs=0 RainbowParensToggle call rainbow_parentheses#toggleall()
+
 
 " vimwiki               -- vim wiki library (for taskwiki) [help vimwiki]
 "Bundle 'https://github.com/vimwiki/vimwiki'
