@@ -354,14 +354,18 @@ filetype off
 if exists("g:tinyvim") || !has('keymap')
     source ~/.vim/vimrc.tinyvim.bundles.vimrc
 else
-    let s:vundledir=expand("~/.vim/bundle/Vundle.vim")
+    let g:bundlepath='~/.vim/bundle'  " vundle default path
+    if !empty($DOTVIM_BUNDLE_NAME)
+        let g:bundlepath='~/.vim/bundles.' . $DOTVIM_BUNDLE_NAME
+    endif
+    let s:vundledir=expand(g:bundlepath . "/Vundle.vim")
     if isdirectory(s:vundledir)
         source ~/.vim/vimrc.full.bundles.vimrc
     else
-        let output = '!echo -e "NOTE: Not loading dotvim plugins because
-        \ ~/.vim/bundle/Vundle.vim was not found.\n
-        \ To install Vundle.vim, run:\n
-        \ $ make -C ~/-dotfiles/etc/vim install_vundle\n"'
+        let output = '!echo -e "NOTE: Not loading dotvim plugins because'
+          \ . s:vundledir . ' was not found.\n'
+          \ . 'To install Vundle.vim, run:\n'
+          \ . '$ make -C ~/-dotfiles/etc/vim install_vundle\n"'
         silent! execute output
     endif
 endif

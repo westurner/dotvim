@@ -73,6 +73,7 @@ install-manual:
 	$(MAKE) test_start_vim
 	$(MAKE) list_bundles
 	$(MAKE) install_bundles
+	$(MAKE) symlink_bundle_to_bundles_all
 	$(MAKE) test_start_vim
 	$(MAKE) test_start_tinyvim
 	#
@@ -87,6 +88,7 @@ install:
 	$(MAKE) install_vundle
 	$(MAKE) list_bundles
 	$(MAKE) install_bundles
+	$(MAKE) symlink_bundle_to_bundles_all
 	#$(MAKE) test_start_vim
 	#$(MAKE) test_start_tinyvim
 	#
@@ -136,22 +138,30 @@ update_vundle:
 
 list_bundles:
 	# List vimrc Bundles
-	egrep "^Bundle '" $(VIMRC_BUNDLES) | sed "s/Bundle '\(.*\)'/\1/g"
+	egrep "^\s*Bundle '" $(VIMRC_BUNDLES) | sed "s/Bundle '\(.*\)'/\1/g"
 
 pyrpo:
 	# List repositories with pyrpo (pip install pyrpo)
 	pyrpo -s . -r sh | tee pyrpo.log.sh
 
+
+DOTVIM_BUNDLE_NAME:=all
+
 install_bundles:
 	# Listall bundles with Vundle
-	vim +PluginInstall +qall
+	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} vim +PluginInstall +qall
 
 update_bundles:
 	# Listall bundles with Vundle
-	vim +PluginUpdate +qall
+	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} vim +PluginUpdate +qall
+
+symlink_bundle_to_bundles_all:
+	$(shell if ! test -e bundle; then ln -s bundle bundles.all; fi)
 
 ls_bundles:
-	(cd ./bundle && ls) | tee bundles.current
+	(cd ./bundle && ls) | tee Bundlefile
+
+
 
 hg_changelog:
 	hg log --style=changelog
