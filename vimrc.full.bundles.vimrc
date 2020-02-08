@@ -806,6 +806,17 @@ Bundle 'https://github.com/plasticboy/vim-markdown'
 Bundle 'https://github.com/pearofducks/ansible-vim'
 let g:ansible_unindent_after_newline = 0
 
+" :Ansibledoc -- Replace the current buffer with the output of ansible-doc
+"     :Ansibledoc file
+"     :Ansibledoc -s file
+"     :Ansibledoc -l
+"     :Ansibledoc -F
+function! Ansibledoc(...)
+    execute "%!COLUMNS='$(tput cols)' ansible-doc " . join(a:000)
+    set filetype=yaml
+endfunction
+command! -nargs=* Ansibledoc call Ansibledoc(<f-args>)
+
 
 " Salt      -- Salt syntax
 Bundle 'https://github.com/saltstack/salt-vim'
