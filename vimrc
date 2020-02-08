@@ -970,8 +970,8 @@ endif
 " Colors
 "  :PatchColors     --  load local colorizing postsets
 function! PatchColors()
-    hi Normal                           guibg=#040404       gui=NONE
-                \       ctermfg=lightgray                   cterm=None
+    "hi Normal                           guibg=#040404       gui=NONE
+    "            \       ctermfg=lightgray                   cterm=None
     hi Visual           guifg=NONE      guibg=#540300
                 \       ctermfg=black   ctermbg=darkgreen
     hi MatchParen                       guibg=#a42314       gui=bold
@@ -988,33 +988,33 @@ function! PatchColors()
     hi WildMenu         guifg=NONE      guibg=#540300       gui=bold
                 \       ctermfg=red     ctermbg=black
 
-    hi LineNr	        guifg=gray50    guibg=#080808
+    hi LineNr	        guifg=gray30    guibg=#101010
                 \       ctermfg=darkgray
 
-    hi HorizMark                        guibg=#2a4a2a
+    hi HorizMark                        guibg=#3a5a3a
                 \                       ctermbg=darkgreen
-    hi VertMark                         guibg=#2a2a2a
+    hi VertMark                         guibg=#3a3a3a
                 \                       ctermbg=darkgreen
 
     hi ExtraWhitespace  guifg=#540300   guibg=#540300
                 \       ctermfg=red     ctermbg=red
 
     hi Folded           guifg=gray90     guibg=black
-    hi FoldColumn       guifg=gray10    guibg=#222222
-    hi ColorColumn                      guibg=gray20
-                \                       ctermbg=darkgray
+    hi FoldColumn       guifg=gray40    guibg=#101010
+    hi ColorColumn                      guibg=black
+                \                       ctermbg=black
 
     hi Cursor           guifg=NONE                          gui=reverse
                 \       ctermfg=NONE                        cterm=reverse
-    hi CursorColumn                     guibg=gray20
-                \                       ctermbg=darkgray
-    hi CursorLine                       guibg=gray20
+    hi CursorColumn                     guibg=gray10
+                \                       ctermbg=black
+    hi CursorLine                       guibg=gray10
                 \                       ctermbg=black
 
-    hi DiffAdd                          guibg=#454d4d
-    hi DiffChange                       guibg=#38492b
+    hi DiffAdd                          guibg=#152d1d
+    hi DiffChange                       guibg=#28191b
     hi DiffDelete   guifg=#443737       guibg=#443737
-    hi DiffText                         guibg=#4c5f48
+    hi DiffText     guifg=#48191b       guibg=gray
 
     hi Directory    guifg=#FFA0A0
                 \   ctermfg=lightgray
@@ -1023,9 +1023,12 @@ function! PatchColors()
                 \                                           cterm=bold
 
     hi Error        guifg=white         guibg=#a42314       gui=bold
-                \   ctermfg=white       ctermbg=red         cterm=bold
+                \   ctermfg=white       ctermbg=darkred     cterm=bold
     hi ErrorMsg     guifg=white         guibg=#a42314
-                \   ctermfg=white       ctermbg=red         cterm=bold
+                \   ctermfg=white       ctermbg=darkred     cterm=bold
+    hi WarningMsg   guifg=#ccae22       guibg=NONE          gui=bold
+                \   ctermfg=yellow      ctermbg=NONE        cterm=bold
+
 
     hi ModeMsg      guifg=#eecc18       guibg=NONE          gui=NONE
                 \   ctermfg=yellow      ctermbg=NONE        cterm=NONE
@@ -1035,11 +1038,6 @@ function! PatchColors()
                 \   ctermfg=green       ctermbg=NONE        cterm=NONE
     hi MoreMsg      guifg=#39d049       guibg=NONE          gui=NONE
                 \   ctermfg=green       ctermbg=NONE        cterm=NONE
-
-    hi ErrorMsg     guifg=#ffffff       guibg=#ff0000       gui=bold
-                \   ctermfg=white       ctermbg=red         cterm=bold
-    hi WarningMsg   guifg=#ccae22       guibg=NONE          gui=bold
-                \   ctermfg=yellow      ctermbg=NONE        cterm=bold
 
     hi NonText      guifg=#151515       guibg=#151515
 
@@ -1054,13 +1052,13 @@ function! PatchColors()
                 \   ctermfg=red         ctermbg=black       cterm=bold
 
     hi clear FoldColumn
-    hi FoldColumn   guifg=#c8bcb9       guibg=#171717       gui=bold
+    hi FoldColumn   guifg=gray40        guibg=#101010       gui=bold
                 \   ctermfg=lightgray   ctermbg=black       cterm=bold
     hi clear SignColumn
-    hi SignColumn   guifg=#c8bcb9       guibg=#171717       gui=bold
+    hi SignColumn   guifg=#c8bcb9       guibg=#101010       gui=bold
                 \   ctermfg=lightgray   ctermbg=black       cterm=bold
 
-    hi Search       guifg=white         guibg=#742314       gui=bold
+    hi Search       guifg=white         guibg=#540300       gui=bold
                 \   ctermfg=black       ctermbg=lightgray   cterm=bold
 
 
