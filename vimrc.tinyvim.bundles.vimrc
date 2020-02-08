@@ -155,7 +155,7 @@ Bundle 'https://github.com/xolox/vim-misc'
 
 " Vim Colorscheme Switcher [help colorscheme-switcher]
 Bundle 'https://github.com/xolox/vim-colorscheme-switcher'
-let g:colorscheme_switcher_exclude = ['shine','morning','peachpuff', 'zellner', 'delek', 'default' ]
+let g:colorscheme_switcher_exclude = ['shine', 'morning', 'peachpuff', 'zellner', 'delek', 'default' ]
 let g:colorscheme_switcher_keep_background = 1
 "  <F8>         -- cycle colors forward
 "  <Shift><F8>  -- cycle colors reverse
