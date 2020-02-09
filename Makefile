@@ -126,7 +126,7 @@ install_vundle:
 		&& git clone https://github.com/gmarik/Vundle.vim bundles.all/Vundle.vim \
 		|| $(MAKE) update_vundle
 	test -e bundle/ || \
-		ln -s bundles.all/ bundle/
+		ln -s bundles.all/ bundle
 	# ->	|| $(MAKE) update_vundle
 
 update_vundle:
@@ -138,7 +138,7 @@ update_vundle:
 	cd bundles.all/Vundle.vim \
 		&& git pull https://github.com/gmarik/Vundle.vim master
 	test -e bundle/ || \
-		ln -s bundles.all/ bundle/
+		ln -s bundles.all/ bundle
 
 list_bundles:
 	# List vimrc Bundles
@@ -165,6 +165,7 @@ symlink_bundle_to_bundles_all:
 	$(shell if ! test -e bundle; then ln -s bundle bundles.all; fi)
 
 ls_bundles:
+	(cd ./bundles.all && ls)
 	(cd ./bundle && ls) | tee Bundlefile
 
 install_bundle_fixes:
