@@ -121,20 +121,24 @@ install_powerline_fonts:
 
 install_vundle:
 	# Install or update vundle
-	mkdir -p bundle/
-	test ! -d bundle/Vundle.vim \
-		&& git clone https://github.com/gmarik/Vundle.vim bundle/Vundle.vim \
+	mkdir -p bundles.all/
+	test ! -d bundles.all/Vundle.vim \
+		&& git clone https://github.com/gmarik/Vundle.vim bundles.all/Vundle.vim \
 		|| $(MAKE) update_vundle
+	test -e bundle/ || \
+		ln -s bundles.all/ bundle/
 	# ->	|| $(MAKE) update_vundle
 
 update_vundle:
 	# git pull Vundle from upstream
-	test -d bundle/Vundle.vim
-	test -d bundle/Vundle.vim/.git || ( \
+	test -d bundles.all/Vundle.vim
+	test -d bundles.all/Vundle.vim/.git || ( \
 		rm -rf bundle/Vundle.vim && \
-		git clone https://github.com/gmarik/Vundle.vim bundle/Vundle.vim )
-	cd bundle/Vundle.vim \
+		git clone https://github.com/gmarik/Vundle.vim bundles.all/Vundle.vim )
+	cd bundles.all/Vundle.vim \
 		&& git pull https://github.com/gmarik/Vundle.vim master
+	test -e bundle/ || \
+		ln -s bundles.all/ bundle/
 
 list_bundles:
 	# List vimrc Bundles
@@ -165,14 +169,14 @@ ls_bundles:
 
 install_bundle_fixes:
 	$(MAKE) install_pymode_bundle
-	$(MAKE) install_black_bundle
+	$(MAKE) install_black_virtualenv
 
 install_pymode_bundle:
 	git -C bundles.all/python-mode submodule update --init --remote --checkout --recursive
 
 install_black_virtualenv:
-	virtualenv ~/.vim/black
-	~/.vim/black/bin/pip install black
+	(test -e ~/.vim/black && test -e ~/.vim/black/bin/black) \
+		|| (virtualenv ~/.vim/black && ~/.vim/black/bin/pip install -U black)
 
 hg_changelog:
 	hg log --style=changelog
