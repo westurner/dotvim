@@ -153,12 +153,14 @@ DOTVIM_BUNDLE_NAME:=all
 
 install_bundles:
 	# Listall bundles with Vundle
-	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} vim +PluginInstall +qall
+	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} \
+					   vim -T dumb -E +PluginInstall +qall || true
 	$(MAKE) install_bundle_fixes
 
 update_bundles:
 	# Listall bundles with Vundle
-	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} vim +PluginUpdate +qall
+	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} \
+					   vim -T dumb -E +PluginUpdate +qall || true
 	$(MAKE) install_bundle_fixes
 
 symlink_bundle_to_bundles_all:
