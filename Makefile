@@ -176,7 +176,7 @@ install_bundle_fixes:
 
 install_pymode_bundle:
 	test -d bundles.all/python-mode || \
-		(cd bundles.all/ git clone https://github.com/python-mode/python-mode)
+		(cd bundles.all/; git clone https://github.com/python-mode/python-mode)
 	git -C bundles.all/python-mode submodule update --init --remote --checkout --recursive
 
 install_black_virtualenv:
