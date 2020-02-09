@@ -678,8 +678,11 @@ Bundle 'https://github.com/jmcantrell/vim-virtualenv'
 
 
 " Sort python imports
-Bundle 'https://github.com/vim-scripts/sort-python-imports'
+" Bundle 'https://github.com/vim-scripts/sort-python-imports'
 "  :PyFixImports    --  sort import statements
+"  Instead, see: g:pymode_rope_organize_imports_bind = '<C-c>ro'
+"  Pending the patch in: 
+"    https://github.com/vim-scripts/sort-python-imports/pull/2
 
 
 " Pytest.vim    -- py.test red/green results [help pytest]
