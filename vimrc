@@ -1318,6 +1318,12 @@ function! SphinxifyHeading()
 endfunction
 command! -nargs=* SphinxifyHeading call SphinxifyHeading()
 
+let g:termprg = 'gnome-terminal'
+function! Terminal()
+    exec '!' . g:termprg .' -q -e "$__VENV -e -xb"'
+endfunction
+command! -nargs=0 Terminal call Terminal()
+command! -nargs=0 Term call Terminal()
 
 " ##
 " ## source vimrc.local.99-after.vimrc
