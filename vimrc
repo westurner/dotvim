@@ -1318,9 +1318,19 @@ function! SphinxifyHeading()
 endfunction
 command! -nargs=* SphinxifyHeading call SphinxifyHeading()
 
-let g:termprg = 'gnome-terminal'
+let g:termprg = 'gnome-terminal -q --'
 function! Terminal()
-    exec '!' . g:termprg .' -q -e "$__VENV -e -xb"'
+    let l:termprg = get(s:, 'termprg', g:termprg) 
+    if $VIRTUAL_ENV
+        if $__VENV
+            exec 'silent !' . l:termprg .' "$__VENV -e -xb" &'
+        else
+            exec 'silent !' . l:termprg . ' "source $VIRTUAL_ENV/bin/activate; $SHELL" &'
+        endif
+    else
+        exec 'silent !' . l:termprg . ' "$SHELL" &'
+    endif
+    redraw!
 endfunction
 command! -nargs=0 Terminal call Terminal()
 command! -nargs=0 Term call Terminal()
