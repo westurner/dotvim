@@ -362,7 +362,7 @@ Bundle 'https://github.com/mattboehm/vim-unstack'
 
 
 " accordion.vim -- work w/ a number of vsplits at once [help accordion]
-"Bundle 'https://github.com/mattboehm/vim-accordion'
+Bundle 'https://github.com/mattboehm/vim-accordion'
 ""  :Accordion [n]       -- show [n] splits wide
 ""  :AccordionAll [n]    -- show [n] splits everywhere
 ""  :AccordionDiff       -- show 2 split diffs
@@ -371,11 +371,11 @@ Bundle 'https://github.com/mattboehm/vim-unstack'
 """let g:accordion_mode="h"
 "let g:accordion_mode="v"
 ""  <Ctrl-w> 2   -- Show 2 splits wide
-"nnoremap <C-w>2 :Accordion 2<CR>
+nnoremap <C-w>2 :Accordion 2<CR>
 ""  <Ctrl-w> 3   -- Show 3 splits wide
-"nnoremap <C-w>3 :Accordion 3<CR>
+nnoremap <C-w>3 :Accordion 3<CR>
 ""  <Ctrl-w> 0   -- stop auto layout and reset
-"nnoremap <C-w>0 :AccordionStop<CR>
+nnoremap <C-w>0 :AccordionStop<CR>
 
 
 " ViM Airline   -- helpful statusbar information w/ vimscript [help airline]
@@ -645,7 +645,7 @@ let g:pymode_rope_show_doc_bind = '<leader>rd'
 
 "  rope for autocompletion
 let g:pymode_rope_completion = 1
-let g:pymode_rope_complete_on_dot = 1
+"let g:pymode_rope_complete_on_dot = 1
 "  <C-Space>    -- rope autocomplete
 let g:pymode_rope_completion_bind = '<C-Space>'
 
