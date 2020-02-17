@@ -25,15 +25,17 @@ Usage:
 
     # These are equivalent:
     ./bundlelinker.py -p ~/.vim
-    ./bundlelinker.py -b ~/.vim/bundle --all ~/.vim/bundles.all -f ~/.vim/Bundlefile
+    ./bundlelinker.py -f ~/.vim/Bundlefile --all ~/.vim/bundles.all -b ~/.vim/bundle
 
 """
-import enum
 import itertools
 import json
 import logging
 import os
 import shutil
+import sys
+import unittest
+
 from pathlib import Path
 
 
@@ -49,8 +51,10 @@ def generate_bundle_sets(
 ):
     """
         Keyword Arguments:
-            bundle_dir (str or Path): directory to create symlinks in (e.g. ./bundle)
-            bundles_all_dir (str or Path): where bundles are installed (e.g. ./bundles.all)
+            bundle_dir (str or Path): directory to create symlinks in
+                (e.g. ./bundle)
+            bundles_all_dir (str or Path): where bundles are installed
+                (e.g. ./bundles.all)
             bundlefile (str or Path): ./bundlefile (e.g. Bundlefile)
         Returns:
             dict: bundles, grouped tasks, and tasks as a list
@@ -131,10 +135,7 @@ def arrange_bundles(
         make_changes_to_fs (bool): whether to make changes
 
     Returns:
-        str: ...
-
-    Raises:
-        Exception: ...
+        int: number of changes made or how many changes would be made
     """
     _bundles_all_dir = Path(bundles_all_dir)
     _bundle_dir = Path(bundle_dir)
@@ -150,43 +151,41 @@ def arrange_bundles(
 
     if not _bundle_dir.exists():
         tasks.append(dict(action=Tasks.MKDIR, path=bundle_dir))
+    # tasks = itertools.chain(tasks, bundlesets["tasks"])
+    tasks.extend(bundlesets["tasks"])
 
     log = logging.getLogger()
-
     log.debug("# Bundlesets and Tasks")
     log.debug(to_json(bundlesets))
-
     log.info("# Tasks")
     log.info(to_json(bundlesets["tasks"]))
 
     to_install = []
-
-    changes_made = 0
+    changes_made = []
     if make_changes_to_fs:
-        for task in itertools.chain(tasks, bundlesets["tasks"]):
+        for task in tasks:
             log.debug(task)
             taskname = task.get("task")
             if taskname == Tasks.MKDIR:
                 log.info(f"mkdir {task['path']!r}")
                 os.mkdir(task["path"])
-                changes_made += 1
+                changes_made.append(task)
             elif taskname == Tasks.SYMLINK:
                 log.info(
                     f"symlink {task['bundle_dir_path']!r} to {task['bundles_all_path']!r}"
                 )
-                # os.chdir(path["bundles_all_path"].parent)
                 os.symlink(
                     ".." / task["bundles_all_path"], task["bundle_dir_path"]
-                )  # TODO: relative path
-                changes_made += 1
+                )
+                changes_made.append(task)
             elif taskname == Tasks.RM:
                 log.info(f"rm {task['path']}")
                 shutil.rmtree(task["path"])
-                changes_made += 1
+                changes_made.append(task)
             elif taskname == Tasks.INSTALL:
-                install_tasks.append(taskname)
+                to_install.append(taskname)
                 log.info(
-                    f"{path['bundles_all_path']!r} does not exist.\n"
+                    f"{task['bundles_all_path']!r} does not exist.\n"
                     "Install it manually or with a Bundle in a vimrc."
                 )
 
@@ -195,11 +194,7 @@ def arrange_bundles(
                 f"{task['bundles_all_path']!r} does not exist.\n"
                 "Install it manually or with a Bundle in a vimrc."
             )
-
-    return changes_made
-
-
-import unittest
+    return dict(tasks=tasks, changes_made=changes_made, to_install=to_install)
 
 
 class Test_bundlelinker(unittest.TestCase):
@@ -213,7 +208,10 @@ class Test_bundlelinker(unittest.TestCase):
 
     def test_arrange_bundles(self):
         output = arrange_bundles(**self.args)
-        assert output == 0
+        assert "tasks" in output
+        assert "changes_made" in output
+        assert "to_install" in output
+        assert len(output["changes_made"]) == 0
 
     # def test_arrange_bundles_and_modify(self):
     #     output = arrange_bundles(make_changes_to_fs=True, **self.args)
@@ -237,9 +235,7 @@ def main(argv=None):
 
     prs.add_option("-p", "--prefix", dest="prefix", default="~/.vim")
 
-    prs.add_option(
-        "--all", dest="bundles_all_dir", help="bundles.all/"
-    )
+    prs.add_option("--all", dest="bundles_all_dir", help="bundles.all/")
     prs.add_option("-b", dest="bundle_dir", help="bundle/")
     prs.add_option(
         "-f", dest="bundlefile", help="Bundlefile",
@@ -278,11 +274,7 @@ def main(argv=None):
     log.debug("args: %r", args)
 
     if opts.run_tests:
-        import sys
-
         sys.argv = [sys.argv[0]] + args
-        import unittest
-
         return unittest.main()
 
     EX_OK = 0
@@ -302,17 +294,22 @@ def main(argv=None):
         )
 
     log.debug("opts: %r", opts)
-    changes_made = arrange_bundles(
+    output = arrange_bundles(
         bundle_dir=opts.bundle_dir,
         bundles_all_dir=opts.bundles_all_dir,
         bundlefile=opts.bundlefile,
         make_changes_to_fs=opts.make_changes_to_fs,
     )
-    log.info(f"Done. Made {changes_made} changes.")
+    log.info(f"Done.")
+    log.info(f"Plan: {len(output['tasks'])} changes.")
+    log.info(
+        f"Made: {len(output['changes_made'])} changes. (-y to make changes)"
+    )
+    to_install_count = len(output["to_install"])
+    if to_install_count:
+        log.info(f"To manually install: {to_install_count}. See logs")
     return EX_OK
 
 
 if __name__ == "__main__":
-    import sys
-
     sys.exit(main(argv=sys.argv[1:]))
