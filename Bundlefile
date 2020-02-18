@@ -1,4 +1,6 @@
 ansible-vim
+asyncrun.vim
+asynctasks.vim
 black
 bufexplorer
 ctrlp.vim
@@ -34,6 +36,7 @@ vim-pasta
 vim-session
 vim-signify
 vim-surround
+vim-test
 vimroom
 VOoM
 Vundle.vim

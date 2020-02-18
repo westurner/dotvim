@@ -445,6 +445,45 @@ Bundle 'https://github.com/sickill/vim-pasta'
 let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
 
 
+" vim-test      -- run tests with different granularities [help test.txt]
+Bundle 'https://github.com/janko/vim-test'
+">these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+"  t<Ctrl-n>    -- :TestNearest
+nmap <silent> t<C-n> :TestNearest<CR>
+"  t<Ctrl-f>    -- :TestFile
+nmap <silent> t<C-f> :TestFile<CR>
+"  t<Ctrl-s>    -- :TestSuite
+nmap <silent> t<C-s> :TestSuite<CR>
+"  t<Ctrl-l>    -- :TestLast
+nmap <silent> t<C-l> :TestLast<CR>
+"  t<Ctrl-g>    -- :TestVisit
+nmap <silent> t<C-g> :TestVisit<CR>
+
+
+" asyncrun.vim  -- run async shell commands to e.g. quickfix [help asyncrun]
+Bundle 'https://github.com/skywind3000/asyncrun.vim'
+"  :AsyncRun make
+"  :AsyncRun -cwd=<root> make
+"  :AsyncRun -pos=bottom make
+"  :AsyncRun -pos=tab make
+
+" asynctasks.vim -- run tasks defined in a .tasks file [help asynctasks]
+Bundle 'https://github.com/skywind3000/asynctasks.vim'
+let g:asyncrun_open = 6
+"  <F5>         -- :AsyncTask file-run<cr>
+noremap <silent><F5> :AsyncTask file-run<cr>
+"  <F9>         -- :AsyncTask file-build<cr>
+noremap <silent><F9> :AsyncTask file-build<cr>
+"  <F6>         -- :AsyncTask project-run<cr>
+noremap <silent><F6> :AsyncTask project-run<cr>
+"  <F7>         -- :AsyncTask project-build<cr>
+noremap <silent><F7> :AsyncTask project-build<cr>
+
+"  "
+"  " search upward for (.git|.svn|.root|.project|.hg)/.tasks
+let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+
+
 " Vim Room      -- focus just the relevant text [help vimroom] 
 Bundle 'https://github.com/mikewest/vimroom'
 
@@ -534,7 +573,7 @@ Bundle 'https://github.com/godlygeek/csapprox'
 " UndoTree      -- visualize vim undotree
 Bundle 'https://github.com/mbbill/undotree'
 "  <F5>     -- :UndoTreeToggle (? for help)
-nnoremap <F5> :UndotreeToggle<cr>
+nnoremap <F4> :UndotreeToggle<cr>
 if has("persistent_undo")
     ""set undodir = '~/.undodir/'
     set undofile
