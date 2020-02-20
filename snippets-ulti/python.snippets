@@ -5,6 +5,9 @@ from __future__ import print_function
 """
 ${1:progname}
 """
+import logging
+import sys
+import unittest
 
 
 def $1($2):
@@ -28,9 +31,6 @@ def $1($2):
     ${5:pass}
 
 
-import unittest
-
-
 class Test_$1(unittest.TestCase):
 
     def setUp(self):
@@ -45,27 +45,27 @@ class Test_$1(unittest.TestCase):
 
 def main(argv=None):
     """
-    Main function 
+    $1 main() function 
     
     Keyword Arguments:
         argv (list): commandline arguments (e.g. sys.argv[1:])
     Returns:
         int: 
     """
-    import logging
     import optparse
 
-    prs = optparse.OptionParser(usage="%prog : ${6:args}")
+    prs = optparse.OptionParser(
+		usage="%prog : ${6:args}")
 
     prs.add_option('-v', '--verbose',
-                    dest='verbose',
-                    action='store_true',)
+                   dest='verbose',
+                   action='store_true',)
     prs.add_option('-q', '--quiet',
-                    dest='quiet',
-                    action='store_true',)
+                   dest='quiet',
+                   action='store_true',)
     prs.add_option('-t', '--test',
-                    dest='run_tests',
-                    action='store_true',)
+                   dest='run_tests',
+                   action='store_true',)
 
 
     argv = list(argv) if argv else []
@@ -82,10 +82,9 @@ def main(argv=None):
     log.debug('args: %r', args)
 
     if opts.run_tests:
-        import sys
         sys.argv = [sys.argv[0]] + args
-        import unittest
         return unittest.main()
+		# return subprocess.call(['pytest', '-v'] + args)
 
     EX_OK = 0
     output = $1($2)
@@ -93,7 +92,6 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
-    import sys
     sys.exit(main(argv=sys.argv[1:]))
 endsnippet
 
