@@ -493,7 +493,7 @@ if has("autocmd")
     au FileType python set omnifunc=pythoncomplete#Complete
     au FileType xml set omnifunc=xmlcomplete#CompleteTags
 
-    set completeopt=menuone,longest,preview
+    set completeopt=menuone,longest,preview,noinsert
     "  CTRL-<space>     --  autocomplete menu
     inoremap <C-Space>      <C-x><C-o>
     "  CTRL-<tab>       --  autocomplete menu
