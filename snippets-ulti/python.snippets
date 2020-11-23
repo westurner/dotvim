@@ -84,7 +84,7 @@ def main(argv=None):
     if opts.run_tests:
         sys.argv = [sys.argv[0]] + args
         return unittest.main()
-		# return subprocess.call(['pytest', '-v'] + args)
+		# return subprocess.call(['pytest', '-v'] + args + [__file__])
 
     EX_OK = 0
     output = $1($2)
