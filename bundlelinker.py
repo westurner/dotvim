@@ -194,7 +194,12 @@ def arrange_bundles(
                 f"{task['bundles_all_path']!r} does not exist.\n"
                 "Install it manually or with a Bundle in a vimrc."
             )
-    return dict(tasks=tasks, changes_made=changes_made, to_install=to_install)
+    return dict(
+        tasks=tasks,
+        changes_made=changes_made,
+        bundlesets=bundlesets,
+        to_install=to_install,
+    )
 
 
 class Test_bundlelinker(unittest.TestCase):
@@ -251,6 +256,14 @@ def main(argv=None):
     )
 
     prs.add_option(
+        "--Pu",
+        "--print-unnecessarily-installed",
+        dest="print_unnecessarily_installed",
+        action="store_true",
+        help="Print things in bundle_dir that aren't in Bundlefile",
+    )
+
+    prs.add_option(
         "-v", "--verbose", dest="verbose", action="store_true",
     )
     prs.add_option(
@@ -300,14 +313,20 @@ def main(argv=None):
         bundlefile=opts.bundlefile,
         make_changes_to_fs=opts.make_changes_to_fs,
     )
-    log.info(f"Done.")
-    log.info(f"Plan: {len(output['tasks'])} changes.")
-    log.info(
-        f"Made: {len(output['changes_made'])} changes. (-y to make changes)"
-    )
-    to_install_count = len(output["to_install"])
-    if to_install_count:
-        log.info(f"To manually install: {to_install_count}. See logs")
+    if opts.print_unnecessarily_installed:
+        for pth in output["bundlesets"]["unnecessarily_installed"]:
+            print(pth)
+    else:
+        log.info(f"Done.")
+        log.info(f"Plan: {len(output['tasks'])} changes.")
+        log.info(
+            f"Made: {len(output['changes_made'])} changes. "
+            "(-y to make changes)"
+        )
+        to_install_count = len(output["to_install"])
+        if to_install_count:
+            log.info(f"To manually install: {to_install_count}. See logs")
+
     return EX_OK
 
 
