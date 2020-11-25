@@ -978,6 +978,11 @@ Bundle 'https://gitlab.com/dbeniamine/todo.txt-vim'
 autocmd BufNewFile,BufRead *.todo.txt set filetype=todo
 highlight  default  link  TodoProject    Constant
 
+
+Bundle 'https://github.com/vim-scripts/Printer-Dialog'
+" Printer-Dialog        -- dialog for printer settings (fonts, etc)
+"  <leader>pd           -- open the print dialog
+
 " All of your Bundles must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
