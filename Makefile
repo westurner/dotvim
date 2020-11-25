@@ -153,6 +153,7 @@ DOTVIM_BUNDLE_NAME:=all
 
 install_bundles:
 	# Listall bundles with Vundle
+	mkdir -p '${DOTVIM_BUNDLE_NAME}'
 	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} \
 					   vim -T dumb -E +PluginInstall +qall || true
 	$(MAKE) install_bundle_fixes
