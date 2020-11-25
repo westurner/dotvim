@@ -361,7 +361,7 @@ Bundle 'https://github.com/mattboehm/vim-unstack'
 "  <leader> s   -- parse part/all of a stacktrace
 
 
-" accordion.vim -- work w/ a number of vsplits at once [help accordion]
+" accordion.vim -- work w/ a number of h/vsplits at once [help accordion]
 Bundle 'https://github.com/mattboehm/vim-accordion'
 ""  :Accordion [n]       -- show [n] splits wide
 ""  :AccordionAll [n]    -- show [n] splits everywhere
