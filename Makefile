@@ -181,8 +181,10 @@ install_pymode_bundle:
 	git -C bundles.all/python-mode submodule update --init --remote --checkout --recursive
 
 install_black_virtualenv:
-	(test -e ~/.vim/black && test -e ~/.vim/black/bin/black) \
-		|| (virtualenv ~/.vim/black && ~/.vim/black/bin/pip install -U black)
+	#(test -e ~/.vim/black && test -e ~/.vim/black/bin/black) \
+	#	|| (virtualenv ~/.vim/black && ~/.vim/black/bin/pip install -U black)
+	python -m pip install pipx
+	pipx install black || pipx upgrade black
 
 hg_changelog:
 	hg log --style=changelog
