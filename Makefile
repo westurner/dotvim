@@ -184,7 +184,7 @@ install_black_virtualenv:
 	#(test -e ~/.vim/black && test -e ~/.vim/black/bin/black) \
 	#	|| (virtualenv ~/.vim/black && ~/.vim/black/bin/pip install -U black)
 	python -m pip install pipx
-	pipx install black || pipx upgrade black
+	~/.local/bin/pipx install black || ~/.local/bin/pipx upgrade black
 
 hg_changelog:
 	hg log --style=changelog
