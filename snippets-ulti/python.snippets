@@ -9,6 +9,9 @@ import logging
 import sys
 import unittest
 
+import pytest
+
+__version__ = "0.0.1"
 
 def $1($2):
     """${3:mainfunc}
@@ -43,6 +46,30 @@ class Test_$1(unittest.TestCase):
         pass
 
 
+#def test_$1():
+@pytest.mark.parametrize('$2', [
+    [$2],
+])
+def test_$1($2):
+    ${4:pass}
+
+
+def test_main():
+    """test the ``main(sys.argv)`` CLI function"""
+    ${4:pass}
+
+
+@pytest.mark.parametrize('argv', [
+    None,
+    [],
+    
+]
+def test_main(argv):
+    """test the ``main(sys.argv)`` CLI function"""
+    output = main(argv)
+    ${4:pass}
+
+
 def main(argv=None):
     """
     $1 main() function 
@@ -55,7 +82,7 @@ def main(argv=None):
     import optparse
 
     prs = optparse.OptionParser(
-		usage="%prog : ${6:args}")
+        usage="%prog : ${6:args}")
 
     prs.add_option('-v', '--verbose',
                    dest='verbose',
@@ -66,7 +93,11 @@ def main(argv=None):
     prs.add_option('-t', '--test',
                    dest='run_tests',
                    action='store_true',)
+    prs.add_option('--version',
+                   dest='version',
+				   action='store_true')
 
+    
 
     argv = list(argv) if argv else []
     (opts, args) = prs.parse_args(args=argv)
@@ -80,11 +111,13 @@ def main(argv=None):
     log.debug('argv: %r', argv)
     log.debug('opts: %r', opts)
     log.debug('args: %r', args)
+	if opts.version:
+		print(__version__)
 
     if opts.run_tests:
         sys.argv = [sys.argv[0]] + args
         return unittest.main()
-		# return subprocess.call(['pytest', '-v'] + args + [__file__])
+        # return subprocess.call(['pytest', '-v'] + args + [__file__])
 
     EX_OK = 0
     output = $1($2)
@@ -107,12 +140,12 @@ from setuptools import setup, find_packages
 
 
 def read_file(fname):
-	path = os.path.join(
-		os.path.dirname(__file__),
-		fname)
+    path = os.path.join(
+        os.path.dirname(__file__),
+        fname)
     with codecs.open(fname, 'r') as f:
-		data = f.read()
-	return data
+        data = f.read()
+    return data
 
 
 standard_exclude = [
@@ -266,4 +299,38 @@ endsnippet
 
 snippet pdb
     import pdb; pdb.set_trace()
+endsnippet
+
+snippet deftest
+@pytest.mark.parametrize('$2', [
+    [$2],
+])
+def test_$1($2):
+    """test the ``test_$1($2)`` function"""
+    output = $1($2)
+    assert output == ${3:0}
+    ${4:pass}
+endsnippet
+
+snippet deftestmain
+def test_main():
+    """test the ``main(sys.argv)`` CLI function"""
+    return_code = main([$1])
+    assert return_code == ${2:0}
+    ${3:pass}
+
+
+@pytest.mark.parametrize('argv', [
+    None,
+    [],
+    ['-h'],
+	['--help'],
+	['-v'],
+	['--version'],
+	[$1],
+]
+def test_main(argv):
+    return_code = main(argv)
+	assert return_code == 0
+    ${3:pass}
 endsnippet
