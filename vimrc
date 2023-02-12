@@ -4,6 +4,11 @@
 "   git clone https://github.com/westurner/dotvim
 "   git clone ssh://git@github.com/westurner/dotvim
 "   make help
+" 
+" See also:
+" - SpaceVim
+"   - Src: https://github.com/SpaceVim/SpaceVim
+"   - https://westurner.github.io/tools/#spacevim
 "
 " Vim Reference
 " ---------------
@@ -16,11 +21,14 @@
 "                       type an [optional] command (w/o brackets),
 "                       and then press <enter>)
 "
+"  :Help            --  list commented mappings with vimgrep in a quickfix window
 "  :Dotvimhelp      --  list commented mappings
 "  :ListMappings    --  list commented mappings
+"
 "  :Dr :DotvimReload  --  reload vim configuration (on top of existing config)
 "                       (may require a maximize/unmaximize
 "                       to re-fill the window after reload)
+"
 "  :PatchColors     --  patch e.g. :Gvdiff colors to a dark theme
 "
 "  :help            --  open vim help               [help]
