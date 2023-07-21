@@ -113,8 +113,23 @@ install_vim_yum:
 install_vim_dnf:
 	sudo dnf install vim-enhanced vim-X11
 
+install_vim_dnf__no_X11:
+	sudo dnf install -y vim-enhanced
+
 install_vim_src:
 	$(SHELL) setup_vim_deb.sh
+
+install_powerline_fonts_apt:
+	sudo apt-get install -y fonts-powerline
+
+install_powerline_fonts_dnf:
+	sudo dnf install -y powerline-fonts
+
+install_fontconfig_dnf:
+	sudo dnf install -y fontconfig
+
+install_powerline_fonts_dnf__: install_fontconfig_dnf
+	$(MAKE) install_powerline_fonts
 
 install_powerline_fonts:
 	$(SHELL) ./scripts/setup_powerline_fonts.sh
@@ -180,10 +195,23 @@ install_pymode_bundle:
 		(cd bundles.all/; git clone https://github.com/python-mode/python-mode)
 	git -C bundles.all/python-mode submodule update --init --remote --checkout --recursive
 
+BLACK := $(shell command -v black 2> /dev/null)
+
+install_black_dnf:
+	# This would install a bunch of python dependencies in the system site-packages;
+	# virtualenv/pipx has less performance impact on "import" statements with the system python bin.
+	#
+	#sudo dnf install -y black
+
 install_black_virtualenv:
-	#(test -e ~/.vim/black && test -e ~/.vim/black/bin/black) \
-	#	|| (virtualenv ~/.vim/black && ~/.vim/black/bin/pip install -U black)
-	python -m pip install pipx
+#	TODO: dnf install -y black # if fc>=38?
+#	(test -e ~/.vim/black && test -e ~/.vim/black/bin/black) \
+# 		|| (virtualenv ~/.vim/black && ~/.vim/black/bin/pip install -U black)
+ifndef BLACK
+	$(info "black is not available; installing black with pip/pipx:")
+endif
+	which pip || python3 -m ensurepip
+	which pipx || python3 -m pip install pipx
 	~/.local/bin/pipx install black || ~/.local/bin/pipx upgrade black
 
 hg_changelog:
