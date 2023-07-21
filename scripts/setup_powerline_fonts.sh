@@ -12,7 +12,6 @@ setup_powerline_fonts() {
         MACOS=true
     fi
 
-    mkdir -p ~/.fonts
     if [ ! -d "powerline-fonts" ]; then
         git clone https://github.com/powerline/fonts powerline-fonts
     fi
@@ -29,6 +28,7 @@ setup_powerline_fonts() {
         sudo dnf install -y powerline-fonts
 
     else
+        mkdir -p ~/.fonts
         find . -name '*.ttf' -exec cp "{}" ~/.fonts \;
         find . -name '*.otf' -exec cp "{}" ~/.fonts \;
         command -v fc-cache || \
