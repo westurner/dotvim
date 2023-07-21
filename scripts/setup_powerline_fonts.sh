@@ -1,5 +1,5 @@
 #!/bin/sh
-# Install the Powerline-fonts
+# Install the Powerline fonts
 
 mkdir -p ~/.fonts
 if [ ! -d "powerline-fonts" ]; then
