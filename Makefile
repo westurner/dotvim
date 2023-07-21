@@ -25,11 +25,11 @@ edit:
 
 list_vimrc_comments:
 	# List vimrc special comments
-	egrep -h '^\s*"\s' $(VIM_FILES) | sed 's/"//'
+	grep -E -h '^\s*"\s' $(VIM_FILES) | sed 's/"//'
 
 list_vimrc_shortcuts:
 	# List vimrc keyboard shortcut comments (starting with '"  '')
-	egrep -h '^\s*"  ' $(VIM_FILES) | sed 's/"//'
+	grep -E -h '^\s*"  ' $(VIM_FILES) | sed 's/"//'
 
 VIM_MAPPINGS:=./tmp.output
 list_vim_mappings:
@@ -142,7 +142,7 @@ update_vundle:
 
 list_bundles:
 	# List vimrc Bundles
-	egrep "^\s*Bundle '" $(VIMRC_BUNDLES) | sed "s/Bundle '\(.*\)'/\1/g"
+	grep -E "^\s*Bundle '" $(VIMRC_BUNDLES) | sed "s/Bundle '\(.*\)'/\1/g"
 
 pyrpo:
 	# List repositories with pyrpo (pip install pyrpo)
