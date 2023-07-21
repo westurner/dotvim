@@ -3,7 +3,7 @@
 
 mkdir -p ~/.fonts
 if [ ! -d "powerline-fonts" ]; then
-    git clone https://github.com/Lokaltog/powerline-fonts
+    git clone https://github.com/powerline/fonts
 fi
 cd powerline-fonts
 if [ -d "$HOME/Library/Fonts" ]; then
