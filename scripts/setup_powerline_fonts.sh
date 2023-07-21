@@ -1,5 +1,6 @@
 #!/bin/sh
 # Install the Powerline fonts
+# - Src: https://github.com/powerline/fonts
 
 setup_powerline_fonts() {
     if [ -n "$(command -v apt-get)" ]; then
