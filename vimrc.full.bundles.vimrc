@@ -352,7 +352,7 @@ let g:UltiSnipsSnippetDirectories  = ['UltiSnips', 'snippets-ulti']
 
 " NeoComplCache -- code completion [help neocomplcache]
 Bundle 'https://github.com/Shougo/neocomplcache.vim'
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 0
 "Bundle 'Valloric/YouCompleteMe'  "Requires newer vim
 
 
@@ -379,8 +379,9 @@ nnoremap <C-w>0 :AccordionStop<CR>
 
 
 " ViM Airline   -- helpful statusbar information w/ vimscript [help airline]
-Bundle 'https://github.com/vim-airline/vim-airline'
-Bundle 'https://github.com/vim-airline/vim-airline-themes'
+if !exists("s:airline_initialized") || s:airline_initialized!=1
+    Bundle 'https://github.com/vim-airline/vim-airline'
+    Bundle 'https://github.com/vim-airline/vim-airline-themes'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -402,6 +403,7 @@ endif
 let g:airline_theme='base16_grayscale'  " vim-airline-themes
 " let g:airline_theme='serene'              " vim-airline-themes
 
+endif
 
 " EasyMotion    -- easy visual motions [help easymotion]
 Bundle 'https://github.com/Lokaltog/vim-easymotion'
@@ -436,7 +438,7 @@ let g:colorscheme_switcher_keep_background = 1
 
 
 " HiColors
-"  call HiTest() -- print highlighting colors 
+"  call HiTest() -- print highlighting colors
 Bundle 'https://github.com/vim-scripts/HiColors'
 
 
@@ -484,7 +486,19 @@ noremap <silent><F7> :AsyncTask project-build<cr>
 let g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
 
 
-" Vim Room      -- focus just the relevant text [help vimroom] 
+if has('+clientserver')
+" AsyncCommand         -- run async shell commands to e.g. quickfix
+    Bundle 'https://github.com/pydave/AsyncCommand'
+
+" vim-red-green        -- show a red or a green bar in vim
+    Bundle 'https://github.com/jimf/vim-red-green'
+
+" vim-async-make-green -- make a green
+    Bundle 'https://github.com/jimf/vim-async-make-green'
+
+endif
+
+" Vim Room      -- focus just the relevant text [help vimroom]
 Bundle 'https://github.com/mikewest/vimroom'
 
 
@@ -720,7 +734,7 @@ Bundle 'https://github.com/jmcantrell/vim-virtualenv'
 " Bundle 'https://github.com/vim-scripts/sort-python-imports'
 "  :PyFixImports    --  sort import statements
 "  Instead, see: g:pymode_rope_organize_imports_bind = '<C-c>ro'
-"  Pending the patch in: 
+"  Pending the patch in:
 "    https://github.com/vim-scripts/sort-python-imports/pull/2
 
 
@@ -915,7 +929,7 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
-if has("autocmd")
+if has("autocmd") && 0
     " :RainbowParenthesesActivate
     au VimEnter * RainbowParenthesesActivate
     au Syntax * RainbowParenthesesLoadRound
