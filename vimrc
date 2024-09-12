@@ -200,6 +200,19 @@
 "  <leader> sc      --  clear highlighting
 "
 
+" Terminal / windows
+"  :terminal        -- open a terminal split in the current tab
+"  :tabnew | term   -- open a terminal in a new tab
+"  C-w C-w          -- escape a terminal
+"  C-w :            -- escape out of a terminal to enter vim commands
+"  C-w T            -- move a buffer to a new tab           [Ctrl-W_T]
+"  C-w n            -- make a new window
+"  C-w N            -- change to navigation mode? TODO
+"  C-w "            -- paste into a :terminal
+"  C-w :dis         -- list paste buffers and [...]
+"C-w n            -- next window || new window?
+"  C-w p            -- prev window
+
 " ##
 " ## g:__sfile__dirname     -- directory containing this vimrc script
 "                              after symlinks
@@ -225,6 +238,9 @@ call Source_dotvim("vimrc.local.01-env.vimrc")
 
 " set window title to vim title (display full path)
 set title
+
+"set nocolorcolumn/colorcolumn=0 on cope
+autocmd BufWinEnter quickfix setlocal colorcolumn=0
 
 function! ListMappings()
 "  :ListMappings     -- list .vimrc(.*) comments (n(next) and p(rev))
@@ -524,6 +540,7 @@ if has("autocmd")
         "au FileType * set cinkeys= indentkeys=
         au FileType yaml.ansible set indentkeys-=*<Return>
     augroup END
+
 endif
 
 " Drag and Drop
@@ -801,8 +818,8 @@ command! -nargs=0 Paste execute('"+gP')
 
 "  alt-v        -- paste (*)
 " nm \\paste\\        "=@*.'xy'<CR>gPFx"_2x:echo<CR>
-" imap <a-v>          x<Esc>\\paste\\"_s
-" vmap <a-v>          "-cx<Esc>\\paste\\"_x
+imap <a-v>          x<Esc>\\paste\\"_s
+vmap <a-v>          "-cx<Esc>\\paste\\"_x
 
 " Paste
 "  shift-insert --  paste (*)
@@ -1342,6 +1359,8 @@ function! Terminal()
 endfunction
 command! -nargs=0 Terminal call Terminal()
 command! -nargs=0 Term call Terminal()
+
+call PatchColors()
 
 " ##
 " ## source vimrc.local.99-after.vimrc
