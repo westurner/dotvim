@@ -212,7 +212,7 @@ ifndef BLACK
 endif
 	which pip || python3 -m ensurepip
 	which pipx || python3 -m pip install pipx
-	~/.local/bin/pipx install black || ~/.local/bin/pipx upgrade black
+	pipx install black || pipx upgrade black
 
 hg_changelog:
 	hg log --style=changelog
