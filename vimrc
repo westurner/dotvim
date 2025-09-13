@@ -38,9 +38,15 @@
 "                       tag: */plugin/doc/<tag>.txt
 "  :help vimtutor   --  open vim vimtutor tutorial            [ vimtutor ]
 "  :help quickref   --  open vim quick reference          [quickref, Q_bu]
-
+"
+"  gx               --  open the url under the cursor
+"                       with g:net_rw_browsex_viewer="xdg-open"
+"
 "  :<up> :<down>    --  search backward / forward through vim command history
 "  /<up> /<down>    --  search backward / forward through vim search history
+"
+"  :<tab> [<tab>]+  --  list available vim commands (and cycle thru with tab)
+"  :<tab> <left>|rt --  list available vim commands (and cycle with arrow keys)
 "
 "  C-]              --  follow a tag (e.g. in a help document, )
 "  [[               --  go up a section                             [ [[ ]
@@ -102,6 +108,8 @@
 "  :read path       --  insert from path after cursor
 "  :read !cmd       --  insert 'cmd' output after cursor
 "  :%! [cmd]        --  buffer > stdin > [cmd] > stdout => buffer.replace
+"  :new | r ! ls -al #   -- open a new buffer, read output from cmd
+"                           w/ '#' replaced with the current filename (%)
 "  :put %           --  put % (current filename) after the cursor [help put]
 "
 "  v    hjkl        -- visual selection mode (ldur)
@@ -142,6 +150,12 @@
 "  m[a-z]{1}        --  set mark
 "  `[a-z]{1}        --  goto mark
 "  '[a-z]{1}        --  goto mark
+"
+" Line numbers
+"  :set number      --  show line numbers
+"  :set nonumber    --  show line numbers
+"  :set rnu         --  relative line numbering :set relativenumbers
+"  :set norelativenumbers  - no relative line numbering :set norelativenumbers
 "
 " Macros
 "  q[a-z]{1}        --  start recording
