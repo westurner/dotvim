@@ -1064,7 +1064,7 @@ function! PatchColors()
     hi MoreMsg      guifg=#39d049       guibg=NONE          gui=NONE
                 \   ctermfg=green       ctermbg=NONE        cterm=NONE
 
-    hi NonText      guifg=#151515       guibg=#151515
+    "hi NonText      guifg=#151515       guibg=#151515
 
     hi TabLine      guifg=white         guibg=black
                 \   ctermfg=lightgray   ctermbg=black
@@ -1091,6 +1091,19 @@ function! PatchColors()
 
     hi MyTagListFileName  guifg=#dddddd guibg=#000000
     hi MyTagListTagScope  guifg=#dddddd guibg=#222222
+
+    hi SpellBad           guifg=white         guibg=#a42314       gui=bold
+                      \   ctermfg=white       ctermbg=darkred     cterm=bold
+
+    "hi NonText      guifg=#151515       guibg=#151515
+    hi clear NonText
+    hi NonText      guifg=#ffb964
+                  \ ctermfg=10
+    "hi bufExplorerMapping   guifg=white
+    "hi bufExplorerSplit     guifg=white
+    "hi bufExplorerTitle     guifg=white
+    "hi bufExplorerToggleSplit   gui
+
 
     match ExtraWhitespace /\s\+$/
 endfunction
