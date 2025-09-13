@@ -332,6 +332,8 @@ endfunction
 command! -nargs=* -complete=customlist,Compl_Cdhere Lcdhere call Lcdhere(<f-args>)
 command! -nargs=* -complete=customlist,Compl_Cdhere LCdhere call Lcdhere(<f-args>)
 
+" F2 to rename word under cursor
+nnoremap <F2> :%s/<c-r><c-w>/<c-r><c-w>/gc<c-f>$F/i
 
 
 "  \       -- <leader>
