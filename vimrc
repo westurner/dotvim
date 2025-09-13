@@ -1262,6 +1262,49 @@ EOF
 command! -nargs=* -range Pyline python PylineVim(<f-args>)
 
 
+python << EOF
+
+def QuoteindentHN(**kwargs):
+    kwargs['quotechar'] = '>'
+    kwargs['quote_empty_lines'] = True
+    kwargs['wrapwith'] = '*'
+    return quoteindent_lines(**kwargs)
+
+
+def QuoteindentLines(quotechar='>', quote_empty_lines=True, wrapwith=None):
+    if wrapwith is None:
+        wrapwith = ''
+
+    output = sys.stdout
+
+    buffer = vim.current.buffer
+    if vim.current.range:
+        cr = vim.current.range
+        text = buffer[cr.start:cr.end+1]
+    else:
+        text = buffer
+
+    def process_lines(lines):
+        for line in texttodo:
+            if not line.strip():
+                if quote_empty_lines:
+                    yield quotechar
+                else:
+                    continue
+            if wrapwith:
+                _line = line.replace('*', '\*')
+                yield f'{quotechar} {wrapwith}{_line}{wrapwith}'
+            else:
+                yield f'{quotechar} {line}'
+
+    for line in process_lines(text):
+        print(line, file=output)
+
+EOF
+
+command! -nargs=* -range=% QuoteIndent python QuoteindentLines(<f-args>)
+command! -nargs=* -range=% QuoteIndentHN python QuoteindentHN(<f-args>)
+
 endif " has("python")
 
 "  # Pyline, !pyline
@@ -1371,6 +1414,11 @@ function! SphinxifyHeading()
    s/\(.*\)/.. index:: \1.. _\L\1:\E\1/
 endfunction
 command! -nargs=* SphinxifyHeading call SphinxifyHeading()
+
+function! AwesomeifyHeading()
+   s/\(.*\)/## \1- Wikipedia: https:\/\/en.wikipedia.org\/wiki\/\1 #\E\1/
+endfunction
+command! -nargs=* AwesomeifyHeading call AwesomeifyHeading()
 
 let g:termprg = 'gnome-terminal -q --'
 function! Terminal()
