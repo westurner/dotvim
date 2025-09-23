@@ -322,7 +322,25 @@ pull:
 push:
 	git push
 
-.PHONY: all
+git-pull: pull
+
+git-push: push
+
+git-status:
+	git status -sb
+
+git-changelog:
+	git log --pretty=format:"* %s [%h]"
+
+#git-unstage:
+#    git reset HEAD  # -- <args>
+
+#git-uncommit:
+#    git reset --soft HEAD^  # -- <args>
+
+
+
+.PHONY: all spacevim
 all: test build
 
 profileoptions:
