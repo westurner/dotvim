@@ -305,6 +305,12 @@ if exists("g:loaded_syntastic_plugin")
                 \ 'Undefined substitution referenced: "' . s:rst_def_substitution . '"' .
                 \ '\)',
                 \ }
+
+    let g:syntastic_debug=0
+    let g:syntastic_python_flake8_args = '--ignore=E501 --max-line-length=159'
+    "let g:syntastic_python_flake8_exec = 'flake8'
+    let g:syntastic_python_flake8_exec = 'ruff'
+
     " ###
     " OR
     " ###
@@ -638,7 +644,8 @@ let g:pymode_syntax_all = 1
 "let g:pymode_lint = 1
 "let g:pymode_lint_checker = "pyflakes"
 "let g:pymode_lint_checkers = pyflakes pep8 mccabe pep257 pylint
-let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+"let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_lint_checkers = ['ruff']
 " - auto-show an error window
 let g:pymode_lint_cwindow = 1
 " - show lint signs
@@ -764,9 +771,10 @@ nmap <silent><Leader>te <Esc>:Pytest error<CR>
 " Black         -- Black code formatter
 Bundle 'https://github.com/psf/black'
 
-" let g:black_linelength=79
 let g:black_linelength=79
+" let g:black_linelength=79
 " let g:black_linelength=120
+" let g:black_linelength=159
 
 
 " Pyrex         -- Pyrex syntax
