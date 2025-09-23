@@ -1100,10 +1100,10 @@ function! PatchColors()
                 \   ctermfg=lightgray   ctermbg=black       cterm=bold
 
     hi Search       guifg=white         guibg=#540300       gui=bold
-                \   ctermfg=black       ctermbg=lightgray   cterm=bold
+                \   ctermfg=NONE        ctermbg=237         cterm=bold,underline
 
     hi IncSearch    guifg=white         guibg=#540300       gui=bold
-                \   ctermfg=black       ctermbg=lightgray   cterm=bold
+                \   ctermfg=NONE        ctermbg=0           cterm=bold,underline
 
     hi qfFilename   guifg=gray90        guibg=#540300
 
