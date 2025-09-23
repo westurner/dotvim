@@ -104,20 +104,69 @@ install_home:
 	ln -s $(PWD)/vimrc $(HOME)/.vimrc
 
 
+install_setuptools_pip:
+	which pip || python3 -m ensurepip
+	pip install setuptools
+
+install_python_deps:
+	$(MAKE) install_setuptools_pip
+	pip install rope pytoolconfig
+
+install_python_deps_uv:
+	uv tool install --upgrade rope
+	uv tool install --upgrade setuptools
+
 install_vim_apt:
 	sudo apt-get install vim-nox vim-gnome
 
 install_vim_yum:
-	sudo yum install vim-enhanced vim-X11
+	sudo yum install -y vim-enhanced vim-X11
 
 install_vim_dnf:
-	sudo dnf install vim-enhanced vim-X11
+	sudo dnf install -y vim-enhanced vim-X11
 
 install_vim_dnf__no_X11:
 	sudo dnf install -y vim-enhanced
 
+PKGS_DNF_VIM_NOX=vim-enhanced
+PKGS_DNF_VIM_X11=vim-X11
+PKGS_DNF_POWERLINE_FONTS=powerline-fonts
+PKGS_DNF_POWERLINE_FONTS2=powerline-fonts fontconfig mkfontscale
+PKGS_DNF_FZF=fzf
+#PKGS_DNF_PYTHON_LSP=python3-lsp-server ruff-lsp python3-jupyter-lsp  # <fc41?
+PKGS_DNF_PYTHON_LSP=python3-lsp-server python3-jupyter-lsp
+PKGS_DNF_PYTHON=python3-virtualenv ruff black python3-pyflakes python3-flake8 ${PKGS_DNF_PYTHON_LSP}
+PKGS_DNF_ALL_NOX=${PKGS_DNF_VIM_NOX} ${PKGS_DNF_POWERLINE_FONTS} ${PKGS_DNF_FZF} ${PKGS_DNF_PYTHON} 
+PKGS_DNF_ALL_X11=${PKGS_DNF_VIM_X11} ${PKGS_DNF_ALL_NOX}
+install_vim_dnf__everything__no_X11:
+	sudo dnf install -y ${PKGS_DNF_ALL_NOX}
+
+install_vim_dnf__everything__X11:
+	sudo dnf install -y ${PKGS_DNF_ALL_X11}
+
+install_vim_dnf__print_package_names:
+	@echo PKGS_DNF_PYTHON=${PKGS_DNF_PYTHON}
+	@echo PKGS_DNF_ALL_NOX=${PKGS_DNF_ALL_NOX}
+	@echo PKGS_DNF_ALL_X11=${PKGS_DNF_ALL_X11}
+
+
+RPMOSTREE_Y=
+RPMOSTREE_INSTALL=sudo rpm-ostree install --idempotent ${RPMOSTREE_Y}
+install_vim_rpm_ostree__everything__no_X11:
+	${RPMOSTREE_INSTALL} ${RPMOSTREE_YES} ${PKGS_DNF_ALL_NOX}
+
+install_vim_rpm_ostree__everything__X11:
+	${RPMOSTREE_INSTALL} ${RPMOSTREE_YES} ${PKGS_DNF_ALL_X11}
+
+install_vim_rpm_ostree__print_package_names:
+	@echo PKGS_DNF_PYTHON=${PKGS_DNF_PYTHON}
+	@echo PKGS_DNF_ALL_NOX=${PKGS_DNF_ALL_NOX}
+	@echo PKGS_DNF_ALL_X11=${PKGS_DNF_ALL_X11}
+
+
 install_vim_src:
 	$(SHELL) setup_vim_deb.sh
+
 
 install_powerline_fonts_apt:
 	sudo apt-get install -y fonts-powerline
@@ -126,13 +175,14 @@ install_powerline_fonts_dnf:
 	sudo dnf install -y powerline-fonts
 
 install_fontconfig_dnf:
-	sudo dnf install -y fontconfig
+	sudo dnf install -y fontconfig mkfontscale
 
 install_powerline_fonts_dnf__: install_fontconfig_dnf
 	$(MAKE) install_powerline_fonts
 
 install_powerline_fonts:
 	$(SHELL) ./scripts/setup_powerline_fonts.sh
+
 
 install_vundle:
 	# Install or update vundle
@@ -155,6 +205,7 @@ update_vundle:
 	test -e bundle/ || \
 		ln -s bundles.all/ bundle
 
+
 list_bundles:
 	# List vimrc Bundles
 	grep -E "^\s*Bundle '" $(VIMRC_BUNDLES) | sed "s/Bundle '\(.*\)'/\1/g"
@@ -167,16 +218,16 @@ pyrpo:
 DOTVIM_BUNDLE_NAME:=all
 
 install_bundles:
-	# Listall bundles with Vundle
+	# List all bundles with Vundle
 	mkdir -p '${DOTVIM_BUNDLE_NAME}'
 	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} \
-					   vim -T dumb -E +PluginInstall +qall || true
+		vim -T dumb -E +PluginInstall +qall || true
 	$(MAKE) install_bundle_fixes
 
 update_bundles:
-	# Listall bundles with Vundle
+	# List all bundles with Vundle
 	DOTVIM_BUNDLE_NAME=${DOTVIM_BUNDLE_NAME} \
-					   vim -T dumb -E +PluginUpdate +qall || true
+		vim -T dumb -E +PluginUpdate +qall || true
 	$(MAKE) install_bundle_fixes
 
 symlink_bundle_to_bundles_all:
