@@ -1,0 +1,336 @@
+snippet climain "CLI Main" b
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
+"""
+${1:progname}
+"""
+import logging
+import sys
+import unittest
+
+import pytest
+
+__version__ = "0.0.1"
+
+def $1($2):
+    """${3:mainfunc}
+    
+    Arguments:
+        $2 (str): ...
+    
+    Keyword Arguments:
+        $2 (str): ...
+    
+    Returns:
+        str: ...
+
+    Yields:
+        str: ...
+
+    Raises:
+        Exception: ...
+    """
+    ${5:pass}
+
+
+class Test_$1(unittest.TestCase):
+
+    def setUp(self):
+        pass
+
+    def test_$1(self):
+        ${4:pass}
+
+    def tearDown(self):
+        pass
+
+
+#def test_$1():
+@pytest.mark.parametrize('$2', [
+    [$2],
+])
+def test_$1($2):
+    ${4:pass}
+
+
+def test_main():
+    """test the ``main(sys.argv)`` CLI function"""
+    ${4:pass}
+
+
+@pytest.mark.parametrize('argv', [
+    None,
+    [],
+    
+]
+def test_main(argv):
+    """test the ``main(sys.argv)`` CLI function"""
+    output = main(argv)
+    ${4:pass}
+
+
+def main(argv=None):
+    """
+    $1 main() function 
+    
+    Keyword Arguments:
+        argv (list): commandline arguments (e.g. sys.argv[1:])
+    Returns:
+        int: 
+    """
+    import argparse
+
+    prs = argparse.ArgumentParser(
+        usage="%prog : ${6:args}")
+
+    prs.add_argument('-v', '--verbose',
+                   dest='verbose',
+                   action='store_true',)
+    prs.add_argument('-q', '--quiet',
+                   dest='quiet',
+                   action='store_true',)
+    prs.add_argument('-t', '--test',
+                   dest='run_tests',
+                   action='store_true',)
+    prs.add_argument('--version',
+                   dest='version',
+				   action='store_true')
+
+    
+
+    argv = list(argv) if argv else []
+    (opts, args) = prs.parse_args(args=argv)
+    loglevel = logging.INFO
+    if opts.verbose:
+        loglevel = logging.DEBUG
+    elif opts.quiet:
+        loglevel = logging.ERROR
+    logging.basicConfig(level=loglevel)
+    log = logging.getLogger('main')
+    log.debug('argv: %r', argv)
+    log.debug('opts: %r', opts)
+    log.debug('args: %r', args)
+	if opts.version:
+		print(__version__)
+
+    if opts.run_tests:
+        sys.argv = [sys.argv[0]] + args
+        return unittest.main()
+        # return subprocess.call(['pytest', '-v'] + args + [__file__])
+
+    EX_OK = 0
+    output = $1($2)
+    return EX_OK
+
+
+if __name__ == "__main__":
+    sys.exit(main(argv=sys.argv[1:]))
+endsnippet
+
+snippet setup.py
+"""setup.py file for ${1}"""
+import codecs
+import os
+import sys
+
+from distutils.util import convert_path
+from fnmatch import fnmatchcase
+from setuptools import setup, find_packages
+
+
+def read_file(fname):
+    path = os.path.join(
+        os.path.dirname(__file__),
+        fname)
+    with codecs.open(fname, 'r') as f:
+        data = f.read()
+    return data
+
+
+standard_exclude = [
+    "*.py",
+    "*.pyc",
+    "*$py.class",
+    "*~",
+    ".*",
+    "*.bak",
+    "*.swp",
+]
+standard_exclude_directories = [
+    ".*",
+    "CVS",
+    '.hg',
+    '.git',
+    '.svn',
+    '.bzr',
+    "_darcs",
+    "./build",
+    "./dist",
+    "EGG-INFO",
+    "*.egg-info",
+]
+
+
+# (c) 2005 Ian Bicking and contributors
+# MIT license: http://www.opensource.org/licenses/mit-license.php
+def find_package_data(
+    where=".",
+    package="",
+    exclude=standard_exclude,
+    exclude_directories=standard_exclude_directories,
+    only_in_packages=True,
+    show_ignored=False):
+    """
+    Return a dictionary suitable for use in ``package_data``
+    in a distutils ``setup.py`` file.
+
+    The dictionary looks like::
+
+        {"package": [files]}
+
+    Where ``files`` is a list of all the files in that package that
+    don"t match anything in ``exclude``.
+
+    If ``only_in_packages`` is true, then top-level directories that
+    are not packages won"t be included (but directories under packages
+    will).
+
+    Directories matching any pattern in ``exclude_directories`` will
+    be ignored; by default directories with leading ``.``, ``CVS``,
+    and ``_darcs`` will be ignored.
+
+    If ``show_ignored`` is true, then all the files that aren"t
+    included in package data are shown on stderr (for debugging
+    purposes).
+
+    Note patterns use wildcards, or can be exact paths (including
+    leading ``./``), and all searching is case-insensitive.
+    """
+    out = {}
+    stack = [(convert_path(where), "", package, only_in_packages)]
+    while stack:
+        where, prefix, package, only_in_packages = stack.pop(0)
+        for name in os.listdir(where):
+            fn = os.path.join(where, name)
+            if os.path.isdir(fn):
+                bad_name = False
+                for pattern in exclude_directories:
+                    if (fnmatchcase(name, pattern)
+                        or fn.lower() == pattern.lower()):
+                        bad_name = True
+                        if show_ignored:
+                            print >> sys.stderr, (
+                                "Directory %s ignored by pattern %s"
+                                % (fn, pattern))
+                        break
+                if bad_name:
+                    continue
+                if (os.path.isfile(os.path.join(fn, "__init__.py"))
+                    and not prefix):
+                    if not package:
+                        new_package = name
+                    else:
+                        new_package = package + "." + name
+                    stack.append((fn, "", new_package, False))
+                else:
+                    stack.append((fn, prefix + name + "/", package, only_in_packages))
+            elif package or not only_in_packages:
+                # is a file
+                bad_name = False
+                for pattern in exclude:
+                    if (fnmatchcase(name, pattern)
+                        or fn.lower() == pattern.lower()):
+                        bad_name = True
+                        if show_ignored:
+                            print >> sys.stderr, (
+                                "File %s ignored by pattern %s"
+                                % (fn, pattern))
+                        break
+                if bad_name:
+                    continue
+                out.setdefault(package, []).append(prefix+name)
+    return out
+
+
+PACKAGE = ""
+NAME = "${1:pkgname}"
+DESCRIPTION = ""
+AUTHOR = "${2}"
+AUTHOR_EMAIL = "${3}"
+LICENSE = "${4}
+URL = "${5}"
+VERSION = "${6:__import__(PACKAGE).__version__}"
+DATA_FILES=None
+INSTALL_REQUIRES = []
+
+setup(
+    name=NAME,
+    version=VERSION,
+    description=DESCRIPTION,
+    long_description=read("README.rst"),
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    license=LICENSE,
+    url=URL,
+    packages=find_packages(exclude=["tests.*", "tests"]),
+   #package_dir = {'': 'src'},
+    package_data=find_package_data(PACKAGE, only_in_packages=False),
+   #include_package_data=True,
+    data_files=DATA_FILES,
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+       #"Environment :: Web Environment",
+       #"Intended Audience :: Developers",
+       #"License :: OSI Approved :: BSD License",
+       #"License :: OSI Approved :: MIT License",
+       #"License :: OSI Approved :: Apache License,
+       #"Operating System :: OS Independent",
+        "Programming Language :: Python",
+    ],
+    zip_safe=False,
+   #test_suite='nose.collector',
+    install_requires=INSTALL_REQUIRES,
+    entry_points={
+        'console_scripts': [
+        ]
+)
+endsnippet
+
+snippet pdb
+    import pdb; pdb.set_trace()
+endsnippet
+
+snippet deftest
+@pytest.mark.parametrize('$2', [
+    [$2],
+])
+def test_$1($2):
+    """test the ``test_$1($2)`` function"""
+    output = $1($2)
+    assert output == ${3:0}
+    ${4:pass}
+endsnippet
+
+snippet deftestmain
+def test_main():
+    """test the ``main(sys.argv)`` CLI function"""
+    return_code = main([$1])
+    assert return_code == ${2:0}
+    ${3:pass}
+
+
+@pytest.mark.parametrize('argv', [
+    None,
+    [],
+    ['-h'],
+	['--help'],
+	['-v'],
+	['--version'],
+	[$1],
+]
+def test_main(argv):
+    return_code = main(argv)
+	assert return_code == 0
+    ${3:pass}
+endsnippet
