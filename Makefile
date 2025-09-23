@@ -265,11 +265,56 @@ endif
 	which pipx || python3 -m pip install pipx
 	pipx install black || pipx upgrade black
 
-hg_changelog:
-	hg log --style=changelog
 
-hg_push:
-	hg push default
+VIMBIN := $(shell command -v vim 2> /dev/null)
+GVIMBIN := $(shell command -v gvim 2> /dev/null)
+NVIMBIN := $(shell command -v nvim 2> /dev/null)
+
+
+install_nvim_dnf:
+	dnf install -y neovim neovim-qt
+
+NVIM_ETCDIR=${XDG_CONFIG_HOME}/neovim/init.vim
+install_nvim_home:
+	mkdir -p '${NVIM_ETCDIR}'
+	ln -s "${PWD}/init.vim" "${XDG_CONFIG_HOME}/neovim/init.vim"
+
+SPACEVIM_INSTALLSH_URL=https://spacevim.org/install.sh
+SPACEVIM_INSTALLSH_URL=https://raw.githubusercontent.com/SpaceVim/SpaceVim/refs/heads/master/docs/install.sh
+SPACEVIM_INSTALLSH=./spacevim_install.sh
+SPACEVIM_VIMDIR=~/.vim/spacevim
+SPACEVIM_VIMRC=${SPACEVIM_VIMDIR}/vimrc
+SPACEVIM_NVIMDIR=~/.config/spacevim
+install_spacevim:
+	test -f ${SPACEVIM_INSTALLSH} || curl -fS "${SPACEVIM_INSTALLSH_URL}" -o ${SPACEVIM_INSTALLSH}
+	sed -i 's,^XDGvimDir=.*,XDGvimDir="$${XDG_CONFIG_HOME:-$${HOME}/.}$${XDG_CONFIG_HOME:+/}vim/spacevim",' ${SPACEVIM_INSTALLSH}
+	cat ${SPACEVIM_INSTALLSH} | grep -n -E '^XDGvimDir'
+	sh ${SPACEVIM_INSTALLSH}
+	vim -u ~/.vim/spacevim/vimrc -c "exit"
+	test -z "${GVIMBIN}" || ${GVIMBIN} -u "${SPACEVIM_VIMRC}" -c "exit"
+	@#test -z "${NVIMBIN}" || ${NVIMBIN} -u "${SPACEVIM_VIMRC}" -c "exit"
+	@echo "Run spacevim with:"
+	#@echo "vim -u ~/.vim/spacevim/vimrc"
+	@echo "vim -u ${SPACEVIM_VIMRC}"
+	@echo "gvim -u ${SPACEVIM_VIMRC}"
+	@echo "nvim -u ${SPACEVIM_NVIMDIR}"  # TODO
+
+_spacevim:
+	${vim} -u ~/.vim/spacevim/vimrc
+
+spacevim:
+	test -n "${VIMBIN}" || (echo '`vim` not found on PATH='"${PATH}" && false)
+	$(MAKE) _spacevim vim=${VIMBIN}
+
+gspacevim:
+	test -n "${GVIMBIN}" || (echo '`gvim` not found on PATH='"${PATH}" && false)
+	$(MAKE) _spacevim vim=${GVIMBIN}
+
+nspacevim:
+	test -n "${NVIMBIN}" || (echo '`nvim` not found on PATH='"${PATH}" && false)
+	${NVIMBIN} -c ~/.config/spacevim
+
+
 
 pull:
 	git pull
