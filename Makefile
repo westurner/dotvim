@@ -343,6 +343,42 @@ git-changelog:
 .PHONY: all spacevim
 all: test build
 
+#FONT_EXT=.tar.xz 
+#FONT_EXT=.zip
+#FONT_NERDFONTS_VERSION=v3.4.0
+FONT_LIBERATION_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/LiberationMono.tar.xz
+FONT_ROBOTO_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/SourceCodePro.tar.xz
+FONT_SOURCECODEPRO_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/SourceCodePro.tar.xz
+FONT_UBUNTU_URL=https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/UbuntuMono.tar.xz
+
+FONTS_DOWNLOAD_DIR=fonts/
+
+#HTTP_DOWNLOAD=wget
+HTTP_DOWNLOAD=cd ${FONTS_DOWNLOAD_DIR} && curl -fSsL
+
+download-fonts:
+	echo "# Nerd Fonts: 	https://github.com/ryanoasis/nerd-fonts/releases"
+	mkdir -p ${FONTS_DOWNLOAD_DIR}
+	${HTTP_DOWNLOAD} "${FONT_LIBERATION_URL}"	    # RedHat
+	${HTTP_DOWNLOAD} "${FONT_ROBOTO_URL}"			# Google
+	${HTTP_DOWNLOAD} "${FONT_SOURCECODEPRO_URL}"	# Adobe
+	${HTTP_DOWNLOAD} "${FONT_UBUNTU_URL}"			# Ubuntu
+
+UNZIP_FONTS=cd ${FONTS_DOWNLOAD_DIR} && tar -xJvf
+
+INSTALL_FONTS=cp -Rv ${FONTPATH}/*.ttf ${HOME}/.local/share/fonts
+
+install-fonts:
+	${UNZIP_FONTS} "$(shell basename "${FONT_LIBERATION_URL}")"
+	${UNZIP_FONTS} "$(shell basename "${FONT_ROBOTO_URL}")"
+	${UNZIP_FONTS} "$(shell basename "${FONT_SOURCECODEPRO_URL}")"
+	${UNZIP_FONTS} "$(shell basename "${FONT_UBUNTU_URL}")"
+	${INSTALL_FONTS} "Liberation"
+	${INSTALL_FONTS} "Roboto"
+	${INSTALL_FONTS} "SourceCodePro"
+	${INSTALL_FONTS} "Ubuntu"
+
+
 profileoptions:
 	vim --version | grep --color=auto -E '+startuptime|+profile'
 
